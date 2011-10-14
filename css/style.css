@@ -24,22 +24,80 @@ audio,canvas,video {
 }
 
 audio
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
  
+
+
+
+
+
 (
 [
 controls
 ]
+
+
+
+
+
  
+
+
+
+
+
 )
 {
 display
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
  
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
 ;
-
-
 }
 [hidden] {
 	display: none;
@@ -232,20 +290,78 @@ img {
  * Correct overflow not hidden in IE9 
  */
 svg
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
  
+
+
+
+
+
 (
 :root
+
+
+
+
+
  
+
+
+
+
+
 )
 {
 overflow
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
  
+
+
+
+
+
 hidden
+
+
+
+
+
+
+
+
+
+
 ;
-
-
 }
 /* =============================================================================
    Figures
@@ -379,14 +495,23 @@ td {
 /* ==|== primary styles =====================================================
    Author: 
    ========================================================================== */
-	/*demo page css*/
-body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
+
+* {
+	margin: 0;
+	padding: 0;
 }
 
-.demoHeaders {
-	margin-top: 2em;
+body {
+	margin: 5%;
+}
+
+div#navbar {
+	float: left;
+	width: auto;
+}
+
+div.content {
+	float: right;
 }
 
 #dialog_link {
@@ -400,7 +525,7 @@ body {
 	position: absolute;
 	left: .2em;
 	top: 50%;
-	margin-top: -8px;
+	margin-top: -10px;
 }
 
 ul#icons {
@@ -420,6 +545,35 @@ ul#icons li {
 ul#icons span.ui-icon {
 	float: left;
 	margin: 0 4px;
+}
+
+.standard {
+	text-align: center;
+}
+
+.all-rounded {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.spacer {
+	display: block;
+}
+
+#progress-bar {
+	width: 300px;
+	margin: 0 auto;
+	background: #cccccc;
+	border: 3px solid #f2f2f2;
+}
+
+#progress-bar-percentage {
+	background: #3063A5;
+	padding: 5px 0px;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
 }
 
 /* ==|== non-semantic helper classes ========================================
