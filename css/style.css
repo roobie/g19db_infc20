@@ -362,13 +362,37 @@ td {
 body {
 	margin: 0;
 	padding: 0;
+	text-align: justify;
 }
 
-div#main {
-	margin: 5%;
+div#container {
+	width: 100%;
+}
+
+div#sidebar {
+	position: absolute;
+	top: 7%;
+	left: 5%;
+	width: 20%;
+	border-right: 1px solid black;
+}
+
+div#content {
+	margin-left: 26%;
+	margin-right: 2%;
+}
+
+div#footer-container {
+	margin-top: 5%;
+	width:100%;
+	
 }
 
 footer {
+	text-align: center;
+}
+
+header {
 	text-align: center;
 }
 

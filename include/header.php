@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 
-<title></title>
+<title><?php echo ( $title ); ?></title>
 <meta
 	name="description"
 	content="">
@@ -34,7 +34,7 @@
 	href="css/style.css">
 <link
 	rel="stylesheet"
-	href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
+	href="css/smoothness/jquery-ui-1.8.16.custom.css">
 <!-- end CSS-->
 
 <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -47,9 +47,40 @@
 <body>
 
 <div id="container">
-<header>
 
+<header>
+	<hr />
 </header>
+
+<!-- Sidebar -->
 <div
-	id="main"
-	role="main">
+	id="sidebar"
+	class="all-rounded">
+	
+	<script type="text/javascript">
+	$(function() {
+		$( "#nav" ).accordion({
+			collapsible: true
+		});
+	});
+	</script>
+	
+	<div id="nav">
+		<h3><a href="#">Main</a></h3>
+		<div>
+		<p><a href="index.php">Start</a></p>
+		</div>
+		<h3><a href="#">Project</a></h3>
+		<div>
+		<p><a href="application.php">Application</a></p>
+		<p><a href="documentation.php">Documentation</a></p>
+		</div>
+		<h3><a href="#">Information</a></h3>
+		<div>
+		<p><a href="about.php">About the authors</a></p>
+		</div>
+	</div>
+</div>
+
+<!-- Content -->
+<div id="content">

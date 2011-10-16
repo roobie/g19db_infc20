@@ -1,13 +1,19 @@
 
 </div>
-<footer>
 
-<hr />
-<p>
-<a href="test/index.html">Test this site!</a>
-<hr />
+<div id="footer-container">
 
-</footer>
+	<footer>
+	
+	<hr />
+	<p>
+	<a href="test/index.html">Test this site!</a></p>
+	<hr />
+	
+	</footer>
+
+</div>
+
 </div>
 <!--! end of #container -->
 
