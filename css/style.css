@@ -382,6 +382,10 @@ div#content {
 	margin-right: 2%;
 }
 
+div#content-no-sidebar {
+	margin: 2%;
+}
+
 div#footer-container {
 	margin-top: 5%;
 	width:100%;
@@ -394,6 +398,11 @@ footer {
 
 header {
 	text-align: center;
+}
+
+header#no-sidebar {
+	text-align: right;
+	font-size: 8;
 }
 
 .all-rounded {
