@@ -7,20 +7,19 @@
 	
 	$query="
 	CREATE TABLE student (
-		id int(6) NOT NULL auto_increment,
-		first varchar(15) NOT NULL,
-		last varchar(15) NOT NULL,
-		phone varchar(20) NOT NULL,
-		mobile varchar(20) NOT NULL,
-		fax varchar(20) NOT NULL,
-		email varchar(30) NOT NULL,
-		web varchar(30) NOT NULL,
+		id int(10) NOT NULL auto_increment,
+		first_name varchar(255) NOT NULL,
+		last_name varchar(255) NOT NULL,
+		phone_nbr_home varchar(255),
+		phone_nbr_mobile varchar(255),
+		email varchar(255) NOT NULL,
 		
-		PRIMARY KEY (id),
-		UNIQUE id (id),
-		KEY id_2 (id))
+		PRIMARY KEY (id)
 	";
 	mysql_query($query);
 	
 	mysql_close();
+	
+	// Redirects to the referring page.
+	header("Location: ".$_SERVER["HTTP_REFERER"]);
 ?>

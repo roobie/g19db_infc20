@@ -60,7 +60,7 @@
 	<script type="text/javascript">
 	$(function() {
 		$( "#nav" ).accordion({
-			collapsible: true
+			event: "mouseover"
 		});
 	});
 	</script>
