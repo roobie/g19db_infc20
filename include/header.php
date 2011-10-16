@@ -1,26 +1,21 @@
 <!doctype html>
-<html lang="en">
-
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!-->
+<html
+	class="no-js"
+	lang="en">
+<!--<![endif]-->
 <head>
-
 <meta charset="utf-8">
 
-<link
-	rel="shortcut icon"
-	href="favicon.ico">
-
-<!-- Use the .htaccess and remove these lines to avoid edge case issues.
-		       More info: h5bp.com/b/378 -->
-<meta
-	http-equiv="X-UA-Compatible"
-	content="IE=edge,chrome=1">
-
-<title><?php echo($title)?></title>
-
+<title></title>
 <meta
 	name="description"
 	content="">
-
 <meta
 	name="author"
 	content="">
@@ -36,43 +31,25 @@
 <!-- CSS concatenated and minified via ant build script-->
 <link
 	rel="stylesheet"
-	href="css/style.css"
-	media="all">
+	href="css/style.css">
+<link
+	rel="stylesheet"
+	href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
 <!-- end CSS-->
 
 <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-<!-- All JavaScript at the bottom, except for Modernizr / Respond.
-		       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-		       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
 <script src="js/libs/modernizr-2.0.6.min.js"></script>
-<link
-	type="text/css"
-	href="css/smoothness/jquery-ui-1.8.16.custom.css"
-	rel="stylesheet" />
-
-<script
-	type="text/javascript"
-	src="js/libs/jquery-1.6.2.min.js"></script>
-
-<script
-	type="text/javascript"
-	src="js/mylibs/jquery-ui-1.8.16.custom.min.js"></script>
-
+<script src="js/libs/jquery-1.6.4.min.js"></script>
+<script src="js/libs/jquery-ui-1.8.16.custom.min.js"></script>
 </head>
 
 <body>
 
-	<div id="navbar">
-	<ul>
-		<li><a href="index.php">home</a></li>
-		<li><a href="project.php">project</a></li>
-		<ul>
-			<li><a href="database.php">implementation</a></li>
-			<li><a href="docs.php">documentation</a></li>
-		</ul>
-		<li><a href="about.php">about us</a></li>
-	</ul>
-	</div>
+<div id="container">
+<header>
 
-<div class="content">
+</header>
+<div
+	id="main"
+	role="main">

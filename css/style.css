@@ -23,81 +23,9 @@ audio,canvas,video {
 	*zoom: 1;
 }
 
-audio
-
-
-
-
-
-
-
-
-
-
-:not
-
-
-
-
-
- 
-
-
-
-
-
-(
-[
-controls
-]
-
-
-
-
-
- 
-
-
-
-
-
-)
-{
-display
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
- 
-
-
-
-
-
-none
-
-
-
-
-
-
-
-
-
-
-;
+audio:not
+[controls] {
+	display: none;
 }
 [hidden] {
 	display: none;
@@ -289,79 +217,9 @@ img {
 /*
  * Correct overflow not hidden in IE9 
  */
-svg
-
-
-
-
-
-
-
-
-
-
-:not
-
-
-
-
-
- 
-
-
-
-
-
-(
-:root
-
-
-
-
-
- 
-
-
-
-
-
-)
-{
-overflow
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
- 
-
-
-
-
-
-hidden
-
-
-
-
-
-
-
-
-
-
-;
+svg:not
+(:root) {
+	overflow: hidden;
 }
 /* =============================================================================
    Figures
@@ -502,52 +360,15 @@ td {
 }
 
 body {
-	margin: 5%;
-}
-
-div#navbar {
-	float: left;
-	width: auto;
-}
-
-div.content {
-	float: right;
-}
-
-#dialog_link {
-	padding: .4em 1em .4em 20px;
-	text-decoration: none;
-	position: relative;
-}
-
-#dialog_link span.ui-icon {
-	margin: 0 5px 0 0;
-	position: absolute;
-	left: .2em;
-	top: 50%;
-	margin-top: -10px;
-}
-
-ul#icons {
 	margin: 0;
 	padding: 0;
 }
 
-ul#icons li {
-	margin: 2px;
-	position: relative;
-	padding: 4px 0;
-	cursor: pointer;
-	float: left;
-	list-style: none;
+div#main {
+	margin: 5%;
 }
 
-ul#icons span.ui-icon {
-	float: left;
-	margin: 0 4px;
-}
-
-.standard {
+footer {
 	text-align: center;
 }
 
@@ -555,25 +376,6 @@ ul#icons span.ui-icon {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-}
-
-.spacer {
-	display: block;
-}
-
-#progress-bar {
-	width: 300px;
-	margin: 0 auto;
-	background: #cccccc;
-	border: 3px solid #f2f2f2;
-}
-
-#progress-bar-percentage {
-	background: #3063A5;
-	padding: 5px 0px;
-	color: #FFF;
-	font-weight: bold;
-	text-align: center;
 }
 
 /* ==|== non-semantic helper classes ========================================
