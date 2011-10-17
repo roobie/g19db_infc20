@@ -10,8 +10,8 @@
 		id int(10) NOT NULL auto_increment,
 		first_name varchar(255) NOT NULL,
 		last_name varchar(255) NOT NULL,
-		phone_nbr_home varchar(255),
-		phone_nbr_mobile varchar(255),
+		address varchar(255) NOT NULL,
+		phone_nbr varchar(255) NOT NULL,
 		email varchar(255) NOT NULL,
 		
 		PRIMARY KEY (id)
@@ -21,5 +21,8 @@
 	mysql_close();
 	
 	// Redirects to the referring page.
-	header("Location: ".$_SERVER["HTTP_REFERER"]);
+	if (header("Location: ".$_SERVER["HTTP_REFERER"]) == localhost) {
+			header("Location: ".$_SERVER["HTTP_REFERER"]);
+	}
+
 ?>

@@ -386,7 +386,7 @@ div#content-no-sidebar {
 }
 
 div#footer-container {
-	position:absolute;
+	position: fixed;
 	bottom:0;
 	width:100%;
 	height:60px;
@@ -429,6 +429,18 @@ div.right-col {
 	margin-right: 3%;
 	border: 1px solid black;
 }
+
+.form {
+	margin: 1px;
+	border: 0px;
+}
+
+.form td {
+	margin: 4px;
+	padding: 4px;
+	border: 0px;
+}
+
 .standard-table {
   padding: 0;
   margin: 0;
