@@ -1,3 +1,3 @@
-.h1 The proejct in INFC20 by group19
+h1. The project in INFC20 by group19
 
-TODO: Add stuff here.
+bq. TODO: Add stuff here.
