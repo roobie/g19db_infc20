@@ -1,7 +1,7 @@
-<?php
-	$title="About the Authors";
-	include 'include/header.php';
-	include 'include/sidebar.php';
+<?php 
+	include 'inc/proto_ui.inc'; //UI functions.
+	head( $title = "Information :: About us and stuff" );
+	sidebar();
 ?>
 
 <div id="bjorn" class="all-rounded">
@@ -13,5 +13,5 @@
 </div>
 
 <?php
-	include 'include/footer.php';
+	foot();
 ?>

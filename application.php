@@ -1,9 +1,7 @@
-<?php
-	$title="Database application";
-	include 'include/header_app.php';
+<?php 
+	include 'inc/proto_ui.inc'; //UI functions.
+	head_app( $title = "Project :: The Application" );
 ?>
-
-
 <script type="text/javascript">
 $(function() {
 	$( "#tabs" ).tabs({
@@ -243,5 +241,5 @@ $(function() {
 </div>
 
 <?php
-	include 'include/footer_app.php';
+	foot_app();
 ?>

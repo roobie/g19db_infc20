@@ -370,7 +370,7 @@ div#container {
 
 div#sidebar {
 	position: fixed;
-	top: 7%;
+	top: 5%;
 	left: 5%;
 	width: 20%;
 }
@@ -415,7 +415,6 @@ header#no-sidebar {
 
 div.forms {
 	margin: 5%;
-	
 }
 
 div.left-col {
@@ -492,9 +491,9 @@ img {
 div#toc {
 	border: 1px solid silver;
 	position: fixed;
-	top: 37%;
+	top: 39%;
 	left: 5%;
-	width: 20%;
+	width: 19.9%;
 }
 
 div#toc h3 {

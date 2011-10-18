@@ -1,9 +1,8 @@
-<?php
-	$title = "Documentation";
-	include 'include/header.php';
-	include 'include/sidebar.php';
+<?php 
+	include 'inc/proto_ui.inc'; //UI functions.
+	head( $title = "Project :: Documentation" );
+	sidebar();
 ?>
-
 <div id="toc" class="all-rounded">
 	<h3>Table of contents</h3>
 	<ol>
@@ -41,4 +40,6 @@
 <h2>Information about the next version</h2>
 
 
-<?php include 'include/footer.php';?>
+<?php 
+	foot();
+?>

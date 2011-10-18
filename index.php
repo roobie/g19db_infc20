@@ -1,7 +1,7 @@
 <?php 
-	$title="Group 19 INFC20";
-	include 'include/header.php';
-	include 'include/sidebar.php';
+	include 'inc/proto_ui.inc'; //UI functions.
+	head( $title = "Group19 :: Welcome to group19" );
+	sidebar();
 ?>
 
 <h1>Group 19</h1>
@@ -21,6 +21,8 @@ Nulla consectetur metus et dui volutpat sagittis. Ut in ultricies justo. Sed mol
 Aenean feugiat interdum augue nec iaculis. Praesent pharetra nulla at sem hendrerit consequat. Nullam ultrices nibh ac tortor semper tincidunt. Pellentesque in sem risus, nec ullamcorper ante. Pellentesque eros felis, pulvinar et vehicula eu, accumsan a risus. Integer ac euismod nunc. In sit amet tellus sapien. Fusce vitae urna eu odio suscipit vulputate nec et nisl.
 </p>
 
-<?php include 'include/footer.php';?>
+<?php
+	foot();
+?>
 
 
