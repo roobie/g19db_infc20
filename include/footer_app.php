@@ -5,8 +5,8 @@
 
 	<footer>
 	<br />
-		<a href="create_database.php">Reset database!</a>
-	
+		<a href="server_scripts/create_database.php">Reset database!</a> | 
+		<a href="server_scripts/populate_database.php">Populate database!</a>
 	</footer>
 
 </div>

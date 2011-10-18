@@ -1,0 +1,13 @@
+## PHP inserts ##
+
+
+INSERT INTO student VALUES (null, '880204' , 'Erik', 'Samuelsson', 'Järnåkravägen 27A', '+46708344566', 'erik.g.samuelsson@gmail.com', 'domestic')
+
+
+INSERT INTO student VALUES (null, '881026', 'Björn', 'Roberg', 'Ällingavägen 9B LGH 1409', '+46735088741', 'bjorn.roberg@gmail.com', 'domestic')
+
+
+INSERT INTO student VALUES (null, '880730', 'Pontus', 'Åkerblom', 'Magistratsvägen 55Y', '+46705286178', 'pontusakerblom@gmail.com', 'domestic')
+
+
+INSERT INTO student VALUES (null, 'null', 'John', 'Doe', 'Utbytesvägen 3', '+467316458', 'j.doe@gmail.com', 'foreign')
