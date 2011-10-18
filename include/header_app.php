@@ -50,9 +50,11 @@
 
 <div id="container">
 
-<header>
+<header id="no-sidebar">
+	<a href="index.php">To the start page.</a>
+	<br />
 	<hr />
 </header>
 
 <!-- Content -->
-<div id="content">
+<div id="content-no-sidebar">

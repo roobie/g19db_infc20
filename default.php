@@ -1,7 +1,8 @@
-
 <?php
 	$title = "Default";
-	include 'include/header_sidebar.php';?>
+	include 'include/header.php';
+	include 'include/sidebar.php';
+?>
 
 <?php include 'include/footer.php';?>
 	

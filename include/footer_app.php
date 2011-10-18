@@ -4,8 +4,8 @@
 <div id="footer-container">
 
 	<footer>
-	
-	<hr />
+	<br />
+		<a href="create_database.php">Reset database!</a>
 	
 	</footer>
 

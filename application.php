@@ -1,6 +1,6 @@
 <?php
 	$title="Database application";
-	include 'include/header_no_sidebar.php';
+	include 'include/header_app.php';
 ?>
 
 
@@ -24,15 +24,17 @@ $(function() {
 		<script type="text/javascript">
 		$(function() {
 			var fname		= $( "#fname" ),
-			lname				= $( "#lname" ),
+			lname			= $( "#lname" ),
 			address			= $( "#address" ),
 			phone_nbr		= $( "#phone_nbr" ),
-			email				= $( "#email" ),
+			email			= $( "#email" ),
+			type			= $( "#student-type")
 			allFields	= $( [] )	.add( fname )
-													.add( lname )
-													.add( address )
-													.add( phone_nbr )
-													.add( email ),
+									.add( lname )
+									.add( address )
+									.add( phone_nbr )
+									.add( email )
+									.add( type ),
 			tips = $( ".validateTips" );
 
 			function updateTips( t ) {
@@ -67,7 +69,7 @@ $(function() {
 			
 			$( "#create-student-dialog-form" ).dialog({
 				autoOpen: false,
-				height: 400,
+				height: 500,
 				width: 400,
 				modal: true,
 				buttons: {
@@ -81,16 +83,33 @@ $(function() {
 						bValid = bValid && checkLength( phone_nbr, "phone_nbr", 5, 16 );
 						bValid = bValid && checkLength( email, "email", 6, 80 );
 
-						bValid = bValid && checkRegexp( fname, /^[a-z]([0-9a-z_åäö])+$/i, "First name may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
-						bValid = bValid && checkRegexp( lname, /^[a-z]([0-9a-z_åäö])+$/i, "Last name may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
-						bValid = bValid && checkRegexp( address, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
-						bValid = bValid && checkRegexp( phone_nbr, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
+						bValid = bValid && checkRegexp( fname, /^[a-zåäö]([0-9a-z_åäö])+$/i, "First name may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
+						bValid = bValid && checkRegexp( lname, /^[a-zåäö]([0-9a-z_åäö])+$/i, "Last name may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
+						bValid = bValid && checkRegexp( address, /^[a-zåäö]([0-9a-zåäö\b])+$/i, "Address may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
+						bValid = bValid && checkRegexp( phone_nbr, /^[+]([0-9-])+$/i, "Phone number may consist of a-z + å, ä and ö, 0-9, underscores, begin with a letter." );
 						// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
 						bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
 						if ( bValid ) {
-							/**
-							 * Do stuff with data!
-							 **/
+							// POST shit to PHP script.
+							
+							var t = $("input[name='student_type']:checked").val();
+							
+							$.post( "create_student.php", { 
+								fname: fname.val(),
+								lname: lname.val(),
+								address: address.val(),
+								phone_nbr: phone_nbr.val(),
+								email: email.val(),
+								type: t
+								
+							},
+							function(data) {
+								var result = $( data ).find( '#result' );
+								$( "#result" ).empty().append( content );
+							});
+							
+							// POST shit to PHP script.
+							
 							$( this ).dialog( "close" );
 						}
 					},
@@ -112,39 +131,47 @@ $(function() {
 		</script>
 				
 		<div class="form-add">
+		<div id="result"></div>
 		
 		<div id="create-student-dialog-form" title="Create new student">
 			<p class="validateTips">All form fields are required.</p>
 		
-			<table class="form">
-			<tbody>
-				<tr>
-					<td><label for="fname">First name</label></td>
-					<td><input type="text" name="fname" id="fname" class="text ui-widget-content ui-corner-all" /></td>
-				</tr>
-				<tr>
-					<td><label for="lname">Last name</label></td>
-					<td><input type="text" name="lname" id="lname" class="text ui-widget-content ui-corner-all" /></td>
-				</tr>
-				<tr>
-					<td><label for="address">Address</label></td>
-					<td><input type="text" name="address" id="address" class="text ui-widget-content ui-corner-all" /></td>
-				</tr>
-				<tr>
-					<td><label for="phone_nbr">Phone number</label></td>
-					<td><input type="text" name="phone_nbr" id="phone_nbr" class="text ui-widget-content ui-corner-all" /></td>
-				</tr>
-				<tr>
-					<td><label for="email">E-mail address</label></td>
-					<td><input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all" /></td>
-				</tr>
-			</tbody>
-			</table>
+			<form class="js-form">
+				<label for="fname">First name</label>
+				<br />
+				<input type="text" name="fname" id="fname" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<br />
+				<label for="lname">Last name</label>
+				<br />
+				<input type="text" name="lname" id="lname" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<br />
+				<label for="address">Address</label>
+				<br />
+				<input type="text" name="address" id="address" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<br />
+				<label for="phone_nbr">Phone number</label>
+				<br />
+				<input type="text" name="phone_nbr" id="phone_nbr" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<br />
+				<label for="email">E-mail address</label>
+				<br />
+				<input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<br />
+				<label for="student_type">Student type</label>
+				<br />
+				<input type="radio" name="student_type" value="domestic" />Domestic<br />
+				<input type="radio" name="student_type" value="foreign" />Foreign
+			</form>
 		</div>
 		
 		<button id="create-student-button">Create new student!</button>
 		
-		</div><!-- End demo -->
+		</div><!-- End CREATE-STUDENT -->
 
 	</div>
 	<div id="update">
@@ -156,6 +183,7 @@ $(function() {
 </div>
 
 <div class="right-col all-rounded">
+<div id="test"></div>
 <table class="standard-table"><caption>This is where data and stuff will be.</caption>
   <tr>
     <th scope="col">Product</th>

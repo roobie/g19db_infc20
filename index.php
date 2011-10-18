@@ -1,6 +1,8 @@
 <?php 
 	$title="Group 19 INFC20";
-	include 'include/header_sidebar.php'; ?>
+	include 'include/header.php';
+	include 'include/sidebar.php';
+?>
 
 <h1>Group 19</h1>
 <p>

@@ -9,11 +9,10 @@
  * 
  * ==|== normalize ==========================================================
  */
-	/* =============================================================================
+/* =============================================================================
    HTML5 display definitions
    ========================================================================== */
-article,aside,details,figcaption,figure,footer,header,hgroup,nav,section
-	{
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {
 	display: block;
 }
 
@@ -370,7 +369,7 @@ div#container {
 }
 
 div#sidebar {
-	position: absolute;
+	position: fixed;
 	top: 7%;
 	left: 5%;
 	width: 20%;
@@ -379,6 +378,7 @@ div#sidebar {
 div#content {
 	margin-left: 26%;
 	margin-right: 2%;
+	margin-bottom: 60px;
 }
 
 div#content-no-sidebar {
@@ -387,7 +387,7 @@ div#content-no-sidebar {
 
 div#footer-container {
 	position: fixed;
-	bottom:0;
+	bottom: 0;
 	width:100%;
 	height:60px;
 	background-color: silver;
@@ -399,6 +399,7 @@ footer {
 
 header {
 	text-align: center;
+	width: 100%;
 }
 
 header#no-sidebar {
@@ -430,15 +431,10 @@ div.right-col {
 	border: 1px solid black;
 }
 
-.form {
-	margin: 1px;
-	border: 0px;
-}
-
-.form td {
-	margin: 4px;
-	padding: 4px;
-	border: 0px;
+.js-form {
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 1px;
 }
 
 .standard-table {
@@ -487,6 +483,50 @@ div.right-col {
 .standard-table tr:hover th[scope=row], .standard-table tr:hover td {
   background-color: gray;
   color: white;
+}
+
+img {
+	max-width: 100%;
+}
+
+div#toc {
+	border: 1px solid silver;
+	position: fixed;
+	top: 37%;
+	left: 5%;
+	width: 20%;
+}
+
+div#toc h3 {
+	text-align: center;
+	margin: .5em;
+}
+
+div.image-container {
+	border: 1px solid silver;
+	padding: 2em;
+	margin: 2em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+div#bjorn {
+	border: 1px solid double;
+	background-color: silver;
+	padding: .5em;
+}
+
+div#bjorn p {
+	padding: .5em;
+	width: 90%;
+}
+
+div#bjorn img {
+	padding: .5em;
+	position: absolute;
+	top: 5px;
+	left: 91%;
 }
 
 /* ==|== non-semantic helper classes ========================================
