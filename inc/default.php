@@ -1,8 +1,9 @@
 <?php
-	$title = "Default";
-	include 'include/header.php';
-	include 'include/sidebar.php';
+	include 'inc/proto_ui.inc';
+	head( $title = "Default" );
+	sidebar()
 ?>
 
-<?php include 'include/footer.php';?>
-	
+<?php
+	foot();
+?>

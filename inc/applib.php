@@ -20,4 +20,19 @@
 	        }
 	    fclose($handle); 
 	}
+	
+	function dev_set_full_error_reporting () {
+		ini_set('display_errors',1); 
+		error_reporting(E_ALL);
+	}
+	
+	/*
+	function define_webapp_root () {
+		define('__ROOT__', dirname(__FILE__)); // root of webapp.
+	}
+	*/
+	
+	function get_webapp_root () {
+		return (dirname(__FILE__) . '/');
+	}
 ?>

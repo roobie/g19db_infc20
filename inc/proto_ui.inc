@@ -23,6 +23,7 @@ function head($title = "Default") {
 		<!-- CSS concatenated and minified via ant build script-->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
+		<link rel="stylesheet" type="text/css" href="colors/vibrant-ink.css">
 		<!-- end CSS-->
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -97,6 +98,7 @@ function sidebar() {
 		<h3><a href="#">Sandbox</a></h3>
 			<div>
 			<p><a href="ajax.php">AJAX testing</a></p>
+			<p><a href="test.php">Test PHP</a></p>
 			</div>
 	</div>
 	<!-- end div#nav -->
@@ -107,7 +109,7 @@ function sidebar() {
 ?>
 
 <?php
-function head_app($title = "Default") {
+function app_head($title = "Default") {
 ?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -130,6 +132,7 @@ function head_app($title = "Default") {
 		<!-- CSS concatenated and minified via ant build script-->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
+		<link rel="stylesheet" type="text/css" href="colors/vibrant-ink.css">
 		<!-- end CSS-->
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -150,14 +153,14 @@ function head_app($title = "Default") {
 }
 ?>
 <?php
-function foot_app() {
+function app_foot() {
 ?>
 			</div>
 			<div id="footer-container">
 				<footer>
 				<br />
-					<a href="server_scripts/create_database.php">Reset database!</a> | 
-					<a href="server_scripts/populate_database.php">Populate database!</a>
+					<a href="inc/create_database.php">Reset database!</a> | 
+					<a href="inc/populate_database.php">Populate database!</a>
 				</footer>
 			</div>
 		</div>

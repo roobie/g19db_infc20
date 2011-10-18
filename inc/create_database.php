@@ -5,34 +5,37 @@
 	mysql_connect('localhost',$user,$password);
 	@mysql_select_db($database) or die( "Unable to select database");
 	
-	//=========================================================================
+	//====================================================================
 	// TABLE DROPS && DEFS
-	//=========================================================================
+	//====================================================================
 	
 	//--- BEGIN:	DROPS ---
 	
-	$query="DROP TABLE assignments";
+	$query="DROP TABLE IF EXISTS assignments";
 	mysql_query($query);
 	
-	$query="DROP TABLE section";
+	$query="DROP TABLE IF EXISTS section";
 	mysql_query($query);
 	
-	$query="DROP TABLE course_requirements";
+	$query="DROP TABLE IF EXISTS course_requirements";
 	mysql_query($query);
 	
-	$query="DROP TABLE studies";
+	$query="DROP TABLE IF EXISTS studies";
 	mysql_query($query);
 	
-	$query="DROP TABLE has_studied";
+	$query="DROP TABLE IF EXISTS has_studied";
 	mysql_query($query);
 	
-	$query="DROP TABLE course";
+	$query="DROP TABLE IF EXISTS course";
 	mysql_query($query);
 	
-	$query="DROP TABLE student";
+	$query="DROP TABLE IF EXISTS student";
 	mysql_query($query);
 	
 	//--- END:		DROPS ---
+	
+	//--------------------------------------------------------------------
+	
 	//--- BEGIN:	CREATES ---
 	
 	$query="";
@@ -163,7 +166,7 @@
 	
 	//--- END:		CREATES ---
 	
-	//=========================================================================
+	//====================================================================
 	
 	mysql_close();
 	

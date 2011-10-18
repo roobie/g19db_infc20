@@ -1,6 +1,6 @@
 <?php 
 	include 'inc/proto_ui.inc'; //UI functions.
-	head_app( $title = "Project :: The Application" );
+	app_head( $title = "Project :: The Application" );
 ?>
 <script type="text/javascript">
 $(function() {
@@ -26,19 +26,21 @@ $(function() {
 		<script type="text/javascript">
 		$(function() {
 			var ssn		= $( "#ssn" ),
-			fname		= $( "#fname" ),
-			lname		= $( "#lname" ),
+			fname			= $( "#fname" ),
+			lname			= $( "#lname" ),
 			address		= $( "#address" ),
 			phone_nbr	= $( "#phone_nbr" ),
-			email		= $( "#email" ),
-			type		= $( "#student-type");
-			allFields	= $( [] ).add( ssn )
-								 .add( fname )
-								 .add( lname )
-								 .add( address )
-								 .add( phone_nbr )
-								 .add( email )
-								 .add( type ),
+			email			= $( "#email" ),
+			type			= $( "#student-type");
+			allFields	= $( [] )
+				.add( ssn )
+				.add( fname )
+				.add( lname )
+				.add( address )
+				.add( phone_nbr )
+				.add( email )
+				.add( type ),
+			
 			tips = $( ".validateTips" );
 
 			function updateTips( t ) {
@@ -241,5 +243,5 @@ $(function() {
 </div>
 
 <?php
-	foot_app();
+	app_foot();
 ?>

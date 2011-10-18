@@ -488,6 +488,16 @@ img {
 	max-width: 100%;
 }
 
+blockquote {
+	position: relative;
+	width: 75%;
+	left: 10%;
+	border: 3px solid silver;
+	margin: 15px;
+	padding: 5px;
+	
+}
+
 div#toc {
 	border: 1px solid silver;
 	position: fixed;
