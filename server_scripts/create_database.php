@@ -43,7 +43,7 @@
 	
 	$query="CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
 			  `idstudent` INT NOT NULL AUTO_INCREMENT ,
-			  `social_secutiry_number` INT(12) NULL ,
+			  `social_security_number` INT(12) NULL ,
 			  `first_name` VARCHAR(45) NOT NULL ,
 			  `last_name` VARCHAR(45) NOT NULL ,
 			  `address` VARCHAR(255) NOT NULL ,
@@ -51,7 +51,7 @@
 			  `email` VARCHAR(45) NOT NULL ,
 			  `type` VARCHAR(45) NOT NULL ,
 			  PRIMARY KEY (`idstudent`) ,
-			  UNIQUE INDEX `social_secutiry_number_UNIQUE` (`social_secutiry_number` ASC) )
+			  UNIQUE INDEX `social_security_number_UNIQUE` (`social_security_number` ASC) )
 			ENGINE = InnoDB";
 	mysql_query($query);
 

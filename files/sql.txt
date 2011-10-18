@@ -9,5 +9,18 @@ INSERT INTO student VALUES (null, '881026', 'Björn', 'Roberg', 'Ällingavägen 
 
 INSERT INTO student VALUES (null, '880730', 'Pontus', 'Åkerblom', 'Magistratsvägen 55Y', '+46705286178', 'pontusakerblom@gmail.com', 'domestic')
 
+INSERT INTO student VALUES (null, '884646', 'test', 'test', 'wefwfw', '+4613216546', 'bjorn.roberg@gmail.com', 'domestic')
 
-INSERT INTO student VALUES (null, 'null', 'John', 'Doe', 'Utbytesvägen 3', '+467316458', 'j.doe@gmail.com', 'foreign')
+INSERT INTO student VALUES (null, '881026', 'bjorn', 'roberg', 'ällinga', '+468468546', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '884646', 'test', 'test', 'testvägen', '+4968468', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '884646', 'bjornsd', 'sdfasdfonj', 'dsafknsdfok', '+46846', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '881445', 'sdfsdfgwe', 'dsfwsfwef', 'qddfwqfe', '+46846846', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '884648', 'testt', 'testt', 'testtttt', '+4646464', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '884444', 'ijijijjjijiij', 'jiijijijjiij', 'ijijijijjijiij', '+4796464', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '884647', 'jnoiiojnoin', 'iuiuybibib', 'iubibibbibi', '+79686468', 'bjorn.roberg@gmail.com', 'domestic')

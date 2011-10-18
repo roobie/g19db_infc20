@@ -20,7 +20,11 @@ $(function() {
 		<li><a href="#common-searches">Common searches</a></li>
 	</ul>
 	
-	<div id="create">
+	<div id="create">		
+		<div class="form-insert">
+		<div id="message-insert" class="ui-message-box"></div>
+		
+		<div id="create-student-dialog-form" title="Create new student">
 		<script type="text/javascript">
 		$(function() {
 			var ssn		= $( "#ssn" ),
@@ -113,8 +117,10 @@ $(function() {
 								
 							},
 							function(data) {
-								var result = $( data ).find( '#result' );
-								$( "#result" ).empty().append( content );
+								$( "#message-insert" ).empty().append( data ).addClass( "ui-state-highlight" );
+								setTimeout(function() {
+									$( "#message-insert" ).removeClass( "ui-state-highlight", 1500 );
+								}, 500 );
 							});
 							
 							// POST shit to PHP script.
@@ -138,11 +144,6 @@ $(function() {
 				});
 		});
 		</script>
-				
-		<div class="form-add">
-		<div id="result"></div>
-		
-		<div id="create-student-dialog-form" title="Create new student">
 			<p class="validateTips">All form fields are required.</p>
 		
 			<form class="js-form">
@@ -191,6 +192,10 @@ $(function() {
 	<div id="update">
 	</div>
 	<div id="search">
+		<div class="form-select">
+			<div id="message-select" class="ui-message-box"></div>
+			
+		</div>
 	</div>
 	<div id="common-searches">
 	</div>
