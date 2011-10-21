@@ -1,9 +1,8 @@
-<?php 
+<?php
 	include 'inc/proto_ui.inc'; //UI functions.
 	head( $title = "Group19 :: Welcome to group19" );
 	sidebar();
 ?>
-
 <h1>Group 19</h1>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis metus id massa tincidunt adipiscing. Donec hendrerit odio id nulla mattis suscipit. Praesent vitae neque nunc, quis pharetra ligula. Nulla a metus vitae diam hendrerit blandit. In adipiscing tortor sed orci aliquet et ornare urna feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum condimentum tempor metus, quis egestas sapien ornare ac. Nulla lobortis laoreet augue sollicitudin tempor. Proin fermentum mi et enim tristique ut fermentum orci bibendum. Phasellus sodales sollicitudin interdum. Integer nunc tellus, egestas eu porttitor in, egestas a augue. Cras sit amet risus non neque pharetra mollis. Maecenas posuere scelerisque imperdiet. Sed viverra nunc at ante posuere vehicula.

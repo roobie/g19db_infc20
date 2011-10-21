@@ -1,12 +1,12 @@
 <?php
 
-	$ssn = $_POST["ssn"];
-	$fname = $_POST["fname"];
-	$lname = $_POST["lname"];
-	$address = $_POST["address"];
-	$phone_nbr = $_POST["phone_nbr"];
-	$email = $_POST["email"];
-	$type = $_POST["type"];
+	$ssn = mysql_escape_string($_POST["ssn"]);
+	$fname = mysql_escape_string($_POST["fname"]);
+	$lname = mysql_escape_string($_POST["lname"]);
+	$address = mysql_escape_string($_POST["address"]);
+	$phone_nbr = mysql_escape_string($_POST["phone_nbr"]);
+	$email = mysql_escape_string($_POST["email"]);
+	$type = mysql_escape_string($_POST["type"]);
 	
 	require 'database_props.php';
 	
@@ -16,7 +16,7 @@
 	$query="INSERT INTO student VALUES (null, '$ssn', '$fname', '$lname', '$address', '$phone_nbr', '$email', '$type')";
 	mysql_query($query);
 	
-	require 'applib.php';
+	require 'applib.inc';
 	
 	append_sql($query);
 	
@@ -31,7 +31,7 @@
 					";
 	
 	$result = mysql_query($query_check);
-
+	
 	if (!$result) {
 		echo '<div class="ui-state-error">FAIL. Try again or consult the webmaster.</div> Append the following info in the message, please: ' . date('l jS \of F Y h:i:s A');
 	} else {

@@ -26,3 +26,9 @@ INSERT INTO student VALUES (null, '884444', 'ijijijjjijiij', 'jiijijijjiij', 'ij
 INSERT INTO student VALUES (null, '884647', 'jnoiiojnoin', 'iuiuybibib', 'iubibibbibi', '+79686468', 'bjorn.roberg@gmail.com', 'domestic')
 
 INSERT INTO student VALUES (null, '884643', 'test', 'testt', 'testttt', '+46464', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '880909', 'unique', 'uniquesds', 'wgfwergfwgegw', '+4613413', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, 'null', 'ijbibii', 'bibibijbi', 'bjhbibibib', '+4634223', 'bjorn.roberg@gmail.com', 'foreign')
+
+INSERT INTO student VALUES (null, '880808', 'onwfownefo', 'onwofnwo', 'owdfnowdngf', '+4634232', 'asd);--@sdsd.com', 'domestic')

@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include 'inc/proto_ui.inc'; //UI functions.
 	head( $title = "Information :: Specs" );
 	sidebar();
