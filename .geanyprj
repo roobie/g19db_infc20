@@ -1,0 +1,8 @@
+
+[project]
+name=g19db_infc20
+description=
+base_path=./
+run_cmd=
+regenerate=true
+type=All
