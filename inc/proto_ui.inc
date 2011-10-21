@@ -23,7 +23,6 @@ function head($title = "Default") {
 		<!-- CSS concatenated and minified via ant build script-->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
-		<link rel="stylesheet" type="text/css" href="colors/vibrant-ink.css">
 		<!-- end CSS-->
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->

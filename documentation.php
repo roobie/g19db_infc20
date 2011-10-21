@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include 'inc/proto_ui.inc'; //UI functions.
 	head( $title = "Project :: Documentation" );
 	sidebar();
@@ -54,10 +54,15 @@
 		<p>
 		The workaround I use is having a file (ex: SiteCfg.class.php) where you set all the include paths for your project such as:
 		</p>
-		
+		<script type="text/javascript">
+			// Add CSS to hyperlight dynamically, so not all pages get this.
+			$(function() {
+				$('head').append('<link rel="stylesheet" type="text/css" href="<?php echo constant(ROOT); ?>colors/lightness.css">');
+			});
+		</script>
+		<?php echo (ROOT); ?>
 		<blockquote class="all-rounded ui-widget">
-		
-		<?php require('../hyperlight/hyperlight.php'); ?>
+		<?php require(dirname(__FILE__) . '/hyperlight/hyperlight.php'); ?>
 		<?php hyperlight('
 <?php
 $BASE_PATH = dirname(__FILE__);
@@ -66,15 +71,6 @@ $DEPENDS_PATH .= ";".$BASE_PATH."/lib";
 $DEPENDS_PATH .= ";".$BASE_PATH."/test";
 ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
 ?>', 'php');?>
-		
-		<!--
-		&lt;?php <br />
-		$BASE_PATH = dirname(__FILE__); <br />
-		$DEPENDS_PATH  = ".;".$BASE_PATH; <br />
-		$DEPENDS_PATH .= ";".$BASE_PATH."/lib"; <br />
-		$DEPENDS_PATH .= ";".$BASE_PATH."/test"; <br />
-		ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH); <br />
-		?>-->
 		</blockquote>
 		
 		<p>

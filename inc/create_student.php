@@ -16,7 +16,7 @@
 	$query="INSERT INTO student VALUES (null, '$ssn', '$fname', '$lname', '$address', '$phone_nbr', '$email', '$type')";
 	mysql_query($query);
 	
-	require 'applib.php';
+	require 'applib.inc';
 	
 	append_sql($query);
 	

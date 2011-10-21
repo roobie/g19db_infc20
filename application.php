@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include 'inc/proto_ui.inc'; //UI functions.
 	app_head( $title = "Project :: The Application" );
 ?>
