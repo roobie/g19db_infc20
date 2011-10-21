@@ -23,6 +23,7 @@ function head($title = "Default") {
 		<!-- CSS concatenated and minified via ant build script-->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
+		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
 		<!-- end CSS-->
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -48,10 +49,29 @@ function foot() {
 			</div>
 			<!-- end of div#content -->
 			<div id="footer-container">
+			<script>
+			$(function() {
+					document.styleSheets[2].disabled = true;
+				$( "#switch-theme-button" )
+					.button()
+					.click(function() {
+						var styleSheets = document.styleSheets;
+						if (styleSheets[1].disabled == true) {
+							styleSheets[1].disabled = false;
+							styleSheets[2].disabled = true;
+						} else
+						if (styleSheets[2].disabled == true) {
+							styleSheets[2].disabled = false;
+							styleSheets[1].disabled = true;
+						}
+					});
+				});
+			</script>
 				<footer>						
 					<hr />
 						<p>
-						<a href="test/index.html">Test this site!</a></p>					
+						<a href="test/index.html">Test this site!</a>	| <button id="switch-theme-button">Switch theme!</button>
+						</p>
 				</footer>
 			</div>
 			<!-- end of div#footer-container -->
@@ -98,6 +118,7 @@ function sidebar() {
 			<div>
 			<p><a href="ajax.php">AJAX testing</a></p>
 			<p><a href="test.php">Test PHP</a></p>
+			<p><a href="sql.php">Beautify SQL</a></p>
 			</div>
 	</div>
 	<!-- end div#nav -->

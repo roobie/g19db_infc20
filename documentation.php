@@ -57,7 +57,7 @@
 		<script type="text/javascript">
 			// Add CSS to hyperlight dynamically, so not all pages get this.
 			$(function() {
-				$('head').append('<link rel="stylesheet" type="text/css" href="<?php echo constant(ROOT); ?>colors/lightness.css">');
+				$('head').append('<link rel="stylesheet" type="text/css" href="colors/lightness.css">');
 			});
 		</script>
 		<?php echo (ROOT); ?>

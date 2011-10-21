@@ -1,7 +1,7 @@
 <?php
 
 	function append_sql($sql) {
-		$filename = "../files/sql.txt";
+		$filename = '../files/sql.txt';
 	
 		if(!is_file($filename)) {
 			fclose(fopen($filename,"x")); //create the file and close it
