@@ -29,8 +29,6 @@ function head($title = "Default") {
 		
 		<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script> <!-- XRegExp is bundled with the final shCore.js during build -->
 		<script type="text/javascript" src="SyntaxHighlighter/scripts/shCore.js"></script>
-		<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushPhp.js"></script>
-		<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushSql.js"></script>
 		<link type="text/css" rel="stylesheet" href="SyntaxHighlighter/styles/shCore.css"/>
 		<link type="text/css" rel="Stylesheet" href="SyntaxHighlighter/styles/shThemeEclipse.css" />
 		<script type="text/javascript">SyntaxHighlighter.all();</script>		

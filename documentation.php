@@ -57,6 +57,7 @@
 		The workaround I use is having a file (ex: SiteCfg.class.php) where you set all the include paths for your project such as:
 		</p>
 		
+		<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushPhp.js"></script>
 		<pre class="brush: php;">
 		&lt;?php
 		$BASE_PATH = dirname(__FILE__);
@@ -76,7 +77,6 @@
 	</div>
 
 <h2>Information about the next version</h2>
-
 
 <?php 
 	foot();

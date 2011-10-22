@@ -3,6 +3,8 @@
 	head( $title = "SQL used in the project" );
 	sidebar();
 ?>
+
+	<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushSql.js"></script>
 	<pre class="brush: sql;">
 	CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
 			  `idstudent` INT NOT NULL AUTO_INCREMENT ,
