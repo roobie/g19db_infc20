@@ -18,10 +18,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
+<<<<<<< HEAD
 current_page=2
 FILE_NAME_0=1176;PHP;0;16;1;1;0;/home/roobie/public_html/g19db_infc20/inc/proto_ui.inc;0;2
 FILE_NAME_1=667;PHP;0;16;1;1;0;/home/roobie/public_html/g19db_infc20/application.php;0;2
 FILE_NAME_2=2027;PHP;0;16;1;1;0;/home/roobie/public_html/g19db_infc20/documentation.php;0;2
+=======
+current_page=0
+FILE_NAME_0=17;PHP;0;16;1;1;0;/home/roobie/public_html/g19db_infc20/test.php;0;2
+>>>>>>> d5f1eb147784db0818a57a180ca4765cec4ba4ee
 
 [VTE]
 last_dir=/home/roobie

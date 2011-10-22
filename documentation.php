@@ -3,6 +3,7 @@
 	head( $title = "Project :: Documentation" );
 	sidebar();
 ?>
+
 <div id="toc" class="all-rounded">
 	<h3>Table of contents</h3>
 	<ol>
@@ -27,7 +28,8 @@
 <h2>EER and/or UML model</h2>
 <div class="image-container">
 	<img alt="This is the EER-model" src="img/eer-model.png" />
-	<a href="db/model.pdf">PDF-version of model</a>
+	<a href="db/model.pdf">PDF-version of model</a> || 
+	<a href="sql_used.php">See the SQL we used to create the database.</a>
 </div>
 <h2>Very short description of each module</h2>
 
@@ -54,25 +56,17 @@
 		<p>
 		The workaround I use is having a file (ex: SiteCfg.class.php) where you set all the include paths for your project such as:
 		</p>
-		<script type="text/javascript">
-			// Add CSS to hyperlight dynamically, so not all pages get this.
-			$(function() {
-				$('head').append('<link rel="stylesheet" type="text/css" href="colors/lightness.css">');
-			});
-		</script>
-		<?php echo (ROOT); ?>
-		<blockquote class="all-rounded ui-widget">
-		<?php require(dirname(__FILE__) . '/hyperlight/hyperlight.php'); ?>
-		<?php hyperlight('
-<?php
-$BASE_PATH = dirname(__FILE__);
-$DEPENDS_PATH  = ".;".$BASE_PATH;
-$DEPENDS_PATH .= ";".$BASE_PATH."/lib";
-$DEPENDS_PATH .= ";".$BASE_PATH."/test";
-ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
-?>', 'php');?>
-		</blockquote>
 		
+		<pre class="brush: php;">
+		&lt;?php
+		$BASE_PATH = dirname(__FILE__);
+		$DEPENDS_PATH  = ".;".$BASE_PATH;
+		$DEPENDS_PATH .= ";".$BASE_PATH."/lib";
+		$DEPENDS_PATH .= ";".$BASE_PATH."/test";
+		ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
+		?>
+		</pre>
+
 		<p>
 		Make all paths in this file relative to IT'S path. Later on you can import any file within those folders from wherever with inlude/_once, require/_once without worrying about their path.
 		</p>
