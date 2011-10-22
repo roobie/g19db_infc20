@@ -1,7 +1,7 @@
 <?php
 	include 'inc/proto_ui.inc';
 	head( $title = "Default" );
-	sidebar()
+	sidebar();
 ?>
 
 <?php

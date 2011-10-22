@@ -1,35 +1,10 @@
 <?php
 	include 'inc/proto_ui.inc';
-	head( $title = "Default" );
-	sidebar()
+	head( $title = "SQL used in the project" );
+	sidebar();
 ?>
-<script type="text/javascript">
-			// Add CSS to hyperlight dynamically, so not all pages get this.
-			$(function() {
-				$('head').append('<link rel="stylesheet" type="text/css" href="colors/lightness.css">');
-			});
-		</script>
-		<blockquote class="all-rounded ui-widget">
-		<?php require(dirname(__FILE__) . '/hyperlight/hyperlight.php'); ?>
-		<?php hyperlight('
-<?php
-$BASE_PATH = dirname(__FILE__);
-$DEPENDS_PATH  = ".;".$BASE_PATH;
-$DEPENDS_PATH .= ";".$BASE_PATH."/lib";
-$DEPENDS_PATH .= ";".$BASE_PATH."/test";
-ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
-?>', 'php');?>
-		</blockquote>
-		
-		<div id="sql-test">
-<?php
-			define("PARSER_LIB_ROOT", dirname(__FILE__) . "/sqlparserlib/");
-				require_once PARSER_LIB_ROOT."sqlparser.lib.php";
-				function SQLFormatPHP($in){
-					return PMA_SQP_formatHtml(PMA_SQP_parse($in), 'text');
-				}
-				$sql = <<<EOB
-				CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
+	<pre class="brush: sql;">
+	CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
 			  `idstudent` INT NOT NULL AUTO_INCREMENT ,
 			  `social_security_number` INT(12) NULL ,
 			  `first_name` VARCHAR(45) NOT NULL ,
@@ -41,6 +16,7 @@ ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
 			  PRIMARY KEY (`idstudent`) ,
 			  UNIQUE INDEX `social_security_number_UNIQUE` (`social_security_number` ASC) )
 			ENGINE = InnoDB;
+			
 	CREATE  TABLE IF NOT EXISTS `g19db`.`course` (
 			  `idcourse` INT NOT NULL AUTO_INCREMENT ,
 			  `code` VARCHAR(45) NULL COMMENT '	' ,
@@ -129,11 +105,7 @@ ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
 			    ON DELETE NO ACTION
 			    ON UPDATE NO ACTION)
 			ENGINE = InnoDB;
-EOB;
-
-				SQLFormatPHP($sql);
-				?>
-			</div>
+	</pre>
 <?php
 	foot();
 ?>

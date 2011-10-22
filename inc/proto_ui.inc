@@ -23,7 +23,19 @@ function head($title = "Default") {
 		<!-- CSS concatenated and minified via ant build script-->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
-		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
+		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">	
+		
+		<link rel="stylesheet" href="sqlparserlib/sqlsyntax.css" />
+		
+		<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script> <!-- XRegExp is bundled with the final shCore.js during build -->
+		<script type="text/javascript" src="SyntaxHighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushSql.js"></script>
+		<link type="text/css" rel="stylesheet" href="SyntaxHighlighter/styles/shCore.css"/>
+		<link type="text/css" rel="Stylesheet" href="SyntaxHighlighter/styles/shThemeEclipse.css" />
+		<script type="text/javascript">SyntaxHighlighter.all();</script>		
+		
+			
 		<!-- end CSS-->
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
