@@ -90,13 +90,13 @@ $(function() {
 							ssn.val("null");
 						}
 						bValid = bValid && checkLength( fname, "fname", 3, 45 );
-						bValid = bValid && checkLength( lname, "lname", 3, 45 );
+						bValid = bValid && checkLength( lname, "lname", 1, 45 );
 						bValid = bValid && checkLength( address, "address", 5, 255 );
 						bValid = bValid && checkLength( phone_nbr, "phone_nbr", 5, 45 );
 						bValid = bValid && checkLength( email, "email", 6, 45 );
 
-						bValid = bValid && checkRegexp( fname, /^[a-zåäö]([0-9a-z_åäö])+$/i, "First name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
-						bValid = bValid && checkRegexp( lname, /^[a-zåäö]([0-9a-z_åäö])+$/i, "Last name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+						bValid = bValid && checkRegexp( fname, /^[a-zåäö]([a-z_åäö])+$/i, "First name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+						bValid = bValid && checkRegexp( lname, /^[a-zåäö]([a-z_åäö])+$/i, "Last name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
 						bValid = bValid && checkRegexp( address, /^[a-zåäö]([0-9a-zåäö\s])+$/i, "Address may consist of a-z + å, ä and ö, 0-9, spaces and must begin with a letter." );
 						bValid = bValid && checkRegexp( phone_nbr, /^[+]([0-9-])+$/i, "Phone number may consist of 0-9, hyphens and begin with a plus." );
 						// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
@@ -120,8 +120,6 @@ $(function() {
 									$( "#message-insert" ).removeClass( "ui-state-highlight", 1500 );
 								}, 500 );
 							});
-							
-							// POST shit to PHP script.
 							
 							$( this ).dialog( "close" );
 						}
