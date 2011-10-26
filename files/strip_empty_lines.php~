@@ -1,0 +1,25 @@
+<?php
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
+	
+	
+	function replace_newline($string) {
+		return (string)str_replace(array("\r", "\r\n", "\n"), ' ', $string);
+	}
+	
+	function strip_empty_rows($file) {
+		$fhandle = fopen($file, "r+");
+		
+		$fcontents = fread($fhandle, filesize($file));
+		
+		ftruncate($fhandle, 0);
+		
+		replace_newline($fcontents);
+		$fcontents = str_replace("; ", ";\n", $fcontents);
+		
+		fwrite($fhandle, $fcontents);
+		
+		fclose($fhandle); 
+	}
+	
+	strip_empty_rows("many_students.sql");

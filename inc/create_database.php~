@@ -45,7 +45,7 @@
 	
 	$query="CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
 			  `idstudent` INT NOT NULL AUTO_INCREMENT ,
-			  `social_security_number` VARCHAR(12) NULL ,
+			  `social_security_number` INT(12) NULL ,
 			  `first_name` VARCHAR(45) NOT NULL ,
 			  `last_name` VARCHAR(45) NOT NULL ,
 			  `address` VARCHAR(255) NOT NULL ,

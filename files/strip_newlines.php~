@@ -1,0 +1,23 @@
+<?php
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
+	
+	
+	function replace_newline($string) {
+		return (string)str_replace(array("\r", "\r\n", "\n"), ' ', $string);
+	}
+	
+	function strip_newlines($file) {
+		$fhandle = fopen($file, "r+");
+		
+		$fcontents = fread($fhandle, filesize($file_name));
+		
+		ftruncate($fhandle);
+		
+		replace_newlines($fcontents);
+		str_replace(" ", "\n", $fcontents);
+		
+		fwrite($fcontents);
+		
+		fclose($handle); 
+	}
