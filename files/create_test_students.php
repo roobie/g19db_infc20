@@ -32,7 +32,7 @@
 	$word_array = explode(" ", $fcontents);
 	$word_count = count($word_array);
 
-	for ($i = 0; $i < 10000; $i++) {
+	for ($i = 0; $i < 500; $i++) {
 		$ssn = rand(75, 92);
 		$rand = rand(1,12);
 		if ($rand < 10) {

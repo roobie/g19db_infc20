@@ -32,3 +32,19 @@ INSERT INTO student VALUES (null, '880909', 'unique', 'uniquesds', 'wgfwergfwgeg
 INSERT INTO student VALUES (null, 'null', 'ijbibii', 'bibibijbi', 'bjhbibibib', '+4634223', 'bjorn.roberg@gmail.com', 'foreign')
 
 INSERT INTO student VALUES (null, '880808', 'onwfownefo', 'onwofnwo', 'owdfnowdngf', '+4634232', 'asd);--@sdsd.com', 'domestic')
+
+INSERT INTO student VALUES (null, '554545', 'ojnbojn', 'jono', 'ojkwnfownoon', '+4545455', 'bjorn.roberg@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)
