@@ -1,6 +1,7 @@
+/* ==|== Imports ================================================================================
+	Imports före skräddarsydd css
+   ============================================================================================== */
 @import url("/css/normalize.css");
-@import url("/css/nonsemantic.css");
-
 
 /* ==|== Fonts ==================================================================================
 	Typsnitt på sidan.
@@ -75,7 +76,7 @@ body {
 #nav a,
 #nav a:hover,
 #nav a:visited {
-	font-family: "Helvetica", "Arial" sans-serif;
+	font-family: 'Jura', sans-serif !important;
 	font-size: 16px;
 	font-weight: bold;
 	color: #333;
@@ -99,11 +100,7 @@ body {
 }
 
 #main-top-text {
-	height: 19px;
-	margin: 8px auto;
-	font-size: 16px;
-	color: #333;
-	text-shadow: #eee 1px 1px;
+	
 	font-weight: bold;
 	text-align: center;
 }
@@ -180,14 +177,25 @@ div#footer-container {
 	background-color: silver;
 }
 
-#footer,
-#footer a,
-#footer a:visited {
+#footer {
+	text-align: justify;
 	font-family: "Helvetica", "Arial" sans-serif;
 	font-size: 11px;
 	color: #f0f0f0;
 	text-shadow: #333 1px 1px 0;
 	text-decoration: none;
+}
+
+#footer a {
+	font-family: 'Jura', sans-serif;
+	text-shadow: #000 0px 0px 0px;
+	color: #55FFA0;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#footer a:visited {
+	color: #A9FFDA;
 }
 
 #footer a:hover {
@@ -246,12 +254,6 @@ img {
 	float: right;
 	margin: 10px;
 }
-
-
-
-
-
-
 
 
 
@@ -349,3 +351,18 @@ div#toc h3 {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+
+/* ==|== Fonts ==================================================================================
+	CSS till webfonts
+   ============================================================================================== */
+   h1, h2, h3, h4, h5, h6 {
+	   font-family: 'Jura', sans-serif !important;
+	   font-weight: bold;
+	   color: #333;
+	   text-shadow: #eee 1px 1px;
+   }
+
+/* ==|== Post imports ===========================================================================
+	CSS som inte bör overridas
+   ============================================================================================== */
+@import url("/css/nonsemantic.css");

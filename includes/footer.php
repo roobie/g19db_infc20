@@ -2,9 +2,10 @@
 	
 		Denna sida anv&auml;nder HTML5 och CSS3, vilket inte fungerar p&aring; &auml;ldre webbl&auml;sare. <br />
 		S&aring; om du har en gammal webbl&auml;sare… Byt till 
-		<a href="http://www.google.com/chrome?hl=sv" target="_blank">Google Chrome</a> 
+		<a href="http://www.mozilla.org/sv-SE/firefox/new/" target="_blank">Mozilla Firefox</a>
 		eller 
-		<a href="http://www.mozilla.org/sv-SE/firefox/new/" target="_blank">Mozilla Firefox</a>!
+		<a href="http://www.google.com/chrome?hl=sv" target="_blank">Google Chrome</a>!<br/>
+		Om du tvunget vill, så kan du också använda <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">Internet Explorer 9</a>, men vi lovar ingen kompatibilitet...
 		
 	</div>	<!-- end #footer -->
 	

@@ -61,8 +61,9 @@
 	
 	$query="CREATE  TABLE IF NOT EXISTS `g19db`.`course` (
 			  `idcourse` INT NOT NULL AUTO_INCREMENT ,
-			  `code` VARCHAR(45) NULL COMMENT '	' ,
-			  `name` VARCHAR(45) NULL ,
+			  `code` VARCHAR(6) NOT NULL ,
+			  `name` VARCHAR(45) NOT NULL ,
+			  `points` VARCHAR(5) NOT NULL ,
 			  PRIMARY KEY (`idcourse`) )
 			ENGINE = InnoDB";
 	mysql_query($query);
@@ -85,7 +86,7 @@
 	
 	//---
 	
-	$query="CREATE  TABLE IF NOT EXISTS `g19db`.`assigments` (
+	$query="CREATE  TABLE IF NOT EXISTS `g19db`.`assignments` (
 			  `idassigments` INT NOT NULL COMMENT '	' ,
 			  `idsection` INT NOT NULL ,
 			  `name` VARCHAR(45) NULL ,

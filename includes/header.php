@@ -19,6 +19,10 @@
 	
 	<link type="text/css" rel="stylesheet" href="SyntaxHighlighter/styles/shCore.css"/>
 	<link type="text/css" rel="Stylesheet" href="SyntaxHighlighter/styles/shThemeEclipse.css" />
+
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Federant' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Jura' rel='stylesheet' type='text/css'>
 	
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script> <!-- XRegExp is bundled with the final shCore.js during build -->
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/shCore.js"></script>
@@ -48,7 +52,7 @@
 	
 	<div id="container">
 		<div id="main-top">
-			<div id="main-top-text"><?php echo $pagename; ?>
+			<div id="main-top-text"><h3><?php echo '['.$pagename.']'; ?></h3>
 			</div>
 		</div>
 		<div id="main">

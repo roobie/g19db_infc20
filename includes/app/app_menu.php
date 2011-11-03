@@ -41,6 +41,9 @@
                 </form>
             </div><button id="create-student-button">Create new student!</button>
         </div><!-- End CREATE-STUDENT -->
+
+        <br/>
+        <hr/>
     </div>
 
     <div id="update"></div>

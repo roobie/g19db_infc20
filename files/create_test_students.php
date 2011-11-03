@@ -24,7 +24,8 @@
 	function mb_ucasefirst($str) {
 		$str[0] = mb_strtoupper($str[0]);
 		return $str;
-	} 
+	}
+	
 	$file_name = 'most_common_words';
 	$fhandle = fopen($file_name, "r");
 	$fcontents = fread($fhandle, filesize($file_name));

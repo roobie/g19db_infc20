@@ -25,7 +25,7 @@
 	$query="INSERT INTO student VALUES (null, '880730', 'Pontus', 'Åkerblom', 'Magistratsvägen 55Y', '+46705286178', 'pontusakerblom@gmail.com', 'domestic')";
 	mysql_query($query);
 	
-	$query = "INSERT INTO student VALUES (null, 'null', 'John', 'Doe', 'Utbytesvägen 3', '+46708316458', 'j.doe@gmail.com', 'foreign')";
+	$query = "INSERT INTO student VALUES (null, null, 'John', 'Doe', 'Utbytesvägen 3', '+46708316458', 'j.doe@gmail.com', 'foreign')";
 	mysql_query($query);
 	
 	//--- END:	INSERTS ---
