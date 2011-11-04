@@ -2,6 +2,7 @@
 	$term = $_POST['search_term'];
 
 	$term = "%$term%";
+	
 	require '../../../inc/database_props.php';
 
 	$data = array($term, $term, $term, $term, $term, $term, $term, $term);
@@ -31,14 +32,13 @@
 			// Building the table:
 
 echo <<<EOB
-<div id="student-search-result"></div>
-
 	<table class="standard-table">
-	    
+
     <caption>
   		This is the result from the query given.
     </caption>
 
+		<tbody>
     <tr>
 			<th scope="col">Student</th>
 			<th scope="col">ID</th>
@@ -76,8 +76,8 @@ EOB;
 
 echo <<<EOB
 
+		</tbody>
   </table>
-</div>
 EOB;
 
 		$db->commit();

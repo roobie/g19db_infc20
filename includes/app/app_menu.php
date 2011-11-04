@@ -53,6 +53,7 @@
                 id="student-search-term-tf" 
                 type="text" 
                 name="student-search-term"
+                placeholder="Enter a search term, please ..."
                 class="text ui-widget-content ui-corner-all"
                 onkeydown="
                     $(function() {
@@ -61,7 +62,6 @@
                                 search_term: $('#student-search-term-tf').val()
                             }, function(data) {
                                 $('#app_table').empty().append(data);
-                                adjust_size();
                             });
                         }
                     });">

@@ -6,7 +6,7 @@
 
 
 //	Få smma höjd på sidebar och content
-$(window).load( function adjust_size() {  			
+$(window).load( function() {  			
 	if ( $("#main").height() > $("#sidebar").height() && $("#main").height() > $("#content").height() ) {
 		$("#content").height( $("#main").height() );
 		$("#sidebar").height( $("#main").height() );
@@ -25,7 +25,6 @@ $(window).load( function adjust_size() {
 	else {
 		$("#main").height( $("#sidebar").height() );
 	}
-	adjust_size();
 });
 
 
@@ -188,3 +187,4 @@ $(function() {
 			$( "#create-student-dialog-form" ).dialog( "open" );
 		});
 });
+
