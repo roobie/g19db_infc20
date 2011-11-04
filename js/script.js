@@ -66,14 +66,187 @@ $(function() {
 /* ==|== Applikation ============================================================================
 	Alla scripts som ska köras på Applikation-sidan.
    ============================================================================================== */
+  /**
+
+  	Globala funktioner
+  	Denna uppdaterar "tips" till det man skickar in till den. 
+
+   **/
+  function updateTips( t ) {
+		tips
+			.text( t )
+			.addClass( "ui-state-highlight" );
+		setTimeout(function() {
+			tips.removeClass( "ui-state-highlight", 1500 );
+		}, 500 );
+	}
+
+	/**
+
+		Tar 4 parametrar och returnerar true eller false beroende på om strängen man skickar är inom minmaxintervallet
+
+	 **/
+	function checkLength( o, n, min, max ) {
+		if ( o.val().length > max || o.val().length < min ) {
+			o.addClass( "ui-state-error" );
+			updateTips( "Length of " + n + " must be between " +
+				min + " and " + max + "." );
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+
+		Tar 3 parametrar och returnerar true eller false beroende på om strängen man skickar är går genom regexpet
+
+	 **/
+	function checkRegexp( o, regexp, n ) {
+		if ( !( regexp.test( o.val() ) ) ) {
+			o.addClass( "ui-state-error" );
+			updateTips( n );
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+
+		Äändrar höjde på sidan.
+
+	 **/
 	function adjust_height(arg) {
 		$("#content").height( arg );
 		$("#sidebar").height( arg );
 		$("#main").height( arg );
 	}
+
+	/**
+
+		This is for UPDATING STUDENTS
+
+	 **/
+	function manipulate_student_table () {
+		var ssn		= $( "#ssn" ),
+		fname		= $( "#fname" ),
+		lname		= $( "#lname" ),
+		address		= $( "#address" ),
+		phone_nbr	= $( "#phone_nbr" ),
+		email		= $( "#email" ),
+		type		= $( "#student-type");
+		allFields	= $( [] )
+			.add( ssn )
+			.add( fname )
+			.add( lname )
+			.add( address )
+			.add( phone_nbr )
+			.add( email )
+			.add( type ),
+		
+		tips = $( ".validateTips" );
+		
+		$( "#create-student-dialog-form" ).dialog({
+			autoOpen: false,
+			height: 500,
+			width: 400,
+			modal: true,
+			buttons: {
+				"Update!": function() {
+					var bValid = true;
+					allFields.removeClass( "ui-state-error" );
+					
+					if ($("input[name='student_type']:checked").val() == "domestic") {
+						bValid = bValid && checkLength( ssn, "ssn", 6, 6 );
+						bValid = bValid && checkRegexp( ssn, /^([0-9])+$/i, "Socal security number must consist of only numbers." );
+					} else {
+						ssn.val("null");
+					}
+					bValid = bValid && checkLength( fname, "fname", 3, 45 );
+					bValid = bValid && checkLength( lname, "lname", 1, 45 );
+					bValid = bValid && checkLength( address, "address", 5, 255 );
+					bValid = bValid && checkLength( phone_nbr, "phone_nbr", 5, 45 );
+					bValid = bValid && checkLength( email, "email", 6, 45 );
+
+					bValid = bValid && checkRegexp( fname, /^[a-zåäö]([a-z_åäö])+$/i, "First name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+					bValid = bValid && checkRegexp( lname, /^[a-zåäö]([a-z_åäö])+$/i, "Last name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+					bValid = bValid && checkRegexp( address, /^[a-zåäö]([0-9a-zåäö\s])+$/i, "Address may consist of a-z + å, ä and ö, 0-9, spaces and must begin with a letter." );
+					bValid = bValid && checkRegexp( phone_nbr, /^[+]([0-9-])+$/i, "Phone number may consist of 0-9, hyphens and begin with a plus." );
+					// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+					bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "It seems like the mail address is not valid.. Please try again." );
+					if ( bValid ) {
+						var t = $("input[name='student_type']:checked").val();
+						var db_id = 0
+						
+						$.post( "inc/update_student.php", {
+							ssn: ssn.val(),
+							fname: fname.val(),
+							lname: lname.val(),
+							address: address.val(),
+							phone_nbr: phone_nbr.val(),
+							email: email.val(),
+							type: t,
+							id: db_id
+							
+						},
+						function(data) {
+							$( "#message-insert" ).empty().append( data ).addClass( "ui-state-highlight" );
+							setTimeout(function() {
+								$( "#message-insert" ).removeClass( "ui-state-highlight", 1500 );
+							}, 500 );
+						});
+						
+						$( this ).dialog( "close" );
+					}
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+		});
+
+		$("tr").click(function () { 
+      $( "#create-student-dialog-form" ).dialog( "open" );
+      ssn.val($(this).attr('id'));
+      var tmp	= $( [] );
+      $(this).children().each(function () {
+		    tmp.push($(this).text()); // "this" is the current element in the loop
+			});
+
+			var names = tmp[0].split(" ");
+
+			ssn.val(tmp[2]);
+			fname.val(names[0]);
+			lname.val(names[1]);
+			address.val(tmp[3]);
+			phone_nbr.val(tmp[4]);
+			email.val(tmp[5]);
+
+			db_id = tmp[1];
+
+			if (tmp[6] == 'no') {
+				$("input[name='student_type' value='domestic']:checked").val("domestic");
+			} else {
+				$("input[name='student_type' value='foreign']").val("foreign");
+			}
+
+    });
+    $("tr").hover(function () {
+    	$( this ).addClass("selected_student");
+    }, function () {
+    	$( this ).removeClass("selected_student");
+    });
+
+	}
+
 /**
 
-	Denna hanterar lägga till student.
+	Lokala funktioner
+	Denna hanterar lägga till student. Bör finnas motsvarande för varje entitet i databasen
 
  **/
 $(function() {
@@ -94,36 +267,6 @@ $(function() {
 		.add( type ),
 	
 	tips = $( ".validateTips" );
-
-	function updateTips( t ) {
-		tips
-			.text( t )
-			.addClass( "ui-state-highlight" );
-		setTimeout(function() {
-			tips.removeClass( "ui-state-highlight", 1500 );
-		}, 500 );
-	}
-
-	function checkLength( o, n, min, max ) {
-		if ( o.val().length > max || o.val().length < min ) {
-			o.addClass( "ui-state-error" );
-			updateTips( "Length of " + n + " must be between " +
-				min + " and " + max + "." );
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	function checkRegexp( o, regexp, n ) {
-		if ( !( regexp.test( o.val() ) ) ) {
-			o.addClass( "ui-state-error" );
-			updateTips( n );
-			return false;
-		} else {
-			return true;
-		}
-	}
 	
 	$( "#create-student-dialog-form" ).dialog({
 		autoOpen: false,

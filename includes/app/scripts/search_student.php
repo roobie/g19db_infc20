@@ -1,4 +1,5 @@
 <?php 
+	
 	$term = $_POST['search_term'];
 
 	$term = "%$term%";
@@ -35,7 +36,7 @@ echo <<<EOB
 	<table class="standard-table">
 
     <caption>
-  		This is the result from the query given.
+  		To update a row, simply click it.
     </caption>
 
 		<tbody>
@@ -46,7 +47,7 @@ echo <<<EOB
 			<th scope="col">Address</th>
 			<th scope="col">Telephone</th>
 			<th scope="col">Email</th>
-			<th scope="col">Domestic/Foreign</th>
+			<th scope="col">Exchange?</th>
     </tr>
 EOB;
 
@@ -59,11 +60,17 @@ foreach ($result_set as $row) {
 	$addr		= $row[4];
 	$tel		= $row[5];
 	$mail		= $row[6];
-	$mail		= '<a href="mailto:' . $mail . '">mail</a>';
+	$mail		= '<a href="mailto:' . $mail . '">'.$mail.'</a>';
 	$domf		= $row[7];
+	if ($domf == 'foreign') {
+		$domf = 'yes';
+	} else {
+		$domf	= 'no';
+	};
+
 echo <<<EOB
 		<tr>
-			<th id="$id" scope="row">$name</th>
+			<th id="student-row-$id" scope="row">$name</th>
 			<td>$id</td>
 			<td>$civ</td>
 			<td>$addr</td>

@@ -33,7 +33,7 @@
 	$word_array = explode(" ", $fcontents);
 	$word_count = count($word_array);
 
-	for ($i = 0; $i < 10000; $i++) {
+	for ($i = 0; $i < 100; $i++) {
 		$ssn = rand(75, 92);
 		$rand = rand(1,12);
 		if ($rand < 10) {
@@ -56,10 +56,10 @@
 		$lname = format_string($word_array[$rand]);
 		
 		$rand = rand(0, $word_count - 1);
-		$address = format_string($word_array[$rand]) . " Rd.";
+		$address = format_string($word_array[$rand]) . " Rd";
 		$address .= " " . rand(1,100);
 		
-		$phone_nbr = '+46' . "(0)" . '7' . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9);
+		$phone_nbr = '+46' . "0" . '7' . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9);
 		
 		$rand = rand(0, $word_count - 1);
 		$email = format_string($word_array[$rand]);

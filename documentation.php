@@ -51,15 +51,13 @@
 			        <p>The workaround I use is having a file (ex: SiteCfg.class.php) where you set all the include paths for your project such as:</p>
 			        
 			        <pre class="brush: php;">
-			        	&lt;?php
-			        	$BASE_PATH = dirname(__FILE__);
-			        	$DEPENDS_PATH  = ".;".$BASE_PATH;
-			        	$DEPENDS_PATH .= ";".$BASE_PATH."/lib";
-			        	$DEPENDS_PATH .= ";".$BASE_PATH."/test";
-			        	ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
-			        ?&gt;
-			        
-					</pre>
+&lt;?php
+	$BASE_PATH = dirname(__FILE__);
+	$DEPENDS_PATH  = ".;".$BASE_PATH;
+	$DEPENDS_PATH .= ";".$BASE_PATH."/lib";
+	$DEPENDS_PATH .= ";".$BASE_PATH."/test";
+	ini_set("include_path", ini_get("include_path").";".$DEPENDS_PATH);
+?&gt;</pre>
 			
 			        <p>Make all paths in this file relative to IT'S path. Later on you can import any file within those folders from wherever with inlude/_once, require/_once without worrying about their path.</p>
 			        <p>Just cross fingers you have permissions to change the server's include path.</p>
