@@ -284,7 +284,7 @@ div.forms {
 
 .standard-table caption {
   caption-side: bottom;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-style: italic;
   text-align: right;
   padding: 0.5em 0;
@@ -292,13 +292,13 @@ div.forms {
 
 .standard-table th, .standard-table td {
   border: 1px dotted #666;
-  padding: 0.5em;
+  padding: 0.2em;
   text-align: left;
 }
 
 .standard-table th[scope=col] {
   text-transform: uppercase;
-  font-size: 0.9em;
+  font-size: 0.7em;
   border-bottom: 2px solid #333;
   border-right: 2px solid #333;
 }

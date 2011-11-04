@@ -2,7 +2,6 @@
                 
     <ul>
         <li><a href="#create">Create</a></li>
-        <li><a href="#update">Update</a></li>
         <li><a href="#search">Search</a></li>
         <li><a href="#common-searches">Common searches</a></li>
     </ul>
@@ -46,11 +45,26 @@
         <hr/>
     </div>
 
-    <div id="update"></div>
-
     <div id="search">
         <div class="form-select">
             <div id="message-select" class="ui-message-box"></div>
+            Students: 
+            <input
+                id="student-search-term-tf" 
+                type="text" 
+                name="student-search-term"
+                class="text ui-widget-content ui-corner-all"
+                onkeydown="
+                    $(function() {
+                        if (event.keyCode == 13) {
+                            $.post( 'includes/app/scripts/search_student.php', {
+                                search_term: $('#student-search-term-tf').val()
+                            }, function(data) {
+                                $('#app_table').empty().append(data);
+                                adjust_size();
+                            });
+                        }
+                    });">
         </div>
     </div>
 

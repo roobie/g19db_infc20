@@ -2,6 +2,8 @@
 	
 	require 'database_props.php';
 
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
 	try {
 		$db = new PDO($pdo_connection_string, $user, $password);
 
@@ -156,6 +158,37 @@
 				    ON UPDATE NO ACTION)
 				ENGINE = InnoDB");
 		
+		$db->query("
+		DELIMITER $$
+
+		DROP PROCEDURE IF EXISTS view_ten_youngest_students; $$
+
+		CREATE PROCEDURE `g19db`.`view_ten_youngest_students` ()
+		BEGIN
+			SELECT *
+			FROM student
+			WHERE social_security_number IS NOT NULL
+			ORDER BY social_security_number DESC
+			LIMIT 10;
+		END $$");
+		
+		$db->query("
+		DELIMITER $$
+
+		DROP PROCEDURE IF EXISTS students_with_no_fails; $$
+
+		CREATE PROCEDURE `g19db`.`students_with_no_fails` ()
+		BEGIN
+			SELECT e.idstudent
+			FROM student e
+			WHERE e.idstudent IN (
+				SELECT s.idstudent
+				FROM student s, has_studied h
+				WHERE s.idstudent = h.idstudent
+				GROUP BY s.idstudent
+				HAVING h.grade IN ( 'A', 'B', 'C', 'D', 'E')
+			);
+		END $$");
 		
 		//--- END:		CREATES ---
 		
@@ -166,9 +199,9 @@
 	} catch (PDOException $e) {
 		print "Error!: " . $e->getMessage() . "<br/>";
 		echo "Error!: " . $e->getMessage() . "<br/>";
-		$error = $e;
+		$e;
 		
-		header("Location: application.php?error=" . $error->getMessage() );
+		header("Location: application.php?error=" . $e->getMessage() );
 	}
 	
 	// Redirects to the referring page.

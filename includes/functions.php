@@ -45,5 +45,4 @@
 	function app_table() {
 		include('includes/app/app_table.php');
 	}
- 
 ?>

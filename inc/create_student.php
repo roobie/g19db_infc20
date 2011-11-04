@@ -30,7 +30,9 @@
 		$query_check = "SELECT idstudent FROM student WHERE idstudent='$last_id'";
 		
 		$stmt = $db->query($query_check);
+
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		
 		foreach ($stmt->fetch() as $row) {
 			if(!$row['idstudent'] == $last_id) { // problem
 				echo '<div class="ui-state-error">Operation failed, please try again.</div>';

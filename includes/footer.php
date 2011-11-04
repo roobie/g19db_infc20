@@ -6,7 +6,6 @@
 		eller 
 		<a href="http://www.google.com/chrome?hl=sv" target="_blank">Google Chrome</a>!<br/>
 		Om du tvunget vill, så kan du också använda <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">Internet Explorer 9</a>, men vi lovar ingen kompatibilitet...
-		
 	</div>	<!-- end #footer -->
 	
 </div>	<!-- end #wrapper -->

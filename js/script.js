@@ -6,7 +6,7 @@
 
 
 //	Få smma höjd på sidebar och content
-$(window).load( function() {  			
+$(window).load( function adjust_size() {  			
 	if ( $("#main").height() > $("#sidebar").height() && $("#main").height() > $("#content").height() ) {
 		$("#content").height( $("#main").height() );
 		$("#sidebar").height( $("#main").height() );
@@ -25,6 +25,7 @@ $(window).load( function() {
 	else {
 		$("#main").height( $("#sidebar").height() );
 	}
+	adjust_size();
 });
 
 
@@ -67,14 +68,19 @@ $(function() {
 	Alla scripts som ska köras på Applikation-sidan.
    ============================================================================================== */
 
+/**
+
+	Denna hanterar lägga till student.
+
+ **/
 $(function() {
 	var ssn		= $( "#ssn" ),
-	fname			= $( "#fname" ),
-	lname			= $( "#lname" ),
+	fname		= $( "#fname" ),
+	lname		= $( "#lname" ),
 	address		= $( "#address" ),
 	phone_nbr	= $( "#phone_nbr" ),
-	email			= $( "#email" ),
-	type			= $( "#student-type");
+	email		= $( "#email" ),
+	type		= $( "#student-type");
 	allFields	= $( [] )
 		.add( ssn )
 		.add( fname )
