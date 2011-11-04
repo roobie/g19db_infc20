@@ -1,5 +1,4 @@
-<div id="tabs" class="app_menu">
-                
+<div id="tabs" class="app_menu">       
     <ul>
         <li><a href="#create">Create</a></li>
         <li><a href="#search">Search</a></li>
@@ -62,6 +61,7 @@
                                 search_term: $('#student-search-term-tf').val()
                             }, function(data) {
                                 $('#app_table').empty().append(data);
+                                adjust_height(($('#app_table').height() + 150));
                             });
                         }
                     });">

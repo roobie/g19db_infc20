@@ -2,7 +2,7 @@
 	$term = $_POST['search_term'];
 
 	$term = "%$term%";
-	
+
 	require '../../../inc/database_props.php';
 
 	$data = array($term, $term, $term, $term, $term, $term, $term, $term);
@@ -63,7 +63,7 @@ foreach ($result_set as $row) {
 	$domf		= $row[7];
 echo <<<EOB
 		<tr>
-			<th scope="row">$name</th>
+			<th id="$id" scope="row">$name</th>
 			<td>$id</td>
 			<td>$civ</td>
 			<td>$addr</td>

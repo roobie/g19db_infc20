@@ -66,7 +66,11 @@ $(function() {
 /* ==|== Applikation ============================================================================
 	Alla scripts som ska köras på Applikation-sidan.
    ============================================================================================== */
-
+	function adjust_height(arg) {
+		$("#content").height( arg );
+		$("#sidebar").height( arg );
+		$("#main").height( arg );
+	}
 /**
 
 	Denna hanterar lägga till student.
