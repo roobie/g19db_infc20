@@ -31,6 +31,7 @@ echo <<<EOB
     <tr>
 			<th scope="col">Course</th>
 			<th scope="col">code</th>
+			<th scope="col">ID</th>
 			<th scope="col">points</th>
     </tr>
 EOB;
@@ -46,6 +47,7 @@ echo <<<EOB
 		<tr class="course-tr">
 			<th id="course-row-$id" class="td-clickable" scope="row">$name</th>
 			<td class="td-clickable">$code</td>
+			<td class="td-clickable">$id</td>
 			<td class="td-clickable">$points</td>
 		</tr>
 EOB;

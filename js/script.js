@@ -371,13 +371,15 @@ function manipulate_course_table () {
 	});
 
 	$(".course-tr").click(function () { 
-		$( "#update-course-dialog-form" ).dialog( "open" );
+		course_tabs();
 		ccode.val($(this).attr('id'));
-		var tmp	= $( [] );
+		var tmp	= $( []) ;
 		
 		$(this).children().each(function () {
 			tmp.push($(this).text()); // "this" is the current element in the loop
 		});
+		
+		var names = tmp[0];
 
 		ccode.val(tmp[1]);
 		cname.val(tmp[2]);
@@ -582,7 +584,7 @@ function populate_courses_list () {
 	);
 }
 
-function course_tabs () {
+function course_tabs (studentData, sectionData) {
 	$("#app_table").empty().append('<div id="course_tabs"></div>');
 	$("#course_tabs")
 	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
