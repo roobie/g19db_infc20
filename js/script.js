@@ -155,6 +155,33 @@ function search_student(term) {
 	}
 }
 
+function search_course(term) {
+	$('#app_table').empty();
+	if ( term != null && term != '' && term.length != 0 ) {
+		setTimeout( function() {
+			$.post( 'includes/app/scripts/search_course.php', {
+	    		search_term: term
+		        }, function(data) {
+			        $('#app_table').empty().append(data);
+			        adjust_height(($('#app_table').height() + 150));
+			        manipulate_course_table();
+
+		    	}
+		    );
+		}, 1500);
+	} else {
+	    $.post( 'includes/app/scripts/search_course.php', {
+	    		search_term: $('#course-search-term-tf').val()
+	        }, function(data) {
+		        $('#app_table').empty().append(data);
+		        adjust_height(($('#app_table').height() + 150));
+		        manipulate_course_table();
+
+	    	}
+	    );
+	}
+}
+
 /**
 
 	This is for UPDATING STUDENTS
@@ -288,6 +315,92 @@ function manipulate_student_table () {
 
 }
 
+function manipulate_course_table () {
+	var ccode		= $( "#update-ccode" ),
+	cname		= $( "#update-cname" ),
+	points = $( "#update-points" ),
+
+	allFields	= $( [] )
+		.add( ccode )
+		.add( cname )
+		.add( points ),
+
+	
+	tips = $( ".validateTips" )
+
+	db_id = 0;
+	
+	$( "#update-course-dialog-form" ).dialog({
+		autoOpen: false,
+		height: 550,
+		width: 400,
+		modal: true,
+		buttons: {
+			"Update!": function() {
+				var bValid = true;
+				allFields.removeClass( "ui-state-error" );
+				
+				bValid = bValid && checkLength( ccode, "ccode", 3, 45 );
+				bValid = bValid && checkLength( cname, "cname", 1, 45 );
+				bValid = bValid && checkLength( cname, "points", 1, 45 );
+
+				bValid = bValid && checkRegexp( ccode, /^[a-zåäö]([a-z_åäö])+$/i, "Course Code may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+				bValid = bValid && checkRegexp( cname, /^[a-zåäö]([a-z_åäö])+$/i, "Course Name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+				bValid = bValid && checkRegexp( points, /^([0-9-])+$/i, "Points may consist of 0-9" );					
+					$.post( "includes/app/scripts/update_course.php", {
+						ccode: ccode.val(),
+						cname: cname.val(),
+						points: points.val(),
+						id: db_id
+						
+					},
+					function(data) {
+						$( "#message-container" ).empty().append( data ).addClass( "ui-state-highlight" );
+						setTimeout(function() {
+							$( "#message-container" ).removeClass( "ui-state-highlight", 1500 );
+						}, 500 );
+					});
+					
+					$( this ).dialog( "close" );
+					setTimeout(function	() {
+						search_course (), 1000
+					});
+				}
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			},
+		close: function() {
+			allFields.val( "" ).removeClass( "ui-state-error" );
+		}
+	});
+
+	$(".course-tr").click(function () { 
+		$( "#update-course-dialog-form" ).dialog( "open" );
+		ccode.val($(this).attr('id'));
+		var tmp	= $( [] );
+		
+		$(this).children().each(function () {
+			tmp.push($(this).text()); // "this" is the current element in the loop
+		});
+
+		ccode.val(tmp[1]);
+		cname.val(tmp[2]);
+		points.val(tmp[3]);
+
+
+		db_id = tmp[1];
+
+    });
+    
+    $(".course-tr").hover(function () {
+    	$( this ).addClass("selected_course");
+    }, function () {
+    	$( this ).removeClass("selected_course");
+    });
+
+}
+
 /**
 
 	Denna hanterar lägga till student. Bör finnas motsvarande för varje entitet i databasen
@@ -380,6 +493,65 @@ function open_create_student() {
 	});
 }
 
+	function open_create_course() {
+	var ccode		= $( "#ccode" ),
+	cname		= $( "#cname" ),
+	points		= $( "#points" ),
+
+	allFields	= $( [] )
+		.add( ccode )
+		.add( cname )
+		.add( points )
+
+	
+	tips = $( ".validateTips" );
+	
+
+	$( "#create-course-dialog-form" ).dialog({
+		autoOpen: false,
+		height: 550,
+		width: 400,
+		modal: true,
+		buttons: {
+			"Add!": function() {
+				var bValid = true;
+				allFields.removeClass( "ui-state-error" );
+				
+				bValid = bValid && checkLength( ccode, "ccode", 3, 45 );
+				bValid = bValid && checkLength( cname, "cname", 1, 45 );
+				bValid = bValid && checkLength( points, "points", 1, 45 );
+
+				bValid = bValid && checkRegexp( ccode, /^[a-zåäö]([a-z_åäö])+$/i, "Course Code may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+				bValid = bValid && checkRegexp( cname, /^[a-zåäö]([a-z_åäö])+$/i, "Course Name may consist of a-z + å, ä and ö, 0-9, underscores and must begin with a letter." );
+				bValid = bValid && checkRegexp( points, /^([0-9-])+$/i, "Points may consist of 0-9" );		
+					$.post( "includes/app/scripts/create_course.php", {
+						ccode: ccode.val(),
+						cname: cname.val(),
+						cpoints: points.val(),
+
+						
+					},
+					function(data) {
+						$( "#message-container" ).empty().append( data ).addClass( "ui-state-highlight" );
+						setTimeout(function() {
+							$( "#message-container" ).removeClass( "ui-state-highlight", 1500 );
+						}, 500 );
+					});
+					
+					$( this ).dialog( "close" );
+					search_course(ccode.val());
+				}
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			},
+			
+			close: function() {
+			allFields.val( "" ).removeClass( "ui-state-error" );
+		}
+	});
+}
+
 $( "#create-course-button" )
 	.button()
 	.click(function() {
@@ -414,4 +586,6 @@ function populate_courses_list () {
 }
 
 open_create_student();
+open_create_course();
 manipulate_student_table();
+manipulate_course_table();

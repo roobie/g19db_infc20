@@ -69,7 +69,7 @@ foreach ($result_set as $row) {
 	};
 
 echo <<<EOB
-		<tr>
+		<tr class="student-tr">
 			<th id="student-row-$id" class="td-clickable" scope="row">$name</th>
 			<td class="td-clickable">$id</td>
 			<td class="td-clickable">$civ</td>
