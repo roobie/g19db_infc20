@@ -24,7 +24,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Federant' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Jura' rel='stylesheet' type='text/css'>
 	
-	<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script> <!-- XRegExp is bundled with the final shCore.js during build -->
+	<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script>
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/shCore.js"></script>
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushPhp.js"></script>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -46,13 +46,16 @@
 
 	<div id="header">
 		<div id="logo">
-
+			<img  src="img/logo.png" />
 		</div>
 	</div>
 	
 	<div id="container">
 		<div id="main-top">
-			<div id="main-top-text"><h3><?php echo '['.$pagename.']'; ?></h3>
+			<div id="main-top-text"><h3><?php echo $pagename; ?></h3>
 			</div>
 		</div>
 		<div id="main">
+			<?php sidebar(); ?>
+			
+			<div id="content">

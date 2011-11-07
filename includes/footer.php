@@ -1,3 +1,10 @@
+			</div>
+			
+		</div>
+
+		<div id="main-bottom"></div>
+	</div>	<!-- end #container -->
+	
 	<div id="footer">
 	
 		Denna sida anv&auml;nder HTML5 och CSS3, vilket inte fungerar p&aring; &auml;ldre webbl&auml;sare. <br />
