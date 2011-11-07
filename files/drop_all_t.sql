@@ -1,6 +1,6 @@
 use g19db;
 
-DROP TABLE IF EXISTS assignments;
+DROP TABLE IF EXISTS student_section;
 DROP TABLE IF EXISTS section;
 DROP TABLE IF EXISTS course_requirements;
 DROP TABLE IF EXISTS studies;

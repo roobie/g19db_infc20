@@ -159,7 +159,7 @@ function search_course(term) {
 	    		search_term: term
 		        }, function(data) {
 			        $('#app_table').empty().append(data);
-			        adjust_height(($('#app_table').height() + 150));
+			        adjust_height(($('#app_table').height() + 200));
 			        manipulate_course_table();
 
 		    	}
@@ -170,7 +170,7 @@ function search_course(term) {
 	    		search_term: $('#course-search-term-tf').val()
 	        }, function(data) {
 		        $('#app_table').empty().append(data);
-		        adjust_height(($('#app_table').height() + 150));
+		        adjust_height(($('#app_table').height() + 200));
 		        manipulate_course_table();
 
 	    	}
@@ -580,6 +580,15 @@ function populate_courses_list () {
 			$("#courses-list").empty().append(data);
 		}
 	);
+}
+
+function course_tabs () {
+	$("#app_table").empty().append('<div id="course_tabs"></div>');
+	$("#course_tabs")
+	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
+	.append('<div id="students-tab">test</div>')
+	.append('<div id="sections-tab">test</div>')
+	.tabs();
 }
 
 open_create_student();
