@@ -1,7 +1,10 @@
 /* ==|== Imports ================================================================================
 	Imports före skräddarsydd css
    ============================================================================================== */
+
 @import url("normalize.css");
+
+
 
 /* ==|== Fonts ==================================================================================
 	Typsnitt på sidan.
@@ -240,14 +243,8 @@ img {
    ============================================================================================== */
 
 .about-frame {
-	border: 1px solid double;
-	background-color: silver;
 	padding: 10px 20px;
 	margin-bottom: 20px;
-	
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 }
 
 .about-frame img {
@@ -375,12 +372,15 @@ div#toc h3 {
 /* ==|== Fonts ==================================================================================
 	CSS till webfonts
    ============================================================================================== */
-   h1, h2, h3, h4, h5, h6 {
-	   font-family: 'Jura', sans-serif !important;
-	   font-weight: bold;
-	   color: #333;
-	   text-shadow: #eee 1px 1px;
-   }
+
+h1, h2, h3, h4, h5, h6 {
+   font-family: 'Jura', sans-serif !important;
+   font-weight: bold;
+   color: #333;
+   text-shadow: #eee 1px 1px;
+}
+
+
 
 /* ==|== Post imports ===========================================================================
 	CSS som inte bör overridas
