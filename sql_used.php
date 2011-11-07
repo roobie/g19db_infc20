@@ -1,9 +1,11 @@
 <?php
-	include 'inc/proto_ui.inc';
+	include 'includes/functions.php';
 	head( $title = "SQL used in the project" );
 	sidebar();
 ?>
-	<pre class="brush: sql;">
+
+	<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushSql.js"></script>
+	<pre id="sql-code" class="brush: sql;">
 	CREATE  TABLE IF NOT EXISTS `g19db`.`student` (
 			  `idstudent` INT NOT NULL AUTO_INCREMENT ,
 			  `social_security_number` INT(12) NULL ,

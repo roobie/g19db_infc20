@@ -1,15 +1,9 @@
 <?php
-	include 'inc/proto_ui.inc'; //UI functions.
-	app_head( $title = "Project :: The Application" );
+	include('includes/functions.php');
+	head('Application');
 ?>
-<script type="text/javascript">
-$(function() {
-	$( "#tabs" ).tabs({
-		event: "mouseover"
-	});
-});
-</script>
 
+<<<<<<< HEAD
 <div id="tabs" class="left-col">
 	<ul>
 		<li><a href="#create">Create</a></li>
@@ -334,6 +328,14 @@ $(function() {
 				.add( phone_nbr )
 				.add( email )
 				.add( type ),
+=======
+			<?php sidebar(); ?>
+			
+			<div id="content">
+				<?php app_menu() ?>
+				<?php app_table() ?>
+			</div>
+>>>>>>> 513717d9a2bcf13178658baae64f3aa9c904a86c
 			
 			tips = $( ".validateTips" );
 
@@ -475,6 +477,7 @@ $(function() {
 				<input type="radio" name="student_type" value="foreign" />Foreign
 			</form>
 		</div>
+<<<<<<< HEAD
 		
 		<button id="search-student-button">Search student!</button>
 		
@@ -527,7 +530,10 @@ $(function() {
   </tr>
 </table>
 </div>
+=======
 
-<?php
-	app_foot();
-?>
+		<div id="main-bottom"></div>
+	</div>	<!-- end #container -->
+>>>>>>> 513717d9a2bcf13178658baae64f3aa9c904a86c
+
+<?php foot(); ?>
