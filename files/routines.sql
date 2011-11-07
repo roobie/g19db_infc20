@@ -55,9 +55,11 @@ FOR EACH ROW
 END; $$
 
 -- Gets all students that match the search term.
-DROP PROCEDURE GetAllStudents $$
+DROP PROCEDURE IF EXISTS GetAllStudents $$
 
-CREATE PROCEDURE GetAllStudents (IN term VARCHAR(255) )
+CREATE PROCEDURE GetAllStudents (
+	IN term VARCHAR(255)
+)
 BEGIN
 	SELECT
 		*
@@ -160,18 +162,15 @@ END $$
 DROP PROCEDURE IF EXISTS GetAllCourses $$
 
 CREATE PROCEDURE GetAllCourses (
-	IN id VARCHAR (255),
-	IN incode VARCHAR (255),
-	IN inname VARCHAR (255),
-	IN inpoints VARCHAR (255)
+	IN term VARCHAR (255)
 )
 BEGIN
 	SELECT * FROM course
 	WHERE
-		idcourse LIKE id OR
-		code LIKE incode OR
-		name LIKE inname OR
-		inponts LIKE inpoints;
+		idcourse LIKE term OR
+		code LIKE term OR
+		name LIKE term OR
+		points LIKE term;
 END $$
 
 -- remove course
@@ -212,7 +211,7 @@ CREATE PROCEDURE InsertStudies (
 	IN inidcourse VARCHAR (255)
 )
 BEGIN
-	INSERT INTO course
+	INSERT INTO studies
 	VALUES (
 		inidstudent,
 		inidcourse
@@ -228,7 +227,7 @@ CREATE PROCEDURE RemoveStudies (
 )
 BEGIN
 	DELETE FROM
-		course
+		studies
 	WHERE
 		idstudent = inidstudent AND
 		idcourse = inidcourse;
@@ -245,7 +244,7 @@ CREATE PROCEDURE UpdateStudies (
 )
 BEGIN
 	UPDATE
-		course
+		studies
 	SET
 		idstudent = inidstudentNEW,
 		idcourse = inidcourseNEW
@@ -259,8 +258,7 @@ END $$
 DROP PROCEDURE IF EXISTS GetAllStudies $$
 
 CREATE PROCEDURE GetAllStudies (
-	IN inidstudent VARCHAR (255),
-	IN inidcourse VARCHAR (255)
+	IN term VARCHAR (255)
 )
 BEGIN
 	SELECT
@@ -268,8 +266,80 @@ BEGIN
 	FROM
 		studies
 	WHERE
-		idstudent LIKE inidstudent AND
-		idcourse LIKE inidcourse;
+		idstudent LIKE term AND
+		idcourse LIKE term;
+END $$
+
+-- insert has_studied relationship
+DROP PROCEDURE IF EXISTS InsertHasStudied $$
+
+CREATE PROCEDURE InsertHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN ingrade VARCHAR(255)
+)
+BEGIN
+	INSERT INTO has_studied
+	VALUES (
+		inidstudent,
+		inidcourse,
+		ingrade
+	);
+END $$
+
+-- remove has_studied relationship
+DROP PROCEDURE IF EXISTS RemoveHasStudied $$
+
+CREATE PROCEDURE RemoveHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	DELETE FROM
+		has_studied
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+-- update has_studied relationship
+DROP PROCEDURE IF EXISTS UpdateHasStudied $$
+
+CREATE PROCEDURE UpdateHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN ingrade VARCHAR (255),
+	IN inidstudentNEW VARCHAR (255),
+	IN inidcourseNEW VARCHAR (255)
+)
+BEGIN
+	UPDATE
+		has_studied
+	SET
+		idstudent = inidstudentNEW,
+		idcourse = inidcourseNEW,
+		grade = ingrade
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+
+-- get all has_studied relationship
+DROP PROCEDURE IF EXISTS GetAllHasStudied $$
+
+CREATE PROCEDURE GetAllHasStudied (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		has_studied
+	WHERE
+		idstudent LIKE term AND
+		idcourse LIKE term AND
+		grade LIKE term;
 END $$
 
 
