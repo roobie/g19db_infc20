@@ -1,10 +1,7 @@
 <?php 
 	include('includes/functions.php');
-	head('About the Authors'	); 
-	
-	sidebar(); ?>
-			
-			<div id="content">
+	head('About the Authors'	);
+?>
 				
 				<div class="about-frame">
 					<img class="author-image"src="/img/authors/bjorn.png">
@@ -31,11 +28,6 @@
 					Pontus är en trevlig kille som gillar långa månskenspromenader. Han tycker det är roligt med databaser och programmering. speciellt i månskenet.<br /><br />
 					På fritiden brukar han programmera och ta promenader.</p>
 				</div>
-			
-			</div>	<!-- end #content -->
-		</div>	<!-- end #main -->
-		<div id="main-bottom"></div>
-	</div>	<!-- end #container -->
 
 <?php
 	foot();

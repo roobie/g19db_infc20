@@ -56,3 +56,6 @@
 			</div>
 		</div>
 		<div id="main">
+			<?php sidebar(); ?>
+			
+			<div id="content">
