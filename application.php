@@ -8,9 +8,9 @@
 			<div id="content">
 				<?php app_menu() ?>
 				<?php app_table() ?>
-			</div>
+			</div>	<!-- end #content -->
 			
-		</div>
+		</div>	<!-- end #main -->
 
 		<div id="main-bottom"></div>
 	</div>	<!-- end #container -->
