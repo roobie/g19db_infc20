@@ -10,23 +10,13 @@
 
 	$db_id = $_POST['id'];
 
-	// NEEDS TO BE TESTED
-
 	$db = null;
-	$data = array("$ssn", $fname, $lname, $address, $phone_nbr, $email, $type);
-	$query="UPDATE
-				student
-			SET
-				social_security_number = ?,
-				first_name = ?,
-				last_name = ?,
-				address = ?,
-				phone_number = ?,
-				email = ?,
-				type = ?
-			WHERE
-				idstudent='$db_id'
-			";
+	if ($ssn == 'null') {
+		$data = array($db_id, null, $fname, $lname, $address, $phone_nbr, $email, $type);
+	} else {
+		$data = array($db_id, $ssn, $fname, $lname, $address, $phone_nbr, $email, $type);
+	}
+	$query="CALL UpdateStudent(?,?,?,?,?,?,?,?);";
 
 	try {
 		require ('database_props.php');

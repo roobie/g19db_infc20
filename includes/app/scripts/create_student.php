@@ -10,7 +10,7 @@
 
 	$db = null;
 	$data = array($ssn, $fname, $lname, $address, $phone_nbr, $email, $type);
-	$query="INSERT INTO student VALUES (null, ?, ?, ?, ?, ?, ?, ?)";
+	$query="CALL InsertStudent (?, ?, ?, ?, ?, ?, ?)";
 
 	try {
 		require 'database_props.php';
@@ -26,21 +26,6 @@
 		$last_id->setFetchMode(PDO::FETCH_ASSOC);
 		$last_id = $last_id->fetch();
 		$last_id = intval($last_id['last_id']);
-				
-		$query_check = "SELECT idstudent FROM student WHERE idstudent='$last_id'";
-		
-		$stmt = $db->query($query_check);
-
-		$stmt->setFetchMode(PDO::FETCH_ASSOC);
-		
-		foreach ($stmt->fetch() as $row) {
-			if(!$row['idstudent'] == $last_id) { // problem
-				echo '<div class="ui-state-error">Operation failed, please try again.</div>';
-				$db->rollBack();
-			} else {
-				echo '<div class="ui-state-highlight">OK - student no. ' . $last_id . ' added to database</div>';
-			}
-		}
 		
 		$db->commit();
 		

@@ -1,12 +1,17 @@
--- Remove from studies when student + course is inserted in has studied 
-
+-- Change DELIMITER
 DELIMITER $$
 
+-- Use the correct database
 USE g19db $$
 
-DROP TRIGGER IF EXISTS insert_student_passed_course; $$
+-- ===============================================================================================
+-- BEGIN defs
+-- ===============================================================================================
 
-CREATE TRIGGER insert_student_passed_course
+-- Remove from studies when student + course is inserted in has_studied 
+DROP TRIGGER IF EXISTS InsertStudentPassedCourse; $$
+
+CREATE TRIGGER InsertStudentPassedCourse
 AFTER INSERT ON has_studied
 FOR EACH ROW 
 	BEGIN
@@ -21,9 +26,9 @@ END; $$
 
 
 -- Prevent insert in studies when student has passed course
-DROP TRIGGER IF EXISTS insert_student_already_passed_course; $$
+DROP TRIGGER IF EXISTS InsertStudentAlreadyPassedCourse; $$
 
-CREATE TRIGGER insert_student_already_passed_course
+CREATE TRIGGER InsertStudentAlreadyPassedCourse
 BEFORE INSERT ON studies
 FOR EACH ROW
 	BEGIN
@@ -49,32 +54,299 @@ FOR EACH ROW
 	END IF;
 END; $$
 
+-- Gets all students that match the search term.
+DROP PROCEDURE IF EXISTS GetAllStudents $$
 
--- blegh.. Name says it all...
-DROP PROCEDURE IF EXISTS `g19db`.`view_ten_youngest_students`; $$
-
-CREATE PROCEDURE `g19db`.`view_ten_youngest_students` ()
+CREATE PROCEDURE GetAllStudents (
+	IN term VARCHAR(255)
+)
 BEGIN
-	SELECT *
-	FROM student
-	WHERE social_security_number IS NOT NULL
-	ORDER BY social_security_number DESC
-	LIMIT 10;
+	SELECT
+		*
+	FROM
+		student
+	WHERE
+		idstudent LIKE term OR
+		social_security_number LIKE term OR
+		first_name LIKE term OR
+		last_name LIKE term OR
+		address LIKE term OR
+		phone_number LIKE term OR
+		email LIKE term OR
+		type LIKE term;
 END $$
 
+-- updates student by idstudent
+DROP PROCEDURE IF EXISTS UpdateStudent $$
 
--- returns students that have passed all their courses
-DROP PROCEDURE IF EXISTS `g19db`.`students_with_no_fails`; $$
-
-CREATE PROCEDURE `g19db`.`students_with_no_fails` ()
+CREATE PROCEDURE UpdateStudent (
+	IN id VARCHAR(255),
+	IN ssn VARCHAR(255),
+	IN fname VARCHAR(255),
+	IN lname VARCHAR(255),
+	IN inaddress VARCHAR(255),
+	IN phone VARCHAR(255),
+	IN inemail VARCHAR(255),
+	IN intype VARCHAR(255)
+)
 BEGIN
-	SELECT e.idstudent
-	FROM student e
-	WHERE e.idstudent IN (
-		SELECT s.idstudent
-		FROM student s, has_studied h
-		WHERE s.idstudent = h.idstudent
-		GROUP BY s.idstudent
-		HAVING h.grade IN ( 'A', 'B', 'C', 'D', 'E')
+	UPDATE
+		student
+	SET
+		social_security_number = ssn,
+		first_name = fname,
+		last_name = lname,
+		address = inaddress,
+		phone_number = phone,
+		email = inemail,
+		type = intype
+	WHERE
+		idstudent = id;
+END $$
+
+-- insert student
+DROP PROCEDURE IF EXISTS InsertStudent $$
+
+CREATE PROCEDURE InsertStudent(
+	IN ssn VARCHAR(255),
+	IN fname VARCHAR(255),
+	IN lname VARCHAR(255),
+	IN inaddress VARCHAR(255),
+	IN phone VARCHAR(255),
+	IN inemail VARCHAR(255),
+	IN intype VARCHAR(255)
+)
+BEGIN
+	INSERT INTO
+		student
+	VALUES (
+		null,
+		ssn,
+		fname,
+		lname,
+		inaddress,
+		phone,
+		inemail,
+		intype
+);
+END $$
+
+DROP PROCEDURE IF EXISTS RemoveStudent $$
+
+CREATE PROCEDURE RemoveStudent( IN id VARCHAR (255) )
+BEGIN
+	DELETE FROM student
+	WHERE
+		idstudent = id;
+END $$
+
+-- insert course
+DROP PROCEDURE IF EXISTS InsertCourse $$
+
+CREATE PROCEDURE InsertCourse ( 
+	IN incode VARCHAR (255),
+	IN inname VARCHAR (255),
+	IN inpoints VARCHAR (255)
+)
+BEGIN
+	INSERT INTO course
+	VALUES (
+		null,
+		incode,
+		inname,
+		inpoints
 	);
 END $$
+
+-- get all courses matching the terms
+DROP PROCEDURE IF EXISTS GetAllCourses $$
+
+CREATE PROCEDURE GetAllCourses (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT * FROM course
+	WHERE
+		idcourse LIKE term OR
+		code LIKE term OR
+		name LIKE term OR
+		points LIKE term;
+END $$
+
+-- remove course
+DROP PROCEDURE IF EXISTS RemoveCourse $$
+
+CREATE PROCEDURE RemoveCourse ( 
+	IN id VARCHAR (255)
+)
+BEGIN
+	DELETE FROM course
+	WHERE idcourse = id;
+END $$
+
+-- update course
+DROP PROCEDURE IF EXISTS UpdateCourse $$
+
+CREATE PROCEDURE UpdateCourse (
+	IN id VARCHAR (255),
+	IN incode VARCHAR (255),
+	IN inname VARCHAR (255),
+	IN inpoints VARCHAR (255)
+)
+BEGIN
+	UPDATE course
+	SET
+		code = incode,
+		name = inname,
+		points = inpoints
+	WHERE
+		idcourse = id;
+END $$
+
+-- insert studies relationship
+DROP PROCEDURE IF EXISTS InsertStudies $$
+
+CREATE PROCEDURE InsertStudies (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	INSERT INTO studies
+	VALUES (
+		inidstudent,
+		inidcourse
+	);
+END $$
+
+-- remove studies relationship
+DROP PROCEDURE IF EXISTS RemoveStudies $$
+
+CREATE PROCEDURE RemoveStudies (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	DELETE FROM
+		studies
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+-- update studies relationship
+DROP PROCEDURE IF EXISTS UpdateStudies $$
+
+CREATE PROCEDURE UpdateStudies (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN inidstudentNEW VARCHAR (255),
+	IN inidcourseNEW VARCHAR (255)
+)
+BEGIN
+	UPDATE
+		studies
+	SET
+		idstudent = inidstudentNEW,
+		idcourse = inidcourseNEW
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+
+-- get all studies relationship
+DROP PROCEDURE IF EXISTS GetAllStudies $$
+
+CREATE PROCEDURE GetAllStudies (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		studies
+	WHERE
+		idstudent LIKE term AND
+		idcourse LIKE term;
+END $$
+
+-- insert has_studied relationship
+DROP PROCEDURE IF EXISTS InsertHasStudied $$
+
+CREATE PROCEDURE InsertHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN ingrade VARCHAR(255)
+)
+BEGIN
+	INSERT INTO has_studied
+	VALUES (
+		inidstudent,
+		inidcourse,
+		ingrade
+	);
+END $$
+
+-- remove has_studied relationship
+DROP PROCEDURE IF EXISTS RemoveHasStudied $$
+
+CREATE PROCEDURE RemoveHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	DELETE FROM
+		has_studied
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+-- update has_studied relationship
+DROP PROCEDURE IF EXISTS UpdateHasStudied $$
+
+CREATE PROCEDURE UpdateHasStudied (
+	IN inidstudent VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN ingrade VARCHAR (255),
+	IN inidstudentNEW VARCHAR (255),
+	IN inidcourseNEW VARCHAR (255)
+)
+BEGIN
+	UPDATE
+		has_studied
+	SET
+		idstudent = inidstudentNEW,
+		idcourse = inidcourseNEW,
+		grade = ingrade
+	WHERE
+		idstudent = inidstudent AND
+		idcourse = inidcourse;
+END $$
+
+
+-- get all has_studied relationship
+DROP PROCEDURE IF EXISTS GetAllHasStudied $$
+
+CREATE PROCEDURE GetAllHasStudied (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		has_studied
+	WHERE
+		idstudent LIKE term AND
+		idcourse LIKE term AND
+		grade LIKE term;
+END $$
+
+
+
+-- ===============================================================================================
+-- END defs
+-- ===============================================================================================
+
+-- Change back the delimiter!
+DELIMITER ;

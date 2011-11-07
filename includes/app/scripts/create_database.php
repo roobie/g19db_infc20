@@ -13,7 +13,7 @@
 		
 		//--- BEGIN:	DROPS ---
 		
-		$db->query("DROP TABLE IF EXISTS assignments");
+		$db->query("DROP TABLE IF EXISTS student_section");
 		
 
 		$db->query("DROP TABLE IF EXISTS section");
@@ -81,19 +81,27 @@
 		
 		//---
 		
-		$db->query("CREATE  TABLE IF NOT EXISTS `g19db`.`assignments` (
-				  `idassignments` INT NOT NULL COMMENT '	' ,
-				  `idsection` INT NOT NULL ,
-				  `name` VARCHAR(45) NULL ,
-				  `description` VARCHAR(45) NULL ,
-				  PRIMARY KEY (`idassignments`, `idsection`) ,
-				  INDEX `fk_section_assignment` (`idsection` ASC) ,
-				  CONSTRAINT `fk_section_assignment`
-				    FOREIGN KEY (`idsection` )
-				    REFERENCES `g19db`.`section` (`idsection` )
-				    ON DELETE NO ACTION
-				    ON UPDATE NO ACTION)
-				ENGINE = InnoDB");
+		$db->query("CREATE  TABLE IF NOT EXISTS `g19db`.`student_section` (
+					  `idstudent` INT NOT NULL COMMENT '	' ,
+					  `idsection` INT NOT NULL ,
+					  `name` VARCHAR(45) NULL ,
+					  `description` VARCHAR(45) NULL ,
+					  `grade` VARCHAR(45) NULL ,
+					  `points` VARCHAR(5) NULL ,
+					  PRIMARY KEY (`idstudent`, `idsection`) ,
+					  INDEX `fk_section_assignment` (`idsection` ASC) ,
+					  INDEX `fk_student_assignments` (`idstudent` ASC) ,
+					  CONSTRAINT `fk_section_assignment`
+					    FOREIGN KEY (`idsection` )
+					    REFERENCES `g19db`.`section` (`idsection` )
+					    ON DELETE NO ACTION
+					    ON UPDATE NO ACTION,
+					  CONSTRAINT `fk_student_assignments`
+					    FOREIGN KEY (`idstudent` )
+					    REFERENCES `g19db`.`student` (`idstudent` )
+					    ON DELETE NO ACTION
+					    ON UPDATE NO ACTION)
+					ENGINE = InnoDB");
 		
 		
 		//---

@@ -2,33 +2,17 @@
 	
 	$term = $_POST['search_term'];
 
-	$term = "%$term%";
+	$term = "%$term%"; // "%88%"
 
 	require 'database_props.php';
-
-	$data = array($term, $term, $term, $term, $term, $term, $term, $term);
 
 	try {
 		$db = new PDO($pdo_connection_string, $user, $password);
 
-		$st = $db->prepare("
-						SELECT *
-						FROM student
-						WHERE
-							idstudent LIKE ? OR
-							social_security_number LIKE ? OR
-							first_name LIKE ? OR
-							last_name LIKE ? OR
-							address LIKE ? OR
-							phone_number LIKE ? OR
-							email LIKE ? OR
-							type LIKE ?
-						");
+		$st = $db->prepare("CALL GetAllStudents(?)");
 
 		$db->beginTransaction();
-			$st->execute($data);
-
-			//$st->setFetchMode(PDO::FETCH_ASSOC);
+			$st->execute(array($term));
 
 			// Building the table:
 
