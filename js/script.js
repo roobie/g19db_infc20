@@ -135,9 +135,8 @@ function search_student(term) {
     		search_term: term
 	        }, function(data) {
 		        $('#app_table').empty().append(data);
-		        adjust_height(($('#app_table').height() + 150));
+		        adjust_height(($('#app_table').height() + 200));
 		        manipulate_student_table();
-		        make_buttons();
 	    	}
 	    );
 	} else {
@@ -145,9 +144,8 @@ function search_student(term) {
 	    		search_term: $('#student-search-term-tf').val()
 	        }, function(data) {
 		        $('#app_table').empty().append(data);
-		        adjust_height(($('#app_table').height() + 150));
+		        adjust_height(($('#app_table').height() + 200));
 		        manipulate_student_table();
-		        make_buttons();
 	    	}
 	    );
 	}
@@ -189,7 +187,7 @@ function manipulate_student_table () {
 				var bValid = true;
 				allFields.removeClass( "ui-state-error" );
 				
-				if ($("input[name='student_type']:checked").val() == "domestic") {
+				if ($("input[name='update-student_type']:checked").val() == "domestic") {
 					bValid = bValid && checkLength( ssn, "ssn", 6, 12 );
 					bValid = bValid && checkRegexp( ssn, /^([0-9])+$/i, "Socal security number must consist of only numbers." );
 				} else {
@@ -208,8 +206,7 @@ function manipulate_student_table () {
 				// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
 				bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "It seems like the mail address is not valid.. Please try again." );
 				if ( bValid ) {
-					var t = $("input[name='student_type']:checked").val();
-					
+					var t = $("input[name='update-student_type']:checked").val();
 					$.post( "includes/app/scripts/update_student.php", {
 						ssn: ssn.val(),
 						fname: fname.val(),
@@ -251,7 +248,7 @@ function manipulate_student_table () {
 		}
 	});
 
-	$("tr").click(function () { 
+	$(".student-tr").click(function () { 
 		$( "#update-student-dialog-form" ).dialog( "open" );
 		ssn.val($(this).attr('id'));
 		var tmp	= $( [] );
@@ -278,7 +275,7 @@ function manipulate_student_table () {
 		}
     });
     
-    $("tr").hover(function () {
+    $(".student-tr").hover(function () {
     	$( this ).addClass("selected_student");
     }, function () {
     	$( this ).removeClass("selected_student");
