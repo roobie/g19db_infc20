@@ -32,3 +32,25 @@ INSERT INTO student VALUES (null, '880909', 'unique', 'uniquesds', 'wgfwergfwgeg
 INSERT INTO student VALUES (null, 'null', 'ijbibii', 'bibibijbi', 'bjhbibibib', '+4634223', 'bjorn.roberg@gmail.com', 'foreign')
 
 INSERT INTO student VALUES (null, '880808', 'onwfownefo', 'onwofnwo', 'owdfnowdngf', '+4634232', 'asd);--@sdsd.com', 'domestic')
+
+INSERT INTO student VALUES (null, '450617', 'Gun', 'Britt', 'Malme', '+766512', 'haurdisittvarden@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '880505', 'sjgfwerijgb', 'ifjvnbefvinbj', 'sfijvksnbwfivjb', '+46-1365416', 'pontusakerblom@gmail.com', 'domestic')
+
+INSERT INTO student VALUES (null, '880503', 'fvwsvw', 'wsfvefv', 'wsdfwegvwergv', '+4654', 'sfwvdv@dcfd.sdfv', 'domestic')
+
+INSERT INTO course VALUES ('', '')
+
+INSERT INTO student VALUES (null, '', '', '', '', '', '', '')
+
+INSERT INTO student VALUES (null, '', '', '', '', '', '', '')
+
+INSERT INTO course VALUES ('112233', 'ADB001')
+
+INSERT INTO course VALUES ('112233', 'sdcwefd')
+
+INSERT INTO course VALUES ('dsff', '')
+
+INSERT INTO course VALUES ('sad', '')
+
+INSERT INTO course VALUES ('sdf', '')

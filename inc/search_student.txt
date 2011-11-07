@@ -6,14 +6,14 @@
 	$address = mysql_escape_string($_POST["address"]);
 	$phone_nbr = mysql_escape_string($_POST["phone_nbr"]);
 	$email = mysql_escape_string($_POST["email"]);
-	$type = mysql_escape_string($_POST["type"]);	
+	$type = mysql_escape_string($_POST["type"]);
 	
 	require 'database_props.php';
 	
 	mysql_connect('localhost',$user,$password);
 	@mysql_select_db($database) or die( "Unable to select database");
 	
-	$query="INSERT INTO student VALUES (null, '$ssn', '$fname', '$lname', '$address', '$phone_nbr', '$email', '$type')";
+	$query="SELECT * FROM student VALUES (null, '$ssn', '$fname', '$lname', '$address', '$phone_nbr', '$email', '$type')";
 	mysql_query($query);
 	
 	require 'applib.inc';
@@ -37,9 +37,9 @@
 	} else {
 		$row = mysql_fetch_assoc($result);
 		if ($row["first_name"] == "$fname") {
-			echo 'OK - student added to database';
+			echo 'Result';
 		} else {
-			echo '<div class="ui-state-error">FAIL - student not added to database. Please try again...</div>';;
+			echo '<div class="ui-state-error">Student could not be found</div>';;
 		}
 	}	
 	mysql_close();

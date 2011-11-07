@@ -40,7 +40,7 @@ function head($title = "Default") {
 		<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 		<script src="js/libs/modernizr-2.0.6.min.js"></script>
-		<script src="js/libs/jquery-1.6.4.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<script src="js/libs/jquery-ui-1.8.16.custom.min.js"></script>
 	</head>
 	<body>
