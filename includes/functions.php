@@ -1,13 +1,8 @@
 <?php
 
 	//	Header w/ dynamic pagetitle
-	function head($pagename) {
-		if($pagename) {
-			$pagetitle = "$pagename | G19";
-		}
-		else {
-			$pagetitle = 'G19';
-		}
+	function head($pagename = 'G19') {
+		$pagetitle = "$pagename :: G19";
 		include('includes/header.php');
 	}
 	

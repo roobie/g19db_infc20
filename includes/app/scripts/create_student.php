@@ -47,10 +47,5 @@
 		$db = null;
 	} catch (PDOException $e) {
 		echo '<div class="ui-state-error">FAIL. Try again or consult the webmaster.</div> Append the following info in the message, please: ' . date_default_timezone_set('l jS \of F Y h:i:s A') . $e->getMessage();
-	}
-	
-	require 'applib.inc';
-	
-	append_text('../files/sql_log.txt', $query);
-	
+	}	
 ?>

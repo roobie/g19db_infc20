@@ -16,7 +16,3 @@
 	</div>	<!-- end #container -->
 
 <?php foot(); ?>
-
-<!--
-<a href="inc/create_database.php">Reset database!</a> | <a href="inc/populate_database.php">Populate database!</a></footer>
--->

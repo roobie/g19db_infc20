@@ -4,7 +4,7 @@
 
 	$term = "%$term%";
 
-	require '../../../inc/database_props.php';
+	require 'database_props.php';
 
 	$data = array($term, $term, $term, $term, $term, $term, $term, $term);
 
@@ -63,20 +63,20 @@ foreach ($result_set as $row) {
 	$mail		= '<a href="mailto:' . $mail . '">'.$mail.'</a>';
 	$domf		= $row[7];
 	if ($domf == 'foreign') {
-		$domf = 'yes';
+		$domf = '<span class="green-text">yes</span>';
 	} else {
-		$domf	= 'no';
+		$domf = '<span class="red-text">no</span>';
 	};
 
 echo <<<EOB
 		<tr>
-			<th id="student-row-$id" scope="row">$name</th>
-			<td>$id</td>
-			<td>$civ</td>
-			<td>$addr</td>
-			<td>$tel</td>
-			<td>$mail</td>
-			<td>$domf</td>
+			<th id="student-row-$id" class="td-clickable" scope="row">$name</th>
+			<td class="td-clickable">$id</td>
+			<td class="td-clickable">$civ</td>
+			<td class="td-clickable">$addr</td>
+			<td class="td-clickable">$tel</td>
+			<td class="td-clickable">$mail</td>
+			<td class="td-clickable">$domf</td>
 		</tr>
 EOB;
 }

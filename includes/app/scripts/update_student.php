@@ -10,27 +10,26 @@
 
 	$db_id = $_POST['id'];
 
+	// NEEDS TO BE TESTED
+
 	$db = null;
-	$data = array($ssn, $fname, $lname, $address, $phone_nbr, $email, $type);
-	$query="UPDATE student WHERE idstudent='$db_id'
-					SET
-						social_security_number = ?,
-						first_name = ?,
-						last_name = ?,
-						address = ?,
-						phone_number = ?,
-						email = ?,
-						type = ?
-						";
+	$data = array("$ssn", $fname, $lname, $address, $phone_nbr, $email, $type);
+	$query="UPDATE
+				student
+			SET
+				social_security_number = ?,
+				first_name = ?,
+				last_name = ?,
+				address = ?,
+				phone_number = ?,
+				email = ?,
+				type = ?
+			WHERE
+				idstudent='$db_id'
+			";
 
 	try {
-		$user = "g19usr";
-		$password = "group19";
-		$database = "g19db";
-
-		$pdo_hostname = "mysql:host=localhost;";
-		$pdo_dbname = "dbname=g19db";
-		$pdo_connection_string = $pdo_hostname . $pdo_dbname;
+		require ('database_props.php');
 		
 		$db = new PDO($pdo_connection_string, $user, $password);
 
@@ -44,6 +43,5 @@
 		$db = null;
 	} catch (PDOException $e) {
 		echo '<div class="ui-state-error">FAIL. Try again or consult the webmaster.</div> Append the following info in the message, please: ' . date_default_timezone_set('l jS \of F Y h:i:s A') . $e->getMessage();
-	}
-	
+	}	
 ?>

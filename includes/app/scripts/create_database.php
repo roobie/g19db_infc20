@@ -58,6 +58,7 @@
 				  `idcourse` INT NOT NULL AUTO_INCREMENT ,
 				  `code` VARCHAR(45) NULL COMMENT '	' ,
 				  `name` VARCHAR(45) NULL ,
+				  `points` VARCHAR(5) NOT NULL ,
 				  PRIMARY KEY (`idcourse`) )
 				ENGINE = InnoDB");
 		
@@ -80,12 +81,12 @@
 		
 		//---
 		
-		$db->query("CREATE  TABLE IF NOT EXISTS `g19db`.`assigments` (
-				  `idassigments` INT NOT NULL COMMENT '	' ,
+		$db->query("CREATE  TABLE IF NOT EXISTS `g19db`.`assignments` (
+				  `idassignments` INT NOT NULL COMMENT '	' ,
 				  `idsection` INT NOT NULL ,
 				  `name` VARCHAR(45) NULL ,
 				  `description` VARCHAR(45) NULL ,
-				  PRIMARY KEY (`idassigments`, `idsection`) ,
+				  PRIMARY KEY (`idassignments`, `idsection`) ,
 				  INDEX `fk_section_assignment` (`idsection` ASC) ,
 				  CONSTRAINT `fk_section_assignment`
 				    FOREIGN KEY (`idsection` )

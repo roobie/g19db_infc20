@@ -321,6 +321,10 @@ div.forms {
   color: white;
 }
 
+.selected_student a {
+	color: white;
+}
+
 blockquote {
 	position: relative;
 	width: 75%;
@@ -350,6 +354,14 @@ div#toc h3 {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+}
+
+.red-text {
+	color:red;
+}
+
+.green-text {
+	color:green;
 }
 
 /* ==|== Fonts ==================================================================================

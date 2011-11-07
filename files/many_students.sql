@@ -1,3 +1,4 @@
+use g19db;
 
 INSERT INTO student VALUES (null, '8504039536', 'Lighthouses', 'Moller', 'Gibe Rd 24', '+46075-304-17-46', 'Embody@Testings.com', 'domestic');
 INSERT INTO student VALUES (null, null, 'Tame', 'Lothario', 'Solely Rd 51', '+46075-551-86-16', 'Dope@Armload.dk', 'foreign');

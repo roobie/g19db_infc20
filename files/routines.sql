@@ -1,5 +1,8 @@
 -- Remove from studies when student + course is inserted in has studied 
+
 DELIMITER $$
+
+USE g19db $$
 
 DROP TRIGGER IF EXISTS insert_student_passed_course; $$
 
