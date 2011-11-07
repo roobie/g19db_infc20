@@ -45,6 +45,7 @@ CREATE  TABLE IF NOT EXISTS `g19db`.`course` (
   `idcourse` INT NOT NULL AUTO_INCREMENT ,
   `code` VARCHAR(45) NULL COMMENT '	' ,
   `name` VARCHAR(45) NULL ,
+  `points` VARCHAR(5) NULL ,
   PRIMARY KEY (`idcourse`) )
 ENGINE = InnoDB;
 
@@ -106,6 +107,7 @@ CREATE  TABLE IF NOT EXISTS `g19db`.`has_studied` (
   `idstudent` INT NOT NULL ,
   `idcourse` INT NOT NULL ,
   `grade` VARCHAR(45) NOT NULL ,
+  CONSTRAINT CHECK (`grade` IN ('A','B','C','D','E','F','Fx')),
   PRIMARY KEY (`idstudent`, `idcourse`) ,
   INDEX `fk_student_has_studied` (`idstudent` ASC) ,
   INDEX `fk_course_has_studied` (`idcourse` ASC) ,
@@ -153,6 +155,7 @@ CREATE  TABLE IF NOT EXISTS `g19db`.`student_section` (
   `description` VARCHAR(45) NULL ,
   `grade` VARCHAR(45) NULL ,
   `points` VARCHAR(5) NULL ,
+  CONSTRAINT CHECK (`grade` IN ('A','B','C','D','E','F','Fx')),
   PRIMARY KEY (`idstudent`, `idsection`) ,
   INDEX `fk_s_section_id` (`idsection` ASC) ,
   INDEX `fk_s_student_id` (`idstudent` ASC) ,
