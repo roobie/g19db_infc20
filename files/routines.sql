@@ -1,12 +1,13 @@
--- Remove from studies when student + course is inserted in has studied 
-
+-- Change DELIMITER
 DELIMITER $$
 
+-- Use the correct database
 USE g19db $$
 
-DROP TRIGGER IF EXISTS insert_student_passed_course; $$
+-- Remove from studies when student + course is inserted in has_studied 
+DROP TRIGGER IF EXISTS InsertStudentPassedCourse; $$
 
-CREATE TRIGGER insert_student_passed_course
+CREATE TRIGGER InsertStudentPassedCourse
 AFTER INSERT ON has_studied
 FOR EACH ROW 
 	BEGIN
@@ -21,9 +22,9 @@ END; $$
 
 
 -- Prevent insert in studies when student has passed course
-DROP TRIGGER IF EXISTS insert_student_already_passed_course; $$
+DROP TRIGGER IF EXISTS InsertStudentAlreadyPassedCourse; $$
 
-CREATE TRIGGER insert_student_already_passed_course
+CREATE TRIGGER InsertStudentAlreadyPassedCourse
 BEFORE INSERT ON studies
 FOR EACH ROW
 	BEGIN
@@ -49,32 +50,26 @@ FOR EACH ROW
 	END IF;
 END; $$
 
+-- Gets all students that match the search term.
+DROP PROCEDURE GetAllStudents $$
 
--- blegh.. Name says it all...
-DROP PROCEDURE IF EXISTS `g19db`.`view_ten_youngest_students`; $$
-
-CREATE PROCEDURE `g19db`.`view_ten_youngest_students` ()
+CREATE PROCEDURE GetAllStudents (IN term VARCHAR(255) )
 BEGIN
-	SELECT *
-	FROM student
-	WHERE social_security_number IS NOT NULL
-	ORDER BY social_security_number DESC
-	LIMIT 10;
+	SELECT
+		*
+	FROM
+		student
+	WHERE
+		idstudent LIKE term OR
+		social_security_number LIKE term OR
+		first_name LIKE term OR
+		last_name LIKE term OR
+		address LIKE term OR
+		phone_number LIKE term OR
+		email LIKE term OR
+		type LIKE term;
 END $$
 
 
--- returns students that have passed all their courses
-DROP PROCEDURE IF EXISTS `g19db`.`students_with_no_fails`; $$
-
-CREATE PROCEDURE `g19db`.`students_with_no_fails` ()
-BEGIN
-	SELECT e.idstudent
-	FROM student e
-	WHERE e.idstudent IN (
-		SELECT s.idstudent
-		FROM student s, has_studied h
-		WHERE s.idstudent = h.idstudent
-		GROUP BY s.idstudent
-		HAVING h.grade IN ( 'A', 'B', 'C', 'D', 'E')
-	);
-END $$
+-- Change back the delimiter!
+DELIMITER ;

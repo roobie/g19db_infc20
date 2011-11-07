@@ -131,17 +131,15 @@ function adjust_height(arg) {
 **/
 function search_student(term) {
 	if ( term != null && term != '' && term.length != 0 ) {
-		setTimeout( function() {
-			$.post( 'includes/app/scripts/search_student.php', {
-	    		search_term: term
-		        }, function(data) {
-			        $('#app_table').empty().append(data);
-			        adjust_height(($('#app_table').height() + 150));
-			        manipulate_student_table();
-			        make_buttons();
-		    	}
-		    );
-		}, 1500);
+		$.post( 'includes/app/scripts/search_student.php', {
+    		search_term: term
+	        }, function(data) {
+		        $('#app_table').empty().append(data);
+		        adjust_height(($('#app_table').height() + 150));
+		        manipulate_student_table();
+		        make_buttons();
+	    	}
+	    );
 	} else {
 	    $.post( 'includes/app/scripts/search_student.php', {
 	    		search_term: $('#student-search-term-tf').val()
@@ -361,7 +359,9 @@ function open_create_student() {
 					});
 					
 					$( this ).dialog( "close" );
-					search_student(ssn.val());
+					setTimeout(function() {
+						search_student(email.val())
+					}, 1000);
 				}
 			},
 			Cancel: function() {
