@@ -3,10 +3,6 @@
 	head();
 ?>
 			
-			<?php sidebar(); ?>
-			
-			<div id="content">
-			
 				<h1>SQL Format</h1> 
 				<form id="sqlform" class="sqlinput"  method="post" action="sql.php">
 					<div class="form_description"> 
@@ -42,11 +38,6 @@
 				?>
 				</div>
 				<p>Make SQL looks more beautiful <a href="http://www.orczhou.com/sqlparser/">Powered by SQLParserLib</a></p> 
-
-			</div>
-		</div>
-		<div id="main-bottom"></div>
-	</div>	<!-- end #container -->
 	
 <?php 
 	foot();

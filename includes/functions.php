@@ -2,7 +2,7 @@
 
 	//	Header w/ dynamic pagetitle
 	function head($pagename = 'G19') {
-		$pagetitle = "$pagename :: G19";
+		$pagetitle = "$pagename | G19";
 		include('includes/header.php');
 	}
 	
