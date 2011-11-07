@@ -8,6 +8,8 @@ USE g19db $$
 -- BEGIN defs
 -- ===============================================================================================
 
+-- TRIGGERS
+-- ===============================================================================================
 -- Remove from studies when student + course is inserted in has_studied 
 DROP TRIGGER IF EXISTS InsertStudentPassedCourse; $$
 
@@ -54,6 +56,13 @@ FOR EACH ROW
 	END IF;
 END; $$
 
+
+-- PROCS
+-- ===============================================================================================
+-- ===============================================================================================
+
+-- STUDENT
+-- ===============================================================================================
 -- Gets all students that match the search term.
 DROP PROCEDURE IF EXISTS GetAllStudents $$
 
@@ -140,6 +149,8 @@ BEGIN
 		idstudent = id;
 END $$
 
+-- COURSE
+-- ===============================================================================================
 -- insert course
 DROP PROCEDURE IF EXISTS InsertCourse $$
 
@@ -203,6 +214,9 @@ BEGIN
 		idcourse = id;
 END $$
 
+
+-- STUDIES
+-- ===============================================================================================
 -- insert studies relationship
 DROP PROCEDURE IF EXISTS InsertStudies $$
 
@@ -270,6 +284,9 @@ BEGIN
 		idcourse LIKE term;
 END $$
 
+
+-- HAS_STUDIED
+-- ===============================================================================================
 -- insert has_studied relationship
 DROP PROCEDURE IF EXISTS InsertHasStudied $$
 
@@ -343,6 +360,232 @@ BEGIN
 END $$
 
 
+-- COURSE-REQs
+-- ===============================================================================================
+-- insert course_requirements relationship
+DROP PROCEDURE IF EXISTS InsertCourseRequirements $$
+
+CREATE PROCEDURE InsertCourseRequirements (
+	IN inidcourse VARCHAR (255),
+	IN inidcourse_req VARCHAR(255)
+)
+BEGIN
+	INSERT INTO course_requirements
+	VALUES (
+		inidcourse,
+		inidcourse_req
+	);
+END $$
+
+-- remove course_requirements relationship
+DROP PROCEDURE IF EXISTS RemoveCourseRequirements $$
+
+CREATE PROCEDURE RemoveCourseRequirements (
+	IN inidcourse VARCHAR (255),
+	IN inidcourse_req VARCHAR(255)
+)
+BEGIN
+	DELETE FROM
+		course_requirements
+	WHERE
+		idcourse = inidcourse AND
+		idcourse_required = inidcourse_req;
+END $$
+
+-- update course_requirements relationship
+DROP PROCEDURE IF EXISTS UpdateCourseRequirements $$
+
+CREATE PROCEDURE UpdateCourseRequirements (
+	IN inidcourse_req VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN inidcourse_reqNEW VARCHAR (255),
+	IN inidcourseNEW VARCHAR (255)
+)
+BEGIN
+	UPDATE
+		course_requirements
+	SET
+		idcourse_required = inidcourse_reqNEW,
+		idcourse = inidcourseNEW
+	WHERE
+		idcourse_required = inidcourse_req AND
+		idcourse = inidcourse;
+END $$
+
+
+-- get all course_requirements relationship
+DROP PROCEDURE IF EXISTS GetAllCourseRequirements $$
+
+CREATE PROCEDURE GetAllCourseRequirements (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		course_requirements
+	WHERE
+		idcourse_required LIKE term AND
+		idcourse LIKE term;
+END $$
+DELIMITER $$
+
+-- SECTION
+-- ===============================================================================================
+-- insert section relationship
+DROP PROCEDURE IF EXISTS InsertSection $$
+
+CREATE PROCEDURE InsertSection (
+	IN inidcourse VARCHAR (255),
+	IN inname VARCHAR(255),
+	IN indesc VARCHAR(255),
+	IN inpoints VARCHAR(255)
+)
+BEGIN
+	INSERT INTO section
+	VALUES (
+		null,
+		inidcourse,
+		inname,
+		indesc,
+		inpoints
+	);
+END $$
+
+-- remove section relationship
+DROP PROCEDURE IF EXISTS RemoveSection $$
+
+CREATE PROCEDURE RemoveSection (
+	IN inidsection VARCHAR (255)
+)
+BEGIN
+	DELETE FROM
+		section
+	WHERE
+		idsection = inidsection;
+END $$
+
+-- update section relationship
+DROP PROCEDURE IF EXISTS UpdateSection $$
+
+CREATE PROCEDURE UpdateSection (
+	IN inidsection VARCHAR (255),
+	IN inidcourse VARCHAR (255),
+	IN inidsectionNEW VARCHAR (255),
+	IN inidcourseNEW VARCHAR (255),
+	IN inname VARCHAR (255),
+	IN indesc VARCHAR(255),
+	IN inpoints VARCHAR(255)
+)
+BEGIN
+	UPDATE
+		section
+	SET
+		idsection = inidsectionNEW,
+		idcourse = inidcourseNEW,
+		name = inname,
+		description = indesc,
+		points = inpoints
+	WHERE
+		idsection = inidsection AND
+		idcourse = inidcourse;
+END $$
+
+
+-- get all section relationship
+DROP PROCEDURE IF EXISTS GetAllSection $$
+
+CREATE PROCEDURE GetAllSection (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		section
+	WHERE
+		idsection LIKE term AND
+		idcourse LIKE term AND
+		name LIKE term AND
+		description LIKE term AND
+		points LIKE term;
+END $$
+
+
+-- STUDENT_SECTION
+-- ===============================================================================================
+-- insert student_section relationship
+DROP PROCEDURE IF EXISTS InsertStudentSection $$
+
+CREATE PROCEDURE InsertStudentSection (
+	IN inidstudent VARCHAR (255),
+	IN inidsection VARCHAR(255),
+	IN ingrade VARCHAR(255)
+)
+BEGIN
+	INSERT INTO student_section
+	VALUES (
+		inidstudent,
+		inidsection,
+		ingrade
+	);
+END $$
+
+-- remove student_section relationship
+DROP PROCEDURE IF EXISTS RemoveStudentSection $$
+
+CREATE PROCEDURE RemoveStudentSection (
+	IN inidstudent VARCHAR (255),
+	IN inidsection VARCHAR(255)
+)
+BEGIN
+	DELETE FROM
+		student_section
+	WHERE
+		idstudent = inidstudent AND
+		idsection = inidsection;
+END $$
+
+-- update student_section relationship
+DROP PROCEDURE IF EXISTS UpdateStudentSection $$
+
+CREATE PROCEDURE UpdateStudentSection (
+	IN inidsection VARCHAR (255),
+	IN inidstudent VARCHAR (255),
+	IN inidsectionNEW VARCHAR (255),
+	IN inidstudentNEW VARCHAR (255),
+	IN ingrade VARCHAR(255)
+)
+BEGIN
+	UPDATE
+		student_section
+	SET
+		idsection = inidsectionNEW,
+		idstudent = inidstudentNEW,
+		grade = ingrade
+
+	WHERE
+		idsection = inidsection AND
+		idstudent = inidstudent;
+END $$
+
+
+-- get all student_section relationship
+DROP PROCEDURE IF EXISTS GetAllStudentSection $$
+
+CREATE PROCEDURE GetAllStudentSection (
+	IN term VARCHAR (255)
+)
+BEGIN
+	SELECT
+		*
+	FROM
+		student_section
+	WHERE
+		idsection LIKE term AND
+		idstudent LIKE term AND
+		grade LIKE term;
+END $$
 
 -- ===============================================================================================
 -- END defs
