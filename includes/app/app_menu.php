@@ -2,7 +2,7 @@
 <!-- Tabs 
 =============================================================================================== -->
 <div id="tabs" class="app_menu">
-    <div id="message-container" class="ui-message-box"></div>      
+    <div id="message-container" class="ui-message-box"><a href="includes/app/scripts/create_database.php"></a></div>      
     <ul>
         <li><a href="#create">Create</a></li>
         <li><a href="#search">Search</a></li>
@@ -12,6 +12,7 @@
         <div class="form-insert">
             <button id="create-student-button">Create new student</button>
             <button id="create-course-button">Create new course</button>
+			</br>
         </div><!-- END form -->
     </div><!-- End CREATE-STUDENT -->
 
@@ -68,6 +69,21 @@
     </form>
 </div> <!-- create-student-dialog-form -->
 
+<div id="create-course-dialog-form" title="Create new course">
+    <p class="validateTips">All form fields are required.</p>
+    <form class="js-form">
+        <label for="ccode">Course Code</label><br>
+        <input type="text" name="ccode" id="ccode" class="text ui-widget-content ui-corner-all"><br>
+        <br>
+        <label for="cname">Course Name</label><br>
+        <input type="text" name="cname" id="cname" class="text ui-widget-content ui-corner-all"><br>
+        <br>
+		<label for="points">Points</label><br>
+        <input type="text" name="points" id="points" class="text ui-widget-content ui-corner-all"><br>
+        <br>
+    </form>
+</div> <!-- create-course-dialog-form -->
+
 <div id="update-student-dialog-form" title="Update existing student">
     <p class="validateTips">All form fields are required.</p>
     <form class="js-form">
@@ -94,6 +110,8 @@
         <input id ="update-student_type_foreign" type="radio" name="update-student_type" value="foreign">Foreign
     </form>
 </div> <!-- update-student-dialog-form -->
+
+
 
 <div id="add-student-to-course-dialog" title="Add student to course">
     <p class="validateTips">All form fields are required.</p>
