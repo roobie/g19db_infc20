@@ -159,7 +159,7 @@ function search_course(term) {
 	    		search_term: term
 		        }, function(data) {
 			        $('#app_table').empty().append(data);
-			        adjust_height(($('#app_table').height() + 150));
+			        adjust_height(($('#app_table').height() + 200));
 			        manipulate_course_table();
 
 		    	}
@@ -170,7 +170,7 @@ function search_course(term) {
 	    		search_term: $('#course-search-term-tf').val()
 	        }, function(data) {
 		        $('#app_table').empty().append(data);
-		        adjust_height(($('#app_table').height() + 150));
+		        adjust_height(($('#app_table').height() + 200));
 		        manipulate_course_table();
 
 	    	}
