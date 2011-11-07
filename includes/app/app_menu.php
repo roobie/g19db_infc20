@@ -2,7 +2,7 @@
 <!-- Tabs 
 =============================================================================================== -->
 <div id="tabs" class="app_menu">
-    <div id="message-container" class="ui-message-box"><a href="includes/app/scripts/create_database.php"></a></div>      
+    <div id="message-container" class="ui-message-box"></div>      
     <ul>
         <li><a href="#create">Create</a></li>
         <li><a href="#search">Search</a></li>

@@ -582,6 +582,15 @@ function populate_courses_list () {
 	);
 }
 
+function course_tabs () {
+	$("#app_table").empty().append('<div id="course_tabs"></div>');
+	$("#course_tabs")
+	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
+	.append('<div id="students-tab">test</div>')
+	.append('<div id="sections-tab">test</div>')
+	.tabs();
+}
+
 open_create_student();
 open_create_course();
 manipulate_student_table();
