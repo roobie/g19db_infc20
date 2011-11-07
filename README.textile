@@ -1,5 +1,3 @@
 h1. The project in INFC20 by group19
 
 bq. TODO: Add stuff here.
-
-h2. Pontus testar
