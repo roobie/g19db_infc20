@@ -263,7 +263,7 @@ function manipulate_student_table () {
 			},
 			"Add to course": function () {
 				$("#student_id").val(db_id);
-				populate_courses_list();
+				populate_courses_list(db_id);
 				$( "#add-student-to-course-dialog" ).dialog( "open" );
 			},
 			"Delete!": function() {
@@ -574,9 +574,9 @@ $( "#add-student-to-course-dialog" ).dialog ({
 	}
 });
 
-function populate_courses_list () {
+function populate_courses_list (studentId) {
 	$.post("includes/app/scripts/get_possible_courses.php", {
-			sid: db_id
+			sid: studentId
 		},
 		function(data) {
 			$("#courses-list").empty().append(data);
