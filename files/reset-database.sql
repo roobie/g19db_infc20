@@ -214,9 +214,8 @@ END; $$
 
 -- Prevent insert in studies when student has passed course
 DROP TRIGGER IF EXISTS InsertStudentAlreadyPassedCourse; $$
-DROP TRIGGER IF EXISTS InsertStudentOnCourseSections; $$
 
-CREATE TRIGGER InsertStudentOnCourseSections
+CREATE TRIGGER InsertStudentAlreadyPassedCourse
 AFTER INSERT ON studies
 FOR EACH ROW
 BEGIN
