@@ -593,7 +593,9 @@ function removestudent (studentId) {
 			$("#message-container").empty().append( data ).addClass("ui-state-highlight");
 		}
 	);
-	search_student();
+	setTimeout(function() {
+		search_student()
+		}, 1000)
 }
 			
 		
