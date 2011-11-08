@@ -248,11 +248,9 @@ function manipulate_student_table () {
 				$( "#add-student-to-course-dialog" ).dialog( "open" );
 			},
 			"Delete!": function() {
-			$("#idstudent").val(db_id);
-			removestudent(db_id);
-			
-			
-				//TODO: implement me!
+				$("#idstudent").val(db_id);
+				removestudent(db_id);
+				$( this ).dialog( "close" );
 			},
 		},
 		close: function() {
@@ -589,12 +587,14 @@ function populate_courses_list (studentId) {
 
 
 function removestudent (studentId) {
-			$.post("includes/app/scripts/remove_student.php", {
-				idstudent: db_id,
-				}, function(data) {
-					$("#message-container").empty().append( "Student removed!" ).addClass("ui-state-highlight");
-			})
-			}
+	$.post("includes/app/scripts/remove_student.php", {
+		idstudent: db_id,
+		}, function(data) {
+			$("#message-container").empty().append( data ).addClass("ui-state-highlight");
+		}
+	);
+	search_student();
+}
 			
 		
 	

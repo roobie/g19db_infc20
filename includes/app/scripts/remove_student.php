@@ -22,10 +22,11 @@
 		
 		$check_stmt = $db->prepare("CALL GetStudentByID(?)");
 		$db->beginTransaction();
-		$result = $check_stmt->execute($data);
+		$check_stmt->execute($data);
 
 		$db->commit();
 		
+		$result = $check_stmt->fetchAll();
 		$count = 0;
 		
 		foreach ($result as $row) {
@@ -35,8 +36,12 @@
 			}
 		}
 		
+		if ($count == 0 ) {
+			echo "Student successfully removed to database!";
+		}
+		
 		$db = null;
 	} catch (PDOException $e) {
-		echo '<div class="ui-state-error">FAIL. Try again or consult the webmaster.</div> Append the following info in the message, please: ' . date_default_timezone_set('l jS \of F Y h:i:s A') . $e->getMessage();
+		echo '<div class="ui-state-error">FAIL. ' . $e->getMessage() . '</div>';
 	}	
 ?>
