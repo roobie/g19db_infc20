@@ -1,4 +1,3 @@
-
 <!-- Tabs 
 =============================================================================================== -->
 <div id="tabs" class="app_menu">
@@ -110,8 +109,6 @@
         <input id ="update-student_type_foreign" type="radio" name="update-student_type" value="foreign">Foreign
     </form>
 </div> <!-- update-student-dialog-form -->
-
-
 
 <div id="add-student-to-course-dialog" title="Add student to course">
     <p class="validateTips">All form fields are required.</p>
