@@ -3,18 +3,12 @@
 
 	require 'database_props.php';
 
+	$data = array($sid);
+	
 	try {
 		$db = new PDO($pdo_connection_string, $user, $password);
 
-		/**
-			Use the $sid to get all courses that is possible for that student to get.
-		**/
-
-		$st = $db->prepare("
-						SELECT *
-						FROM course
-						ORDER BY code
-						");
+		$st = $db->prepare("CALL GetAllPossibleCoursesForStudent(?)");
 
 		$db->beginTransaction();
 			$st->execute($data);
