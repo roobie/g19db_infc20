@@ -954,7 +954,7 @@ INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('7', '1');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('3', '3');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('8', '3');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('9', '9');
-INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('10', '13');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('10', '12');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('11', '9');
 
 -- HAS_STUDIED
@@ -971,6 +971,11 @@ INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 'Handin', 'desc', '7.5');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Exam', 'desc', '5.0');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Handin', 'desc', '5.0');
+
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('10','5',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('10','6',NULL);
 
 
 -- ===============================================================================================
