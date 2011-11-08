@@ -375,8 +375,7 @@ function manipulate_course_table () {
 		cname.val(tmp[2]);
 		points.val(tmp[3]);
 
-
-		db_id = tmp[1];
+		db_id = $( this ).children()[2].textContent;
 
     });
     
@@ -575,7 +574,7 @@ function populate_courses_list (studentId) {
 	);
 }
 
-function removestudent (studentId) {
+function removestudent () {
 	$.post("includes/app/scripts/remove_student.php", {
 		idstudent: db_id,
 		}, function(data) {
@@ -603,16 +602,61 @@ function removecourse () {
 
 function course_open () {
 	$("#app_table").empty().append('<div id="course_open"></div>');
+	
+	/**
 	setTimeout(function() {
 			adjust_height($("#course_open").height())
 		}, 1000
 	);
-	$("#app_table").append('<button id="remove-course-button">Remove Course</button>');
+	**/
+
+	$("#app_table").append('<button id="remove-course-button" class="course-button">Remove Course</button>');
 	$("#remove-course-button").button().click(function() {
-		//TODO when cick btn.
 		removecourse( )
 	});
+	$("#app_table").append('<button id="show-students-has-studied-course-button" class="course-button">Show passed students</button>');
+	$("#show-students-has-studied-course-button").button().click(function() {
+		showStudentsPassed();
+	});
 }
+function showStudentsPassed () {
+	$.post("includes/app/scripts/show_passed_students_on_course.php", {
+			idc: db_id
+		}, function(data) {
+			$("#app_table").empty().append(data);
+		}
+	);
+}
+
+$(function() {
+	$( "#pass-student-dialog" ).dialog({
+		autoOpen: false,
+		height: 250,
+		width: 400,
+		modal: true,
+		buttons: {
+			"Commit!": function() {
+				$.post("includes/app/scripts/pass_student.php", {
+						idstudent : idstud,
+						idsection : idsect
+					},
+					function(data) {
+						$("#message-insert").empty().append(data);
+					}
+				)
+			}
+		}
+	});
+});
+
+$(function() {
+	$( ".student_sect_name" ).click(function() {
+		var 
+			idstud = $(this).children()[0]
+			idsect = $(this).children()[1]
+		$("#pass-student-dialog" ).dialog( "open" )
+	});
+});
 
 open_create_student();
 open_create_course();

@@ -1,8 +1,5 @@
-<?php 
-	
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL | E_STRICT);
-	
+<?php
+
 	$user = "g19usr";
 	$password = "group19";
 	$database = "g19db";
@@ -10,28 +7,46 @@
 	$pdo_hostname = "mysql:host=localhost;";
 	$pdo_dbname = "dbname=g19db";
 	$pdo_connection_string = $pdo_hostname . $pdo_dbname;
+	
 
+	$db = null;
+	$data = array('1');
+	$query="CALL RemoveCourse(?)";
 
 	try {
+
 		$db = new PDO($pdo_connection_string, $user, $password);
-
-		$query = "view_ten_youngest_students()";
-		$statement = $db->prepare($query);
-
+		$stmt = $db->prepare($query);
 		$db->beginTransaction();
-			$statement->execute();
+		$stmt->execute($data);
+
 		$db->commit();
 
-		$result = $statement->fetchAll();
+		$check_stmt = $db->prepare("CALL GetCourseByID(?)");
+		$db->beginTransaction();
+		$check_stmt->execute($data);
 
-		foreach($result as $row) {
-			foreach ($row as $element) {
-				echo $element;
+		$db->commit();
+
+		$result = $check_stmt->fetchAll();
+		$count = 0;
+
+		foreach ($result as $row) {
+			if ($row != null){
+				$count ++;
+				throw new PDOException("Course not removed. Constraint failed");
 			}
+			echo $row;
 		}
 
-	} catch(PDOException $e) {
-			echo $e->getMessage();
-	}
+		if ($count == 0 ) {
+			echo "Course successfully removed from database!";
+		}
 
+		$db = null;
+	} 
+	
+	catch (PDOException $e) {
+		echo '<div class="ui-state-error">FAIL. ' . $e->getMessage() . '</div>';
+	}
 ?>

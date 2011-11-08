@@ -125,3 +125,22 @@
 
     </form>
 </div>
+
+<div id="pass-student-dialog" title="Commit a grade for a student on a course.">
+    <p class="validateTips">All form fields are required.</p>
+    <form class="js-form">
+        <label for="student_id">Student</label><br>
+        <input type="text" name="student_id" id="student_id" class="text ui-widget-content ui-corner-all" readonly><br>
+        <br>
+        <select name="grades" class="static-list">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Fx">Fx</option>
+        </select>
+
+    </form>
+</div>

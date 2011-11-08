@@ -75,7 +75,7 @@ EOB;
 			}
 echo <<<EOB
 
-							<tr>
+							<tr class="student_sect_name">
 								<td>$sect_name</td>
 								<td>$sect_grade</td>
 							</tr>

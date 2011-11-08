@@ -1,11 +1,9 @@
 <?php
 
-	$idcourse = mysql_escape_string($_POST["idcourse"]);
-
-echo $idcourse; 
+	$idcourse = $_POST["idcourse"];
 
 	$db = null;
-	$data = array(idcourse);
+	$data = array($idcourse);
 	$query="CALL RemoveCourse(?)";
 
 	try {
@@ -32,6 +30,7 @@ echo $idcourse;
 				$count ++;
 				throw new PDOException("Course not removed. Constraint failed");
 			}
+			echo $row;
 		}
 
 		if ($count == 0 ) {

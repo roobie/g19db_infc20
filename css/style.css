@@ -239,7 +239,7 @@ img {
 	overflow: hidden;
 }
 
-#remove-course-button {
+.course-button {
 	margin: 0 0 10px 10px;
 }
 

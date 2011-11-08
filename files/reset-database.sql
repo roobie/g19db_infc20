@@ -850,6 +850,38 @@ BEGIN
 		idstudent = inidstudent;
 END $$
 
+-- get course by courseid
+DROP PROCEDURE IF EXISTS GetCourseByID $$
+
+CREATE PROCEDURE GetCourseByID (
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	SELECT
+		idcourse
+	FROM
+		course
+	WHERE
+		idcourse = inidcourse;
+END $$
+
+-- get course by courseid
+DROP PROCEDURE IF EXISTS GetHasStudiedByID $$
+
+CREATE PROCEDURE GetHasStudiedByID (
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	SELECT
+		s.first_name, s.last_name, s.idstudent, c.name, h.grade
+	FROM
+		has_studied h, student s, course c
+	WHERE
+		h.idcourse = c.idcourse AND
+		h.idstudent = s.idstudent AND
+		h.idcourse = inidcourse;
+END $$
+
 -- get all section -> course relationship by courseid
 DROP PROCEDURE IF EXISTS GetAllSectionsByCourseID $$
 
