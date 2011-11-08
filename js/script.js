@@ -597,11 +597,19 @@ function removestudent (studentId) {
 		search_student()
 		}, 1000)
 }
-			
-		
-	
 
 
+function removecourse (courseId) {
+	$.post("includes/app/scripts/remove_course.php", {
+		idcourse: db_id,
+		}, function(data) {
+			$("#message-container").empty().append( data ).addClass("ui-state-highlight");
+		}
+	);
+	setTimeout(function() {
+		search_course()
+		}, 1000)
+}
 
 
 function course_tabs () {

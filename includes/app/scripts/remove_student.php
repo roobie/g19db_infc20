@@ -37,7 +37,7 @@
 		}
 		
 		if ($count == 0 ) {
-			echo "Student successfully removed to database!";
+			echo "Student successfully removed from database!";
 		}
 		
 		$db = null;
