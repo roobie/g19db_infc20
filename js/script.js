@@ -354,19 +354,12 @@ function manipulate_course_table () {
 	});
 
 	$(".course-tr").click(function () {
-		course_tabs();
+		course_open();
 		$.post("includes/app/scripts/get_students_on_course.php", {
 			idc: $( this ).children()[2].textContent
 		},
 			function (data) {
-				$("#students-tab").empty().append(data);
-			}
-		);
-		$.post("includes/app/scripts/get_sections_on_course.php", {
-			idc: $( this ).children()[2].textContent
-		},
-			function ( data ) {
-				$("#sections-tab").empty().append(data);
+				$("#course_open").empty().append(data);
 			}
 		);
 		ccode.val($(this).attr('id'));
@@ -597,6 +590,7 @@ function removestudent (studentId) {
 		search_student()
 		}, 1000)
 }
+<<<<<<< HEAD
 
 
 function removecourse (courseId) {
@@ -610,15 +604,15 @@ function removecourse (courseId) {
 		search_course()
 		}, 1000)
 }
+=======
+>>>>>>> e6cc6822d4ab9d1f6bed67f3260747252cfa5823
 
-
-function course_tabs () {
-	$("#app_table").empty().append('<div id="course_tabs"></div>');
-	$("#course_tabs")
-	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
-	.append('<div id="students-tab"></div>')
-	.append('<div id="sections-tab"></div>')
-	.tabs();
+function course_open () {
+	$("#app_table").empty().append('<div id="course_open"></div>');
+	setTimeout(function() {
+			adjust_height($("#course_open").height())
+		}, 1000
+	);
 }
 
 open_create_student();
