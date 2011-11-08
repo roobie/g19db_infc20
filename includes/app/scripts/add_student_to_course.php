@@ -1,16 +1,11 @@
 <?php
 
-	$ssn = mysql_escape_string($_POST["ssn"]);
-	$fname = mysql_escape_string($_POST["fname"]);
-	$lname = mysql_escape_string($_POST["lname"]);
-	$address = mysql_escape_string($_POST["address"]);
-	$phone_nbr = mysql_escape_string($_POST["phone_nbr"]);
-	$email = mysql_escape_string($_POST["email"]);
-	$type = mysql_escape_string($_POST["type"]);
+	$idstudent = mysql_escape_string($_POST["idstudent"]);
+	$idcourse = mysql_escape_string($_POST["idcourse"]);
 
 	$db = null;
-	$data = array($ssn, $fname, $lname, $address, $phone_nbr, $email, $type);
-	$query="CALL InsertStudent (?, ?, ?, ?, ?, ?, ?)";
+	$data = array($idstudent, $idcourse);
+	$query="CALL InsertStudies(?, ?)";
 
 	try {
 		require 'database_props.php';
@@ -21,11 +16,6 @@
 
 		$db->beginTransaction();
 		$stmt->execute($data);
-
-		$last_id = $db->query('SELECT LAST_INSERT_ID() as last_id');
-		$last_id->setFetchMode(PDO::FETCH_ASSOC);
-		$last_id = $last_id->fetch();
-		$last_id = intval($last_id['last_id']);
 		
 		$db->commit();
 		

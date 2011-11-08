@@ -565,7 +565,10 @@ $( "#add-student-to-course-dialog" ).dialog ({
 	buttons: {
 		"Add": function() {
 			$.post("includes/app/scripts/add_student_to_course.php", {
-				
+				idstudent: db_id,
+				idcourse: $("#courses-list").children(":selected").attr("value")
+				}, function(data) {
+				alert(data);
 			})
 		},
 		Cancel: function() {
