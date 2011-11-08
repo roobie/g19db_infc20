@@ -772,6 +772,33 @@ BEGIN
 		grade LIKE term;
 END $$
 
+-- Misc routines
+-- ===============================================================================================
+DROP PROCEDURE IF EXISTS GetAllPossibleCoursesForStudent $$
+
+CREATE PROCEDURE GetAllPossibleCoursesForStudent (
+	IN inidstudent VARCHAR (255)
+)
+BEGIN
+	SELECT
+		h.idstudent,
+		c.idcourse AS applicable_courses
+	FROM
+		has_studied h, course_requirements c
+	WHERE
+		h.idstudent = inidstudent AND
+		h.idcourse = c.idcourse_required AND
+		h.idstudent NOT IN (
+			SELECT
+				h.idstudent
+			FROM
+				has_studied h
+			WHERE
+				h.grade IN ('F', 'Fx')
+		)
+	GROUP BY h.idstudent,	c.idcourse;
+END $$
+
 -- ===============================================================================================
 -- END defs
 -- ===============================================================================================
@@ -896,6 +923,17 @@ INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '7.6');
 INSERT INTO course VALUES (null, 'FIL384', 'Fireworks', '15.0');
 INSERT INTO course VALUES (null, 'LIT705', 'Dehaviland', '10.0');
 INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '13.1');
+
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '5');
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '1');
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('10', '7');
+
+INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('1', '1', 'A');
+INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('1', '5', 'C');
+INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '7', 'A');
+INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '5', 'C');
+INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '1', 'F');
+
 
 -- ===============================================================================================
 -- END test data insert
