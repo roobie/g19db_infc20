@@ -16,7 +16,7 @@
 
 			/* stop form from submitting normally */
 			event.preventDefault(); 
-				
+
 			/* get some values from elements on the page: */
 			var $form = $( this ),
 				term = $form.find( 'input[name="s"]' ).val(),

@@ -5,7 +5,7 @@
  */
 
 
-//	Få smma höjd på sidebar och content
+//	Få samma höjd på sidebar och content
 $(window).load( function() {  			
 	if ( $("#main").height() > $("#sidebar").height() && $("#main").height() > $("#content").height() ) {
 		$("#content").height( $("#main").height() );
@@ -409,9 +409,9 @@ function open_create_student() {
 		.add( phone_nbr )
 		.add( email )
 		.add( type ),
-	
+
 	tips = $( ".validateTips" );
-	
+
 	$( "#create-student-dialog-form" ).dialog({
 		autoOpen: false,
 		height: 550,
@@ -421,7 +421,7 @@ function open_create_student() {
 			"Create!": function() {
 				var bValid = true;
 				allFields.removeClass( "ui-state-error" );
-				
+
 				if ($("input[name='student_type']:checked").val() == "domestic") {
 					bValid = bValid && checkLength( ssn, "ssn", 6, 12 );
 					bValid = bValid && checkRegexp( ssn, /^([0-9])+$/i, "Socal security number must consist of only numbers." );
@@ -442,7 +442,7 @@ function open_create_student() {
 				bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "It seems like the mail address is not valid.. Please try again." );
 				if ( bValid ) {
 					var t = $("input[name='student_type']:checked").val();
-					
+
 					$.post( "includes/app/scripts/create_student.php", {
 						ssn: ssn.val(),
 						fname: fname.val(),
@@ -451,7 +451,7 @@ function open_create_student() {
 						phone_nbr: phone_nbr.val(),
 						email: email.val(),
 						type: t
-						
+
 					},
 					function(data) {
 						$( "#message-container" ).empty().append( data ).addClass( "ui-state-highlight" );
@@ -459,7 +459,7 @@ function open_create_student() {
 							$( "#message-container" ).removeClass( "ui-state-highlight", 1500 );
 						}, 500 );
 					});
-					
+
 					$( this ).dialog( "close" );
 					setTimeout(function() {
 						search_student(email.val())
@@ -492,9 +492,7 @@ function open_create_student() {
 		.add( cname )
 		.add( points )
 
-	
 	tips = $( ".validateTips" );
-	
 
 	$( "#create-course-dialog-form" ).dialog({
 		autoOpen: false,
@@ -518,7 +516,6 @@ function open_create_student() {
 						cname: cname.val(),
 						cpoints: points.val(),
 
-						
 					},
 					function(data) {
 						$( "#message-container" ).empty().append( data ).addClass( "ui-state-highlight" );
@@ -526,7 +523,7 @@ function open_create_student() {
 							$( "#message-container" ).removeClass( "ui-state-highlight", 1500 );
 						}, 500 );
 					});
-					
+
 					$( this ).dialog( "close" );
 					search_course(ccode.val());
 				}
@@ -534,7 +531,7 @@ function open_create_student() {
 			Cancel: function() {
 				$( this ).dialog( "close" );
 			},
-			
+
 			close: function() {
 			allFields.val( "" ).removeClass( "ui-state-error" );
 		}
@@ -578,7 +575,6 @@ function populate_courses_list (studentId) {
 	);
 }
 
-
 function removestudent (studentId) {
 	$.post("includes/app/scripts/remove_student.php", {
 		idstudent: db_id,
@@ -591,12 +587,31 @@ function removestudent (studentId) {
 		}, 1000)
 }
 
+
+function removecourse () {
+	$.post("includes/app/scripts/remove_course.php", {
+		idcourse: db_id,
+		}, function(data) {
+			$("#message-container").empty().append( data ).addClass("ui-state-highlight");
+		}
+	);
+	setTimeout(function() {
+		search_course()
+		}, 1000)
+}
+
+
 function course_open () {
 	$("#app_table").empty().append('<div id="course_open"></div>');
 	setTimeout(function() {
 			adjust_height($("#course_open").height())
 		}, 1000
 	);
+	$("#app_table").append('<button id="remove-course-button">Remove Course</button>');
+	$("#remove-course-button").button().click(function() {
+		//TODO when cick btn.
+		removecourse( )
+	});
 }
 
 open_create_student();
