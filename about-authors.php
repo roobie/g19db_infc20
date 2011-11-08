@@ -4,7 +4,7 @@
 ?>
 
 				<div class="about-frame">
-					<img class="author-image"src="/img/authors/bjorn.png">
+					<img class="author-image"src="../img/authors/bjorn.png">
 					<p><h2>Björn Roberg</h2>
 					881026<br /><br />
 					Björn gillar glass och Webbdesign. Han gillar andra saker med, men i denna kontext så är det i huvudsak dessa ämnen han helst pratar om.<br /><br />
@@ -13,7 +13,7 @@
 				</div>
 				
 				<div class="about-frame">
-					<img class="author-image" src="/img/authors/erik.png">
+					<img class="author-image" src="../img/authors/erik.png">
 					<p><h2>Erik Samuelsson</h2>
 					880204<br /><br />
 					Erik brukar alltid börja varje mening med "Jag gillar SQL…" och avsluta med en förfrågan. <br /><br />
@@ -22,7 +22,7 @@
 				</div>
 				
 				<div class="about-frame">
-					<img class="author-image" src="/img/authors/pontus.png">
+					<img class="author-image" src="../img/authors/pontus.png">
 					<p><h2>Pontus Åkerblom</h2>
 					880730<br /><br />
 					Pontus är en trevlig kille som gillar långa månskenspromenader. Han tycker det är roligt med databaser och programmering. speciellt i månskenet.<br /><br />
