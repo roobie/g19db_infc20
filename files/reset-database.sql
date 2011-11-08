@@ -776,11 +776,7 @@ END $$
 -- ===============================================================================================
 DROP PROCEDURE IF EXISTS GetAllPossibleCoursesForStudent $$
 
-<<<<<<< HEAD
 CREATE PROCEDURE GetAllPossibleCoursesForStudent (
-=======
-CREATE PROCEDURE GetAllPossibleCourses (
->>>>>>> 3acaf5fe128373e05ce9e3ab50a57087756e3ba3
 	IN inidstudent VARCHAR (255)
 )
 BEGIN
