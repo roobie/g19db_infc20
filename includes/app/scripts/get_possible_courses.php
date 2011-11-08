@@ -4,7 +4,7 @@
 	require 'database_props.php';
 
 	$data = array($sid);
-	
+
 	try {
 		$db = new PDO($pdo_connection_string, $user, $password);
 
@@ -16,7 +16,7 @@
 		$result_set = $st->fetchAll();
 
 		foreach ($result_set as $row) {
-				echo "<option value=\"$row[0]\">$row[1] - $row[2]</option>";
+				echo "<option value=\"$row[0]\">$row[2] - $row[1]</option>";
 		}
 	} catch( PDOException $e ) {
 		echo $e->getMessage();

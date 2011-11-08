@@ -781,22 +781,42 @@ CREATE PROCEDURE GetAllPossibleCoursesForStudent (
 )
 BEGIN
 	SELECT
-		h.idstudent,
-		c.idcourse AS applicable_courses
+		c.idcourse,
+		c.code,
+		c.name
 	FROM
-		has_studied h, course_requirements c
+		course c
 	WHERE
-		h.idstudent = inidstudent AND
-		h.idcourse = c.idcourse_required AND
-		h.idstudent NOT IN (
-			SELECT
-				h.idstudent
-			FROM
-				has_studied h
-			WHERE
-				h.grade IN ('F', 'Fx')
+		c.idcourse NOT IN (
+			SELECT r.idcourse
+			FROM course_requirements r
 		)
-	GROUP BY h.idstudent,	c.idcourse;
+	
+	UNION
+	
+	SELECT
+		c.idcourse,
+		c.code,
+		c.name
+	FROM (
+		SELECT
+			r.idcourse AS courseid,
+			h.idstudent
+		FROM
+			course_requirements r, has_studied h
+		WHERE
+			r.idcourse_required = h.idcourse
+		GROUP BY
+			r.idcourse,
+			h.grade
+		HAVING
+			h.grade IN ('A', 'B', 'C', 'D', 'E') AND
+			h.idstudent = inidstudent
+	) AS T1, course c
+	WHERE
+		T1.courseid = c.idcourse
+	GROUP BY
+		c.idcourse;
 END $$
 
 -- ===============================================================================================
