@@ -5,7 +5,7 @@
  */
 
 
-//	Få smma höjd på sidebar och content
+//	Få samma höjd på sidebar och content
 $(window).load( function() {  			
 	if ( $("#main").height() > $("#sidebar").height() && $("#main").height() > $("#content").height() ) {
 		$("#content").height( $("#main").height() );
