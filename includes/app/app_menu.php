@@ -6,7 +6,8 @@
         <li><a href="#create">Create</a></li>
         <li><a href="#search">Search</a></li>
     </ul>
-
+<!-- CREATE tab 
+=============================================================================================== -->
     <div id="create">
         <div class="form-insert">
             <button id="create-student-button">Create new student</button>
@@ -15,6 +16,8 @@
         </div><!-- END form -->
     </div><!-- End CREATE-STUDENT -->
 
+<!-- SEARCH tab 
+=============================================================================================== -->
     <div id="search">
         <div class="form-select">
             <div id="message-select" class="ui-message-box"></div>

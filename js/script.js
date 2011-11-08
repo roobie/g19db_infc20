@@ -27,25 +27,6 @@ $(window).load( function() {
 	}
 });
 
-
-//	Switch theme
-$(function() {
-	document.styleSheets[2].disabled = true;
-	$( "#switch-theme-button" )
-	.button()
-	.click(function() {
-		var styleSheets = document.styleSheets;
-		if (styleSheets[1].disabled == true) {
-			styleSheets[1].disabled = false;
-			styleSheets[2].disabled = true;
-		} else
-		if (styleSheets[2].disabled == true) {
-			styleSheets[2].disabled = false;
-			styleSheets[1].disabled = true;
-		}
-	});
-});
-
 // 	Scriptet för sidomenyn i sidebar
 $(function() {
 	$( "#nav" ).accordion({
@@ -373,15 +354,14 @@ function manipulate_course_table () {
 	$(".course-tr").click(function () {
 		course_tabs();
 		$.post("includes/app/scripts/get_students_on_course.php", {
-			idc: $( this ).children()[2].innerText
-		// POST vars
+			idc: $( this ).children()[2].textContent
 		},
 			function (data) {
 				$("#students-tab").empty().append(data);
 			}
 		);
 		$.post("includes/app/scripts/get_sections_on_course.php", {
-		// POST vars
+			idc: $( this ).children()[2].textContent
 		},
 			function ( data ) {
 				$("#sections-tab").empty().append(data);

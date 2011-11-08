@@ -13,7 +13,6 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
-	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
 	<link rel="stylesheet" href="sqlparserlib/sqlsyntax.css" />
 	<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 	
