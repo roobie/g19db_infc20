@@ -776,27 +776,47 @@ END $$
 -- ===============================================================================================
 DROP PROCEDURE IF EXISTS GetAllPossibleCoursesForStudent $$
 
-CREATE PROCEDURE GetAllPossibleCourses (
+CREATE PROCEDURE GetAllPossibleCoursesForStudent (
 	IN inidstudent VARCHAR (255)
 )
 BEGIN
 	SELECT
-		h.idstudent,
-		c.idcourse AS applicable_courses
+		c.idcourse,
+		c.code,
+		c.name
 	FROM
-		has_studied h, course_requirements c
+		course c
 	WHERE
-		h.idstudent = inidstudent AND
-		h.idcourse = c.idcourse_required AND
-		h.idstudent NOT IN (
-			SELECT
-				h.idstudent
-			FROM
-				has_studied h
-			WHERE
-				h.grade IN ('F', 'Fx')
+		c.idcourse NOT IN (
+			SELECT r.idcourse
+			FROM course_requirements r
 		)
-	GROUP BY h.idstudent,	c.idcourse;
+	
+	UNION
+	
+	SELECT
+		c.idcourse,
+		c.code,
+		c.name
+	FROM (
+		SELECT
+			r.idcourse AS courseid,
+			h.idstudent
+		FROM
+			course_requirements r, has_studied h
+		WHERE
+			r.idcourse_required = h.idcourse
+		GROUP BY
+			r.idcourse,
+			h.grade
+		HAVING
+			h.grade IN ('A', 'B', 'C', 'D', 'E') AND
+			h.idstudent = inidstudent
+	) AS T1, course c
+	WHERE
+		T1.courseid = c.idcourse
+	GROUP BY
+		c.idcourse;
 END $$
 
 -- ===============================================================================================
@@ -910,19 +930,19 @@ INSERT INTO student VALUES (null, '8008276501', 'Spades', 'Scholarships', 'Dream
 INSERT INTO student VALUES (null, null, 'Parent\'s', 'Geraghty', 'Thoroughgoing Rd 25', '+46070-533-12-95', 'Tenement@Metaphorical.se', 'foreign');
 INSERT INTO student VALUES (null, '8903212744', 'Andrei\'s', 'Vikulov', 'Burghardt Rd 17', '+46079-472-34-80', 'L\'ange@Intensities.net', 'domestic');
 
-INSERT INTO course VALUES (null, 'INF663', 'Translations', '12.1');
-INSERT INTO course VALUES (null, 'EKO704', 'Kimberly', '11.6');
-INSERT INTO course VALUES (null, 'EKO948', 'Eatables', '26.9');
-INSERT INTO course VALUES (null, 'LIT113', 'Differentiability', '21.3');
-INSERT INTO course VALUES (null, 'INF689', 'Musta', '24.6');
-INSERT INTO course VALUES (null, 'INF831', 'Dismay', '13.9');
-INSERT INTO course VALUES (null, 'FIL584', 'Distract', '4.9');
-INSERT INTO course VALUES (null, 'FIL442', 'Chantey', '4.7');
-INSERT INTO course VALUES (null, 'EKO504', 'Tailback', '4.3');
-INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '7.6');
+INSERT INTO course VALUES (null, 'INF663', 'Translations', '5.0');
+INSERT INTO course VALUES (null, 'EKO704', 'Kimberly', '7.5');
+INSERT INTO course VALUES (null, 'EKO948', 'Eatables', '10.0');
+INSERT INTO course VALUES (null, 'LIT113', 'Differentiability', '15.0');
+INSERT INTO course VALUES (null, 'INF689', 'Musta', '5.0');
+INSERT INTO course VALUES (null, 'INF831', 'Dismay', '5.0');
+INSERT INTO course VALUES (null, 'FIL584', 'Distract', '10.0');
+INSERT INTO course VALUES (null, 'FIL442', 'Chantey', '7.5');
+INSERT INTO course VALUES (null, 'EKO504', 'Tailback', '7.5');
+INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '5.0');
 INSERT INTO course VALUES (null, 'FIL384', 'Fireworks', '15.0');
 INSERT INTO course VALUES (null, 'LIT705', 'Dehaviland', '10.0');
-INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '13.1');
+INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '7.5');
 
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '5');
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '1');
