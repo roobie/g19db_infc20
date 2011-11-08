@@ -831,7 +831,8 @@ BEGIN
 	FROM
 		studies s, student st
 	WHERE
-		st.idstudent = s.idstudent;
+		s.idstudent = st.idstudent AND 
+		s.idcourse = inidcourse;
 END $$
 
 -- get all studies relationship by courseid
