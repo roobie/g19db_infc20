@@ -370,10 +370,25 @@ function manipulate_course_table () {
 		}
 	});
 
-	$(".course-tr").click(function () { 
+	$(".course-tr").click(function () {
 		course_tabs();
+		$.post("includes/app/scripts/get_students_on_course.php", {
+			idc: $( this ).children()[2].outerText
+		// POST vars
+		},
+			function (data) {
+				$("#students-tab").empty().append(data);
+			}
+		);
+		$.post("includes/app/scripts/get_sections_on_course.php", {
+		// POST vars
+		},
+			function ( data ) {
+				$("#sections-tab").empty().append(data);
+			}
+		);
 		ccode.val($(this).attr('id'));
-		var tmp	= $( []) ;
+		var tmp	= $( [] ) ;
 		
 		$(this).children().each(function () {
 			tmp.push($(this).text()); // "this" is the current element in the loop
@@ -565,11 +580,15 @@ $( "#add-student-to-course-dialog" ).dialog ({
 	buttons: {
 		"Add": function() {
 			$.post("includes/app/scripts/add_student_to_course.php", {
-				
+				idstudent: db_id,
+				idcourse: $("#courses-list").children(":selected").attr("value")
+				}, function(data) {
+					$("#message-container").empty().append( "Student added to course!" ).addClass("ui-state-highlight");
 			})
+			$( "#add-student-to-course-dialog" ).dialog( "close" );
 		},
 		Cancel: function() {
-			$( this ).dialog.close();
+			$( this ).dialog( "close" );
 		}
 	}
 });
@@ -584,12 +603,12 @@ function populate_courses_list (studentId) {
 	);
 }
 
-function course_tabs (studentData, sectionData) {
+function course_tabs () {
 	$("#app_table").empty().append('<div id="course_tabs"></div>');
 	$("#course_tabs")
 	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
-	.append('<div id="students-tab">test</div>')
-	.append('<div id="sections-tab">test</div>')
+	.append('<div id="students-tab"></div>')
+	.append('<div id="sections-tab"></div>')
 	.tabs();
 }
 
