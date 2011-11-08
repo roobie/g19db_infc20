@@ -248,6 +248,10 @@ function manipulate_student_table () {
 				$( "#add-student-to-course-dialog" ).dialog( "open" );
 			},
 			"Delete!": function() {
+			$("#idstudent").val(db_id);
+			removestudent(db_id);
+			
+			
 				//TODO: implement me!
 			},
 		},
@@ -582,6 +586,21 @@ function populate_courses_list (studentId) {
 		}
 	);
 }
+
+
+function removestudent (studentId) {
+			$.post("includes/app/scripts/remove_student.php", {
+				idstudent: db_id,
+				}, function(data) {
+					$("#message-container").empty().append( "Student removed!" ).addClass("ui-state-highlight");
+			})
+			}
+			
+		
+	
+
+
+
 
 function course_tabs () {
 	$("#app_table").empty().append('<div id="course_tabs"></div>');
