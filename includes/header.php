@@ -52,7 +52,7 @@
 	
 	<div id="container">
 		<div id="main-top">
-			<div id="main-top-text"><h3><?php echo $pagename; ?></h3>
+			<div id="main-top-text"><?php echo $pagename; ?>
 			</div>
 		</div>
 		<div id="main">

@@ -2,7 +2,7 @@
 	include('includes/functions.php');
 	head('About the Authors'	);
 ?>
-				
+
 				<div class="about-frame">
 					<img class="author-image"src="/img/authors/bjorn.png">
 					<p><h2>Björn Roberg</h2>
