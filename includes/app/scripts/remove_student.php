@@ -17,12 +17,23 @@
 		$db->beginTransaction();
 		$stmt->execute($data);
 
-		$last_id = $db->query('SELECT LAST_INSERT_ID() as last_id');
-		$last_id->setFetchMode(PDO::FETCH_ASSOC);
-		$last_id = $last_id->fetch();
-		$last_id = intval($last_id['last_id']);
-		
 		$db->commit();
+		
+		
+		$check_stmt = $db->prepare("CALL GetStudentByID(?)");
+		$db->beginTransaction();
+		$result = $check_stmt->execute($data);
+
+		$db->commit();
+		
+		$count = 0;
+		
+		foreach ($result as $row) {
+			if ($row != null){
+				$count ++;
+				throw new PDOException("Student not removed. Constraint failed");
+			}
+		}
 		
 		$db = null;
 	} catch (PDOException $e) {

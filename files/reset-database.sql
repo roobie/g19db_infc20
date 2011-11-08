@@ -827,11 +827,26 @@ CREATE PROCEDURE GetAllStudiesByCourseID (
 )
 BEGIN
 	SELECT
+		st.idstudent, st.first_name, st.last_name
+	FROM
+		studies s, student st
+	WHERE
+		st.idstudent = s.idstudent;
+END $$
+
+-- get all studies relationship by courseid
+DROP PROCEDURE IF EXISTS GetStudentByID $$
+
+CREATE PROCEDURE GetStudentByID (
+	IN inidstudent VARCHAR (255)
+)
+BEGIN
+	SELECT
 		idstudent
 	FROM
-		studies
+		student
 	WHERE
-		idcourse = inidcourse;
+		idstudent = inidstudent;
 END $$
 
 -- ===============================================================================================
