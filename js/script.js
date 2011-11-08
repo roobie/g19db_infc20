@@ -373,7 +373,7 @@ function manipulate_course_table () {
 	$(".course-tr").click(function () {
 		course_tabs();
 		$.post("includes/app/scripts/get_students_on_course.php", {
-			idc: $( this ).children()[2].outerText
+			idc: $( this ).children()[2].innerText
 		// POST vars
 		},
 			function (data) {

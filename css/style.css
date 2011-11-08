@@ -27,7 +27,7 @@ body {
    ============================================================================================== */
 
 body {
-	background: #4c728c url(/img/bg.png) repeat;
+	background: #4c728c url(../img/bg.png) repeat;
 	padding: 0;
 	margin: 0;
 	height: 100%;
@@ -37,7 +37,7 @@ body {
 	width: 1102px;
 	margin: 0 auto 20px;
 	padding: 0 40px;
-	background: url(/img/wrapperBg.png) left top no-repeat;
+	background: url(../img/wrapperBg.png) left top no-repeat;
 }
 
 #container {
@@ -96,7 +96,7 @@ body {
 #main-top {
 	height: 35px;
 	width: 100%;
-	background: #d0d0d0 url(/img/mainTopBg.png) repeat-x;
+	background: #d0d0d0 url(../img/mainTopBg.png) repeat-x;
 	border: 1px solid #f9f9f9;
 	border-bottom: 1px solid #888;
 	border-radius: 3px 3px 0 0;
@@ -110,7 +110,7 @@ body {
 
 #main {
 	width: 100%;
-	background: #f3f3f3 url(/img/contentBg.png) repeat-x;
+	background: #f3f3f3 url(../img/contentBg.png) repeat-x;
 	min-height: 300px;
 
 	border: 1px solid #fff;
@@ -169,7 +169,7 @@ body {
 #footer {
 	height: 100px;
 	padding: 10px 50px;
-	background: url(/img/flaerpMadeInLund.png) right top no-repeat;
+	background: url(../img/flaerpMadeInLund.png) right top no-repeat;
 }
 
 div#footer-container {
