@@ -13,7 +13,6 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css">
-	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
 	<link rel="stylesheet" href="sqlparserlib/sqlsyntax.css" />
 	<link rel="icon" href="favicon.ico" type="image/x-icon"> 
 	
@@ -52,7 +51,7 @@
 	
 	<div id="container">
 		<div id="main-top">
-			<div id="main-top-text"><h3><?php echo $pagename; ?></h3>
+			<div id="main-top-text"><?php echo $pagename; ?>
 			</div>
 		</div>
 		<div id="main">

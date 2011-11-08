@@ -1,4 +1,3 @@
-
 <!-- Tabs 
 =============================================================================================== -->
 <div id="tabs" class="app_menu">
@@ -7,7 +6,8 @@
         <li><a href="#create">Create</a></li>
         <li><a href="#search">Search</a></li>
     </ul>
-
+<!-- CREATE tab 
+=============================================================================================== -->
     <div id="create">
         <div class="form-insert">
             <button id="create-student-button">Create new student</button>
@@ -16,6 +16,8 @@
         </div><!-- END form -->
     </div><!-- End CREATE-STUDENT -->
 
+<!-- SEARCH tab 
+=============================================================================================== -->
     <div id="search">
         <div class="form-select">
             <div id="message-select" class="ui-message-box"></div>
@@ -110,8 +112,6 @@
         <input id ="update-student_type_foreign" type="radio" name="update-student_type" value="foreign">Foreign
     </form>
 </div> <!-- update-student-dialog-form -->
-
-
 
 <div id="add-student-to-course-dialog" title="Add student to course">
     <p class="validateTips">All form fields are required.</p>

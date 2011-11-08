@@ -130,7 +130,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `g19db`.`section` ;
 
 CREATE  TABLE IF NOT EXISTS `g19db`.`section` (
-  `idsection` INT NOT NULL ,
+  `idsection` INT NOT NULL AUTO_INCREMENT ,
   `idcourse` INT NOT NULL ,
   `name` VARCHAR(45) NULL ,
   `description` VARCHAR(45) NULL ,
@@ -849,6 +849,21 @@ BEGIN
 		idstudent = inidstudent;
 END $$
 
+-- get all section -> course relationship by courseid
+DROP PROCEDURE IF EXISTS GetAllSectionsByCourseID $$
+
+CREATE PROCEDURE GetAllSectionsByCourseID (
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	SELECT
+		idsection
+	FROM
+		section
+	WHERE
+		idcourse = inidcourse;
+END $$
+
 -- ===============================================================================================
 -- END defs
 -- ===============================================================================================
@@ -859,6 +874,8 @@ DELIMITER ;
 -- ===============================================================================================
 -- BEGIN test data insert
 -- ===============================================================================================
+
+-- STUDENT
 INSERT INTO student VALUES (null, '8504039536', 'Lighthouses', 'Moller', 'Gibe Rd 24', '+46075-304-17-46', 'Embody@Testings.com', 'domestic');
 INSERT INTO student VALUES (null, null, 'Tame', 'Lothario', 'Solely Rd 51', '+46075-551-86-16', 'Dope@Armload.dk', 'foreign');
 INSERT INTO student VALUES (null, '8012135513', 'Shim', 'Denverite', 'Sexes Rd 58', '+46075-278-23-55', 'Keen@Teamwork.com', 'domestic');
@@ -903,86 +920,56 @@ INSERT INTO student VALUES (null, '8904174720', 'Purified', 'Mayor', 'Drunks Rd 
 INSERT INTO student VALUES (null, '9211275975', 'Equatorial', 'Quipping', 'Postgraduate Rd 87', '+46070-308-76-28', 'Segregating@Silone.se', 'domestic');
 INSERT INTO student VALUES (null, '9211069130', 'Auspiciously', 'Johnny', 'Audited Rd 94', '+46071-911-70-76', 'Kelts@Ticket.se', 'domestic');
 INSERT INTO student VALUES (null, '8407193037', 'Curled', 'Deafened', 'Selective Rd 86', '+46075-515-43-44', 'Erudite@Delaware.net', 'domestic');
-INSERT INTO student VALUES (null, '9207227595', 'Bombed', 'Poughkeepsie', 'Ethic Rd 41', '+46076-821-39-35', 'Julio@Remonstrated.net', 'domestic');
-INSERT INTO student VALUES (null, '7507285081', 'Divine\'s', 'Scr', 'Fortiori Rd 34', '+46075-295-77-33', 'Aperture@Subliterary.no', 'domestic');
-INSERT INTO student VALUES (null, '8412019068', 'Haflis', 'Telephoning', 'Disturbances Rd 67', '+46078-808-30-32', 'Epidermis@Misplaced.no', 'domestic');
-INSERT INTO student VALUES (null, '8207212324', 'Blazing', 'Activity', 'Attackers Rd 51', '+46076-132-13-09', 'Oddities@Jacopo.no', 'domestic');
-INSERT INTO student VALUES (null, '8109167701', 'Nations\'s', 'Emilio', 'Pretty Rd 33', '+46071-645-11-64', 'Av@Mileage.dk', 'domestic');
-INSERT INTO student VALUES (null, '8005034797', 'Raccoon', 'Apple', 'Tantamount Rd 49', '+46077-010-76-84', 'Hedison@Froth.dk', 'domestic');
-INSERT INTO student VALUES (null, '8404067232', 'Weinstein', 'F\'ovuh', 'Reunion Rd 68', '+46070-153-46-72', 'Garlanded@Nazi.no', 'domestic');
-INSERT INTO student VALUES (null, '7710208625', 'Vault', 'Loins', 'Antisubmarine Rd 2', '+46073-168-38-58', 'Pleasin@Palindromes.se', 'domestic');
-INSERT INTO student VALUES (null, '9102034442', 'Nairobi', 'Howsomever', 'Blistered Rd 63', '+46079-221-09-95', 'Dispersion@Bourbons.se', 'domestic');
-INSERT INTO student VALUES (null, '8203218195', 'Pile', 'Engulfed', 'Swahili Rd 84', '+46070-159-26-30', 'Pianos@Concededly.no', 'domestic');
-INSERT INTO student VALUES (null, '7812173756', 'Inducements', 'Hammond', 'Foundling Rd 27', '+46078-402-68-07', 'Formulation@Shatters.no', 'domestic');
-INSERT INTO student VALUES (null, '9003042613', 'Galleries', 'Takings', 'Exuberant Rd 37', '+46074-986-84-96', 'Arouny@Malfeasant.dk', 'domestic');
-INSERT INTO student VALUES (null, '7901029148', 'Fyodor', 'Severe', 'Sop Rd 100', '+46077-216-43-83', 'Limply@Hundreds.no', 'domestic');
-INSERT INTO student VALUES (null, '9207238716', 'Asch', 'Pecorone', 'Husbandry Rd 97', '+46075-477-58-63', 'Flail@Maniac.net', 'domestic');
-INSERT INTO student VALUES (null, null, 'Effete', 'Nationalism', 'Inconclusive Rd 70', '+46071-181-67-96', 'Wrenched@Levelled.no', 'foreign');
-INSERT INTO student VALUES (null, '7505225995', 'Duly', 'Frescoes', 'Bunkmates Rd 7', '+46077-364-99-48', 'Charge@Cyprian.se', 'domestic');
-INSERT INTO student VALUES (null, '7505087355', 'Linear', 'Hind', 'Gardner Rd 57', '+46078-958-33-35', 'Overrode@Submission.no', 'domestic');
-INSERT INTO student VALUES (null, '8704276240', 'Frenzy', 'Indignities', 'Strivings Rd 27', '+46073-843-26-03', 'Bertrand@Dolley.dk', 'domestic');
-INSERT INTO student VALUES (null, '8207177820', 'Inquisitive', 'Bewail', 'Jockey Rd 58', '+46072-919-20-54', 'Ariadne@Cleans.no', 'domestic');
-INSERT INTO student VALUES (null, '8902051766', 'Incongruity', 'Callous', 'Yokosuka Rd 80', '+46076-450-91-87', 'Neglected@Waist.net', 'domestic');
-INSERT INTO student VALUES (null, '7605113443', 'Delicately', 'Clocked', 'Pwa Rd 90', '+46078-466-58-73', 'Physiological@Vanity.com', 'domestic');
-INSERT INTO student VALUES (null, '8610255793', 'Deadlines', 'Pickaxe', 'Stance Rd 4', '+46078-549-98-24', 'Mp\'s@Bushel.net', 'domestic');
-INSERT INTO student VALUES (null, '8212109637', 'Guanidine', 'Tribute', 'Fined Rd 96', '+46073-579-36-42', 'Tethered@Pappies.net', 'domestic');
-INSERT INTO student VALUES (null, '8009073495', 'Habitable', 'Wring', 'Sideboard Rd 33', '+46074-998-92-78', 'Subjugation@Demanding.no', 'domestic');
-INSERT INTO student VALUES (null, null, 'Insists', 'Corp', 'Salad Rd 58', '+46079-482-10-47', 'Horribly@Commissions.com', 'foreign');
-INSERT INTO student VALUES (null, '7812222351', 'Unrest', 'Naps', 'Arrangers Rd 67', '+46076-733-30-25', 'Termination@Sodden.com', 'domestic');
-INSERT INTO student VALUES (null, '9112101953', 'Wall', 'Howsomever', 'Irrawaddy Rd 56', '+46070-851-82-31', 'Mastic@Captive.dk', 'domestic');
-INSERT INTO student VALUES (null, '7603214673', 'Patted', 'Suddenly', 'Cumin Rd 45', '+46074-954-99-59', 'Pawing@Consoles.se', 'domestic');
-INSERT INTO student VALUES (null, '7801271594', 'Calves', 'Audio', 'Spacious Rd 7', '+46075-046-12-04', 'Salami@Table.dk', 'domestic');
-INSERT INTO student VALUES (null, '7506059451', 'Headline', 'Rainless', 'Evolves Rd 10', '+46070-383-38-36', 'Delight@Disowned.no', 'domestic');
-INSERT INTO student VALUES (null, '8503117779', 'Creepers', 'Weasel', 'Nominal Rd 68', '+46074-044-45-48', 'Holocaust@Hasty.dk', 'domestic');
-INSERT INTO student VALUES (null, '8710201713', 'Zebra', 'Assumption', 'Paleocortical Rd 70', '+46076-431-77-91', 'Cleaner@Gambling.dk', 'domestic');
-INSERT INTO student VALUES (null, null, 'Interpretative', 'Browning\'s', 'Paraphrase Rd 13', '+46078-455-22-68', 'Drives@Mindless.se', 'foreign');
-INSERT INTO student VALUES (null, '9112036448', 'Sockets', 'Collected', 'Oratio Rd 89', '+46071-553-87-06', 'Triangle@Horsely.no', 'domestic');
-INSERT INTO student VALUES (null, '9204233276', 'Reside', 'Viciousness', 'Relax Rd 78', '+46078-667-67-32', 'Hendry@Gradual.com', 'domestic');
-INSERT INTO student VALUES (null, '8709125849', 'Tapering', 'Harvie', 'Clients Rd 81', '+46079-909-28-27', 'Ratification@Revolved.se', 'domestic');
-INSERT INTO student VALUES (null, '7503276554', 'Brained', 'Vigilance', 'Diseased Rd 80', '+46074-081-82-72', 'Thumped@Dowling\'s.com', 'domestic');
-INSERT INTO student VALUES (null, '9002171722', 'Caseworkers', 'Leavings', 'Kittenish Rd 24', '+46071-341-43-74', 'Sonorous@Storeria.net', 'domestic');
-INSERT INTO student VALUES (null, '8801096002', 'Perfected', 'Enter', 'Handicaps Rd 95', '+46079-957-01-80', 'Byft@Subhumanity.net', 'domestic');
-INSERT INTO student VALUES (null, '9208075131', 'Have', 'I', 'Dishonouring Rd 68', '+46076-184-21-95', 'Involvement@Kemchenjunga.se', 'domestic');
-INSERT INTO student VALUES (null, '8801258280', 'Compact', 'Redheads', 'Khartoum Rd 12', '+46073-023-64-86', 'Confer@Redheader.net', 'domestic');
-INSERT INTO student VALUES (null, '9003151699', 'Censorship', 'Sluggers', 'Broiler Rd 48', '+46072-050-04-82', 'Disturbing@Sternum.net', 'domestic');
-INSERT INTO student VALUES (null, '8707254763', 'Sound', 'Shunted', 'Males Rd 46', '+46074-452-60-39', 'D\'art@Comics.se', 'domestic');
-INSERT INTO student VALUES (null, '9201261430', 'Barring', 'Miscegenation', 'Supremacy Rd 60', '+46074-611-29-52', 'Subnormal@Rumpus.no', 'domestic');
-INSERT INTO student VALUES (null, null, 'Ridges', 'Stirups', 'Faceless Rd 91', '+46075-375-36-68', 'Tacloban@Definable.se', 'foreign');
-INSERT INTO student VALUES (null, '8507037935', 'Nutritive', 'Sprays', 'Aeternitatis Rd 19', '+46073-625-95-42', 'Holders@Thor\'s.com', 'domestic');
-INSERT INTO student VALUES (null, '8712121583', 'Trackdown', 'Parker', 'Dingo Rd 13', '+46079-305-81-23', 'Lacerate@Disseminated.se', 'domestic');
-INSERT INTO student VALUES (null, '9210218839', 'Speechless', 'Sr', 'Mailed Rd 64', '+46075-242-28-28', 'Concertante@Scriptures.com', 'domestic');
-INSERT INTO student VALUES (null, '8401114404', 'Seas', 'Startups', 'Nicknames Rd 100', '+46079-318-19-75', 'Combinations@Earphones.com', 'domestic');
-INSERT INTO student VALUES (null, '7808244838', 'Misdemeanor', 'Fathers', 'Drafted Rd 45', '+46072-337-37-15', 'Shutdown@Cb.se', 'domestic');
-INSERT INTO student VALUES (null, '7909074788', 'Ultramodern', 'Adorn', 'Bruegel Rd 76', '+46078-140-72-52', 'Boughs@Judiciaries.no', 'domestic');
-INSERT INTO student VALUES (null, '7701135501', 'Mommy\'s', 'Twise', 'Employment Rd 17', '+46075-558-37-29', 'Propylaea@Speck.no', 'domestic');
-INSERT INTO student VALUES (null, '8102201934', 'Congealed', 'Wrath', 'Valve Rd 74', '+46070-131-18-69', 'Reinhardt@Schoolers.com', 'domestic');
-INSERT INTO student VALUES (null, '8008276501', 'Spades', 'Scholarships', 'Dreamer Rd 6', '+46074-267-33-97', 'Endorsement@Ashes.se', 'domestic');
-INSERT INTO student VALUES (null, null, 'Parent\'s', 'Geraghty', 'Thoroughgoing Rd 25', '+46070-533-12-95', 'Tenement@Metaphorical.se', 'foreign');
-INSERT INTO student VALUES (null, '8903212744', 'Andrei\'s', 'Vikulov', 'Burghardt Rd 17', '+46079-472-34-80', 'L\'ange@Intensities.net', 'domestic');
 
-INSERT INTO course VALUES (null, 'INF663', 'Translations', '12.1');
-INSERT INTO course VALUES (null, 'EKO704', 'Kimberly', '11.6');
-INSERT INTO course VALUES (null, 'EKO948', 'Eatables', '26.9');
-INSERT INTO course VALUES (null, 'LIT113', 'Differentiability', '21.3');
-INSERT INTO course VALUES (null, 'INF689', 'Musta', '24.6');
-INSERT INTO course VALUES (null, 'INF831', 'Dismay', '13.9');
-INSERT INTO course VALUES (null, 'FIL584', 'Distract', '4.9');
-INSERT INTO course VALUES (null, 'FIL442', 'Chantey', '4.7');
-INSERT INTO course VALUES (null, 'EKO504', 'Tailback', '4.3');
-INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '7.6');
+-- COURSE
+INSERT INTO course VALUES (null, 'INF663', 'Translations', '5.0');
+INSERT INTO course VALUES (null, 'EKO704', 'Kimberly', '7.5');
+INSERT INTO course VALUES (null, 'EKO948', 'Eatables', '10.0');
+INSERT INTO course VALUES (null, 'LIT113', 'Differentiability', '15.0');
+INSERT INTO course VALUES (null, 'INF689', 'Musta', '5.0');
+INSERT INTO course VALUES (null, 'INF831', 'Dismay', '5.0');
+INSERT INTO course VALUES (null, 'FIL584', 'Distract', '10.0');
+INSERT INTO course VALUES (null, 'FIL442', 'Chantey', '7.5');
+INSERT INTO course VALUES (null, 'EKO504', 'Tailback', '7.5');
+INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '5.0');
 INSERT INTO course VALUES (null, 'FIL384', 'Fireworks', '15.0');
 INSERT INTO course VALUES (null, 'LIT705', 'Dehaviland', '10.0');
-INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '13.1');
+INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '7.5');
 
+-- COURSE REQS
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '5');
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '1');
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('10', '7');
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('11', '10');
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('12', '8');
+INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('2', '4');
 
+-- STUDIES
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('3', '1');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('4', '5');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('5', '7');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('6', '5');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('7', '1');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('3', '3');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('8', '3');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('9', '9');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('10', '13');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('11', '9');
+
+-- HAS_STUDIED
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('1', '1', 'A');
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('1', '5', 'C');
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '7', 'A');
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '5', 'C');
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '1', 'F');
+
+-- SECTIONS
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('4', 'Exam', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('4', 'Handin', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 'Exam', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 'Handin', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Exam', 'desc', '5.0');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Handin', 'desc', '5.0');
 
 
 -- ===============================================================================================

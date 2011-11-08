@@ -10,7 +10,7 @@
 	Typsnitt på sidan.
    ============================================================================================== */
 body {
-	font-family: "Helvetica", "Arial" sans-serif;
+	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 12px;
 }
 
@@ -23,7 +23,7 @@ body {
 
 
 /* ==|== Body ===================================================================================
-	Sidan huvudstruktur.
+	Sidans huvudstruktur.
    ============================================================================================== */
 
 body {
@@ -103,9 +103,12 @@ body {
 }
 
 #main-top-text {
-	
+	font-size: 15px;
+	color: #444;
 	font-weight: bold;
 	text-align: center;
+	text-shadow: #eee 1px 1px;
+	padding-top: 8px;
 }
 
 #main {
@@ -148,7 +151,7 @@ body {
 
 
 /* ==|== Content ================================================================================
-	Själva huvudinnehållet på hemsidan. Ramen som visar all info.
+	Själva huvudinnehållet på hemsidan. Ramen som visar all info med 
    ============================================================================================== */
    
 #content {
@@ -182,7 +185,7 @@ div#footer-container {
 
 #footer {
 	text-align: justify;
-	font-family: "Helvetica", "Arial" sans-serif;
+	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 11px;
 	color: #f0f0f0;
 	text-shadow: #333 1px 1px 0;
@@ -243,7 +246,7 @@ img {
    ============================================================================================== */
 
 .about-frame {
-	padding: 10px 20px;
+	padding: 0 0 20px 0;
 	margin-bottom: 20px;
 }
 

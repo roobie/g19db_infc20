@@ -6,7 +6,7 @@
 
 	$db = null;
 	$data = array($idcourse);
-	$query="CALL GetAllStudiesByCourseID(?)";
+	$query="CALL GetAllSectionsByCourseID(?)";
 
 	try {
 		require 'database_props.php';
@@ -27,22 +27,22 @@ echo <<<EOB
 			To update a row, simply click it.
 		</caption>
 
-		<tbody>
-			<tr>
-					<th scope="col">Students</th>
-			</tr>
+			<tbody>
+				<tr>
+						<th scope="col">Sections</th>
+				</tr>
 				
 EOB;
 
 $result_set = $stmt->fetchAll();
 
 foreach ($result_set as $row) {
-$stud_id = $row[0];
+$sect_id = $row[0];
 echo <<<EOB
 				
-			<tr id="student-row-$stud_id" class="student-other-tr">
-				<th class="td-clickable" scope="row">$stud_id</th>
-			</tr>
+				<tr id="section-row-$sect_id" class="section-other-tr">
+					<th class="td-clickable" scope="row">$sect_id</th>
+				</tr>
 EOB;
 }
 
