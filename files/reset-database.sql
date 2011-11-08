@@ -876,11 +876,11 @@ BEGIN
 	SELECT
 		s.name, ss.grade
 	FROM
-		section_student ss, section s
+		student_section ss, `section` s
 	WHERE
-		ss.idsection = s.idsection AND 
-		ss.idcourse = inidcourse AND
-		ss.idstudent = inidstudent;
+		ss.idsection = s.idsection AND
+		ss.idstudent = inidstudent AND
+		s.idcourse = inidcourse;
 END $$
 
 -- ===============================================================================================

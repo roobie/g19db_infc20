@@ -1,8 +1,8 @@
 <?php
 
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
 	$idcourse = mysql_escape_string($_POST["idc"]);
-
-
 
 	$db = null;
 	$data = array($idcourse);
@@ -20,6 +20,8 @@
 		
 		// Building the table:
 
+		$result_set = $stmt->fetchAll();
+
 echo <<<EOB
 	<table class="standard-table">
 
@@ -34,38 +36,41 @@ echo <<<EOB
 			</tr>
 				
 EOB;
+		
 
-$result_set = $stmt->fetchAll();
-$db->commit();
-foreach ($result_set as $row) {
-$stud_id = $row[0];
-$stud_name = $row[1] . " " . $row[2];
+		foreach ($result_set as $row) {
+		$stud_id = $row[0];
+		$stud_name = $row[1] . " " . $row[2];
+
 echo <<<EOB
 				
 			<tr id="student-row-$stud_id" class="student-other-tr">
 				<td class="td-clickable" scope="row">$stud_name</th>
 				<td class="td-clickable" scope="row">
 EOB;
-//MAN FÅR LA GÖRA EN SÖKNING HÄR
-		$stmt_section = $db->prepare("CALL GetAllStudentSectionsByCourseAndStudentID(?,?)");
+		
+		$db2 = new PDO($pdo_connection_string, $user, $password);
 
-		$db->beginTransaction();
+		$stmt_section = $db2->prepare("CALL GetAllStudentSectionsByCourseAndStudentID(?,?)");
+
+		$db2->beginTransaction();
 		$stmt_section->execute(array($idcourse, $stud_id));
 		
 		$result_section = $stmt_section->fetchAll();
-		
-		$db->commit();
-foreach ($result_section as $row_section) {
-$sect_name = $row_section[0];
-$sect_grade = $row_section[1];
-echo <<<EOB
 
+		foreach ($result_section as $row_section) {
+			$sect_name = $row_section[0];
+			$sect_grade = $row_section[1];
+			foreach($row_section as $elem) {
+				echo $elem;
+			}
+echo <<<EOB
 
 					<table class="standard-table">
 						<tbody>
 							<tr>
-									<th scope="col">Section</th>
-									<th scope="col">Grade</th>
+								<th scope="col">Section</th>
+								<th scope="col">Grade</th>
 							</tr>
 							<tr>
 								<td>$sect_name</td>
@@ -87,7 +92,8 @@ echo <<<EOB
 	</table>
 EOB;
 
-
+		$db2->commit();
+		$db->commit();
 	} catch (PDOException $e) {
 		echo $e->getMessage();
 	}
