@@ -26,8 +26,8 @@
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/XRegExp.js"></script>
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/shCore.js"></script>
 	<script type="text/javascript" src="SyntaxHighlighter/scripts/shBrushPhp.js"></script>
-	<script type="text/javascript">SyntaxHighlighter.all();</script>
-		
+	<!--<script type="text/javascript">SyntaxHighlighter.all();</script>
+		-->
 	<script defer src="js/plugins.js"></script>
 	<script defer src="js/script.js"></script>
 	
