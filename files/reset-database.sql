@@ -865,6 +865,24 @@ BEGIN
 		idcourse = inidcourse;
 END $$
 
+-- get all section -> course relationship by courseid and studentid
+DROP PROCEDURE IF EXISTS GetAllStudentSectionsByCourseAndStudentID $$
+
+CREATE PROCEDURE GetAllStudentSectionsByCourseAndStudentID (
+	IN inidcourse VARCHAR (255),
+	IN inidstudent VARCHAR (255)
+)
+BEGIN
+	SELECT
+		s.name, ss.grade
+	FROM
+		section_student ss, section s
+	WHERE
+		ss.idsection = s.idsection AND 
+		ss.idcourse = inidcourse AND
+		ss.idstudent = inidstudent;
+END $$
+
 -- ===============================================================================================
 -- END defs
 -- ===============================================================================================
