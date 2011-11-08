@@ -819,6 +819,21 @@ BEGIN
 		c.idcourse;
 END $$
 
+-- get all studies relationship by courseid
+DROP PROCEDURE IF EXISTS GetAllStudiesByCourseID $$
+
+CREATE PROCEDURE GetAllStudiesByCourseID (
+	IN inidcourse VARCHAR (255)
+)
+BEGIN
+	SELECT
+		idstudent
+	FROM
+		studies
+	WHERE
+		idcourse = inidcourse;
+END $$
+
 -- ===============================================================================================
 -- END defs
 -- ===============================================================================================

@@ -44,8 +44,8 @@ foreach ($result_set as $row) {
 	$name		= $row[2];
 	$points		= $row[3];
 echo <<<EOB
-		<tr class="course-tr">
-			<th id="course-row-$id" class="td-clickable" scope="row">$name</th>
+		<tr id="course-row-$id" class="course-tr">
+			<th class="td-clickable" scope="row">$name</th>
 			<td class="td-clickable">$code</td>
 			<td class="td-clickable">$id</td>
 			<td class="td-clickable">$points</td>
