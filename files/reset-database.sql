@@ -953,7 +953,6 @@ INSERT INTO course VALUES (null, 'EKO504', 'Tailback', '7.5');
 INSERT INTO course VALUES (null, 'FIL969', 'Appreciable', '5.0');
 INSERT INTO course VALUES (null, 'FIL384', 'Fireworks', '15.0');
 INSERT INTO course VALUES (null, 'LIT705', 'Dehaviland', '10.0');
-INSERT INTO course VALUES (null, 'LIT125', 'Unjacketed', '7.5');
 
 -- COURSE REQS
 INSERT INTO course_requirements (idcourse, idcourse_required) VALUES ('6', '5');
@@ -973,6 +972,7 @@ INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('3', '3');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('8', '3');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('9', '9');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('10', '12');
+INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('10', '4');
 INSERT INTO studies (`idstudent`,`idcourse`) VALUES ('11', '9');
 
 -- HAS_STUDIED
@@ -983,17 +983,58 @@ INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '5', 'C');
 INSERT INTO has_studied (`idstudent`,`idcourse`,`grade`) VALUES ('2', '1', 'F');
 
 -- SECTIONS
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('1', 'Exam', 'desc', '5.0');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('2', 'Exam', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('3', 'Exam', 'desc', '10.0');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('4', 'Exam', 'desc', '7.5');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('4', 'Handin', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('5', 'Exam', 'desc', '5.0');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('6', 'Exam', 'desc', '5.0');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('7', 'Exam', 'desc', '10.0');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('8', 'Exam', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('9', 'Exam', 'desc', '7.5');
+INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('10', 'Exam', 'desc', '5.0');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 'Exam', 'desc', '7.5');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('11', 'Handin', 'desc', '7.5');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Exam', 'desc', '5.0');
 INSERT INTO section (`idcourse`, `name`, `description`, `points`) VALUES ('12', 'Handin', 'desc', '5.0');
 
 INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
-VALUES ('10','5',NULL);
+VALUES ('11','10',NULL);
 INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
-VALUES ('10','6',NULL);
+VALUES ('10','15',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('10','14',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('9','10',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('8','3',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('3','3',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('7','1',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('6','6',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('5','8',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('4','6',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('3','1',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('2','1',"F");
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('2','6','C');
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('2','8','A');
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('1','6','C');
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('1','1','A');
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('10','4',NULL);
+INSERT INTO student_section (`idstudent`, `idsection`, `grade`)
+VALUES ('10','5','C');
 
 
 -- ===============================================================================================

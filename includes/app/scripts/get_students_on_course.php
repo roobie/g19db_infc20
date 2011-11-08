@@ -45,8 +45,16 @@ EOB;
 echo <<<EOB
 				
 			<tr id="student-row-$stud_id" class="student-other-tr">
-				<td class="td-clickable" scope="row">$stud_name</th>
+				<td class="td-clickable" scope="row"><span class="emph">$stud_name</span></th>
 				<td class="td-clickable" scope="row">
+
+
+					<table class="standard-table">
+						<tbody>
+							<tr>
+								<th scope="col" class="fixed-width">Section</th>
+								<th scope="col">Grade</th>
+							</tr>
 EOB;
 		
 		$db2 = new PDO($pdo_connection_string, $user, $password);
@@ -61,23 +69,23 @@ EOB;
 		foreach ($result_section as $row_section) {
 			$sect_name = $row_section[0];
 			$sect_grade = $row_section[1];
+
+			if ($sect_grade == null) {
+				$sect_grade = "Student has no grade on this section.";
+			}
 echo <<<EOB
 
-					<table class="standard-table">
-						<tbody>
-							<tr>
-								<th scope="col">Section</th>
-								<th scope="col">Grade</th>
-							</tr>
 							<tr>
 								<td>$sect_name</td>
 								<td>$sect_grade</td>
 							</tr>
-						</tbody>
-					</table>
+						
 EOB;
 }
 echo <<<EOB
+
+						</tbody>
+					</table>
 				</td>
 			</tr>
 EOB;
