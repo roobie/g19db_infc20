@@ -263,7 +263,7 @@ function manipulate_student_table () {
 			},
 			"Add to course": function () {
 				$("#student_id").val(db_id);
-				populate_courses_list();
+				populate_courses_list(db_id);
 				$( "#add-student-to-course-dialog" ).dialog( "open" );
 			},
 			"Delete!": function() {
@@ -371,13 +371,15 @@ function manipulate_course_table () {
 	});
 
 	$(".course-tr").click(function () { 
-		$( "#update-course-dialog-form" ).dialog( "open" );
+		course_tabs();
 		ccode.val($(this).attr('id'));
-		var tmp	= $( [] );
+		var tmp	= $( []) ;
 		
 		$(this).children().each(function () {
 			tmp.push($(this).text()); // "this" is the current element in the loop
 		});
+		
+		var names = tmp[0];
 
 		ccode.val(tmp[1]);
 		cname.val(tmp[2]);
@@ -572,9 +574,9 @@ $( "#add-student-to-course-dialog" ).dialog ({
 	}
 });
 
-function populate_courses_list () {
+function populate_courses_list (studentId) {
 	$.post("includes/app/scripts/get_possible_courses.php", {
-			sid: db_id
+			sid: studentId
 		},
 		function(data) {
 			$("#courses-list").empty().append(data);
@@ -582,7 +584,7 @@ function populate_courses_list () {
 	);
 }
 
-function course_tabs () {
+function course_tabs (studentData, sectionData) {
 	$("#app_table").empty().append('<div id="course_tabs"></div>');
 	$("#course_tabs")
 	.append('<ul><li><a href="#students-tab">Students</a></li><li><a href="#sections-tab">Sections</a></li></ul>')
