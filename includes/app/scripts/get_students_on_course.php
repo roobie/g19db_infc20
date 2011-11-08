@@ -61,9 +61,6 @@ EOB;
 		foreach ($result_section as $row_section) {
 			$sect_name = $row_section[0];
 			$sect_grade = $row_section[1];
-			foreach($row_section as $elem) {
-				echo $elem;
-			}
 echo <<<EOB
 
 					<table class="standard-table">
@@ -84,6 +81,8 @@ echo <<<EOB
 				</td>
 			</tr>
 EOB;
+
+		$db2->commit();
 }
 
 echo <<<EOB
@@ -92,7 +91,6 @@ echo <<<EOB
 	</table>
 EOB;
 
-		$db2->commit();
 		$db->commit();
 	} catch (PDOException $e) {
 		echo $e->getMessage();
